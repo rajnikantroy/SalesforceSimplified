@@ -100,3 +100,5 @@ Yes! You can see debug logs of only logged in user/changed user.<br/><br/>
 Yes! You can see debug logs of other users from advance search functionality by selecting debug log metadata and search the name of user.<br/><br/>
 <b>9. Can i see others metadata of other users without changing users?</b><br/>
 Yes! You can see any metadata of other users from advance search functionality by selecting any metadata and search the name of user.<br/><br/>
+<b>10. Is there any shortcut to close Salesforce Simplified?</b><br/>
+Yes! You can use esc key to close.<br/><br/>
