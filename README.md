@@ -1,4 +1,7 @@
-<b>Interoduction</b><br/><br/>
+Download link : https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob
+
+<b>Introduction</b><br/><br/>
+
 Salesforce simplified chrome extension is made for salesforce developer to ease their daily life by sharing useful data points easily accessible on top of the UI.<br/>
 When you are working on any module, you need your recently created or modified data handy so that you can work faster and save time to avoid unnecessary clicks.<br/>
 By using the advanced search of salesforce simplified you can get your code few clicks shorter.<br/>
