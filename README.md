@@ -1,5 +1,7 @@
 Download link : https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob <br/>
-Blog : https://salesforcesimplify.blogspot.in/
+Blog : https://salesforcesimplify.blogspot.in/ <br/>
+FB : https://www.facebook.com/salesforcesimplified/ <br/>
+Report Issue : https://github.com/rajnikantroy/Salesforce-Simplified/issues/new
 
 <b>Introduction</b><br/><br/>
 
