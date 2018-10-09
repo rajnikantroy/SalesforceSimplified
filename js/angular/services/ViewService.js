@@ -38,7 +38,7 @@ var allitems = chrome.extension.getURL("/img/icons/moreitems.png");
 var AuraDefinitionBundles = chrome.extension.getURL("/img/icons/AuraDefinitionBundles.png");
 
 var faq = '<b>1. What is Salesforce Simplified?</b><br/>'+
-'Salesforce Simplified is chrome extension by installing it to your chrome, it enables you to see your recently created/modified components.<br/><br/>'+
+'Salesforce Simplified is chrome extension by installing it, it enables you to see your recently created/modified components.<br/><br/>'+
 '<b>2. Why should i use Salesforce Simplified?</b><br/>'+
 'Salesforce Simplified is time saver machine, which will help you find your components by avoiding unnecessary clicks.<br/><br/>'+
 '<b>3. Will it work on multiple org simultaneously?</b><br/>'+
@@ -272,7 +272,7 @@ this.content = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav"
 //Simplified Recent Items
 '<div id="fullDataSidenav" ng-keypress="changed($event)" class="detailsidenav">'+
 '<div class="ARISearch salesforcesimplifiedHeader">'+
-'<span class="salesforcesimplifiedTitle">Salesforce Simpified</span>'+
+'<span class="salesforcesimplifiedTitle">Salesforce Simpified (We are open source now)</span>'+
 '</div>'+
 '  <a href="javascript:void(0)" id="aboutusSidenav_closebtn" ng-click="loadDataClosebtn()" class="closebtn">&times;</a>'+
 '<table class="sfdcSimplifiedContent">'+

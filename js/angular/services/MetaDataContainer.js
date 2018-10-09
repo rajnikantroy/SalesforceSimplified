@@ -38,7 +38,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}
             ]
     },{
         label:"Recently viewed for logged in user only",
@@ -60,7 +60,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}
             ],
         url:"https://"+window.location.host+"/services/data/v43.0/tooling/query/?q=",
         fieldlevelactions:[{}],
@@ -88,7 +88,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}
             ],
         fieldlevelactions:[{}],
         url:"https://"+window.location.host+"/services/data/v32.0/query/?q=",
@@ -155,7 +155,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v32.0/query/?q=",
         listUrl:"/setup/build/allTriggers.apexp",
         midurl:"",
@@ -183,7 +183,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                 {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
                 {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
                 {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-                {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}
+                {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}
             ],
         url:"https://"+window.location.host+"/services/data/v32.0/query/?q=",
         listUrl:"/_ui/common/apex/debug/ApexCSIPage",
@@ -215,7 +215,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
 	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
 	        {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-	        {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+	        {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/apexpages/setup/listApexPage.apexp",
         midurl:"",
@@ -241,7 +241,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
          {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
          {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
          {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-         {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+         {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/apexpages/setup/listApexComponent.apexp",
         midurl:"",
@@ -270,7 +270,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
 	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
 	        {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-	        {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+	        {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/p/setup/custent/CustomObjectsPage",
         midurl:"",
@@ -297,7 +297,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}
         ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/p/setup/custent/CustomObjectsPage",
@@ -324,7 +324,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
 	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
 	        {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-	        {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+	        {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         imagesrc : chrome.extension.getURL("/img/icons/labels.png"),
         listUrl:"/101",
@@ -350,7 +350,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/_ui/core/workflow/WorkflowSplashUi?EntityId=WorkflowRule",
         imagesrc : chrome.extension.getURL("/img/icons/workflows.png"),
@@ -378,7 +378,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         imagesrc : chrome.extension.getURL("/img/icons/flows.png"),
         listUrl:"/300",
@@ -407,7 +407,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/00X",
         midurl:"",
@@ -436,7 +436,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/005",
         midurl:"",
@@ -464,7 +464,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/081",
         midurl:"",
@@ -492,7 +492,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/00e",
         midurl:"",
@@ -518,7 +518,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/p/own/OrgPublicGroupsPage/d",
         midurl:"setup/own/groupdetail.jsp?id=",
@@ -560,7 +560,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         objectlevelaction:[
                                {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"}, 
                                {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"},
-                               {name:"GitHub", actionUrl:"https://github.com/rajnikantroy/Salesforce-Simplified"},
+                               {name:"Contribute", actionUrl:"https://github.com/rajnikantroy/Salesforce-Simplified"},
                                {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}
                            ]
     },{
@@ -583,7 +583,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         midurl:"setup/ui/recordtypefields.jsp?id=",
         listUrl:"/",
@@ -608,7 +608,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         midurl:"",
         listUrl:"/",
@@ -633,7 +633,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         midurl:"setup/own/entityruledetail.jsp?id=",
         listUrl:"/",
@@ -659,7 +659,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}],
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/",
         placeholderText:"Quick find/search Group..."
@@ -684,7 +684,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-            {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}
+            {name:"Facebook", actionUrl:"https://www.fb.com/salesforcesimplified"}
             ],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/",
