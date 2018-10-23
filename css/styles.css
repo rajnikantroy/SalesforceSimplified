@@ -2,6 +2,33 @@
       position: relative;
       cursor: pointer !important;
     }
+    .modal-back{
+    	background-color: #f8f8f8;
+    }
+    .modalheader{
+	    height: 30px;
+	    background-color: #1796bf !important;
+	    text-align: center;
+	    color:white;
+    }
+    .modalfooter{
+	    height: 20px;
+	    background-color: #e2e2e2 !important;
+	    text-align: center;
+	    color:black;
+    }
+    .bold{
+    font-weight:bold;
+    }
+    
+    .modalcustomstyle{
+        border-radius: 5px;
+    margin-bottom: 20px;
+    background: #fff;
+    top: 1px;
+    position: relative;
+    }
+    
   /*.menuicon:hover{
     width: 70px;
     height: 70px;

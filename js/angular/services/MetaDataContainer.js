@@ -81,7 +81,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         menuname:"favourite",
         queryForAll:"SELECT Id, LogUser.Name, LogLength, StartTime, Status, Operation, Location FROM ApexLog order by StartTime desc",
         queryForAllWithWhere:"SELECT Id, LogUser.Name, LogLength, StartTime, Status, Operation, Location FROM ApexLog where Operation like ",
-        query:"SELECT Id, LogUser.Name, LogLength, StartTime, Status, Operation, Location FROM ApexLog where LogUserId='"+UserId.id+"' order by StartTime desc ",
+        query:"SELECT Id, LogUser.Name, LogUserId, LogLength, LastModifiedDate, Request, Operation, Application, Status, DurationMilliseconds, SystemModstamp, StartTime, Location FROM ApexLog where LogUserId='"+UserId.id+"' order by StartTime desc",
         headers:["Log Size(byte)", "Operation", "Start Time"],
         objectlevelaction:[
             {name:"New", actionUrl:"https://"+window.location.host+"/udd/TraceFlag/editTraceFlag.apexp?logType=USER_DEBUG&retURL=%2Fsetup%2Fui%2FlistApexTraces.apexp"},

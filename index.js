@@ -3,14 +3,18 @@ var app = angular.module("SalesforceSimplifiedApp", []);
 }catch(e){}
 
 function recentItems() {
-    var v = '<script src="/soap/ajax/28.0/connection.js" type="text/javascript"></script><script src="/soap/ajax/28.0/apex.js" type="text/javascript"></script><div ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified"><div ng-controller="MenuAndDetailsCtrl"><img src="'+chrome.extension.getURL("/img/ss_icon_enable.png")+'" id="ss_icon" ng-mouseover="callModel()" ng-strict-di/><menu></menu></div></div>';
+    var v = '<div ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified"><div ng-controller="MenuAndDetailsCtrl"><img src="'+chrome.extension.getURL("/img/ss_icon_enable.png")+'" id="ss_icon" ng-mouseover="callModel()" ng-strict-di/><menu></menu></div></div>';
        $(".bPageFooter").append(v).fadeIn(3000);
 	   $("#ss_icon").animate({left: '0px'});
 	   $("#ss_icon").animate({left: '-30px'});
 	   $("#ss_icon").animate({left: '0px'});
 	   $("#ss_icon").animate({left: '-30px'});
 }
-
+var debugLogContent = "";
+function viewMyLogs() {
+	var v = '<span ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified1"><span ng-controller="MyViewGridCtrl"><span><input class="btn" value="My Logs" style="background: #1796bf; color: white;" ng-click="queryForDebugLogs()" type="button" ng-strict-di/></span><span><debugloggrid></debugloggrid></span></span></span>';
+    $("#Apex_Trace_List\\:traceForm\\:traceTable").find("input[id$=deleteAll]").after(v);
+}
 function recentItems1() {
       var v = '<div ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified"><div ng-controller="MenuAndDetailsCtrl"><img src="'+chrome.extension.getURL("/img/ss_icon_disable.png")+'" id="ss_icon" ng-mouseover="callModel()" ng-strict-di/><menu></menu></div></div>'; 
        $("body").append(v);
@@ -18,18 +22,20 @@ function recentItems1() {
 	   $("#ss_icon").animate({left: '-30px'});
 	   $("#ss_icon").animate({left: '0px'});
 	   $("#ss_icon").animate({left: '-30px'});
-
 }
 
 angular.element(document).ready(function(){
      angular.bootstrap(document.getElementById("SalesforceSimplified"), ['SalesforceSimplifiedApp']);
+     angular.bootstrap(document.getElementById("SalesforceSimplified1"), ['SalesforceSimplifiedApp']);
 });
 
 if($(".bPageFooter").length){
     recentItems();
-
+    if($("#Apex_Trace_List\\:traceForm\\:traceTable").length > 0) {
+    	viewMyLogs();
+	}
     }else{
-		//recentItems1();
+		
 	}
 
 function __getUserId(){
