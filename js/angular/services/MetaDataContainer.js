@@ -106,7 +106,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         menuname:"favourite",
         queryForAll:"select id, name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexClass order by LastModifiedDate desc",
         queryForAllWithWhere:"select id, name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexClass where name like ",
-        query:"SELECT Id, Name, LastModifiedDate, ApiVersion, NamespacePrefix, CreatedBy.Name, LastModifiedBy.Name FROM ApexClass where  LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc",
+        query:"SELECT Id, Name, LastModifiedDate, LastModifiedBy.Id,  IsValid, ApiVersion, NamespacePrefix, CreatedBy.Name, LastModifiedBy.Name FROM ApexClass where  LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc",
         metadata:"ApexClass",
         imagesrc : chrome.extension.getURL("/img/icons/classes.png"),
         type:"table",

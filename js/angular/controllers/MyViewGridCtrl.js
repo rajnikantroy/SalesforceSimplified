@@ -1,5 +1,6 @@
 app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, UserId) {
-	$scope.userLogs = [];
+	/************************************************DEBUG LOGS START***************************************************/
+	$scope.dataList = [];
 	$scope.loadingDebug = true;
 	$scope.uname = "My";
 	$scope.userFullName = "";
@@ -19,9 +20,9 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 			$scope.querySFDC(MetaDataContainer.data[2].query, MetaDataContainer.data[2].url);
 	}
 	$scope.deleteMyLogs = function(){
-		if($scope.userLogs.length > 0) {
+		if($scope.dataList.length > 0) {
 			$scope.loading = true;
-			$scope.userLogs.forEach(function(e) { deleteLogsFromSalesforce(e) });
+			$scope.dataList.forEach(function(e) { deleteLogsFromSalesforce(e) });
 			$scope.loading = false;
 		}else {
 			alert('There are no debug logs to delete');
@@ -52,11 +53,11 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
             };
             $http(configObj).then(function mySuccess(response) {
             if(response.data.records && response.data.records.length){
-            	$scope.userLogs = response.data.records;
+            	$scope.dataList = response.data.records;
             	$scope.loading = false;
             	$scope.nodataavailable = false;
             }else{
-            	$scope.userLogs = [];
+            	$scope.dataList = [];
             	$scope.nodataavailable = true;
             	$scope.loading = false;
             }
@@ -64,4 +65,16 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	
     });
     }
+	/************************************************DEBUG LOGS END***************************************************/
+	
+	/************************************************CLASS START******************************************************/
+	$scope.closeClassModal = function(){
+		$("#classGridModal").css({"display": "none"});
+	}
+	$scope.openClassModal = function(){
+			$scope.loading = true;
+			$("#classGridModal").css({"display": "block"});
+			$scope.querySFDC(MetaDataContainer.data[3].query, MetaDataContainer.data[3].url);
+	}
+	/************************************************CLASS END******************************************************/
 });

@@ -27,6 +27,7 @@ function recentItems1() {
 angular.element(document).ready(function(){
      angular.bootstrap(document.getElementById("SalesforceSimplified"), ['SalesforceSimplifiedApp']);
      angular.bootstrap(document.getElementById("SalesforceSimplified1"), ['SalesforceSimplifiedApp']);
+     // angular.bootstrap(document.getElementById("SalesforceSimplified2"), ['SalesforceSimplifiedApp']);
 });
 
 if($(".bPageFooter").length){
@@ -34,9 +35,15 @@ if($(".bPageFooter").length){
     if($("#Apex_Trace_List\\:traceForm\\:traceTable").length > 0) {
     	viewMyLogs();
 	}
-    }else{
-		
-	}
+    if($("#all_classes_page\\:theTemplate\\:theForm").length > 0){
+       var v = '<span ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified2"><span ng-controller="MyViewGridCtrl"><span><input class="btn" value="My Classes" title="By Salesforce Simplified" style="background: #1796bf; color: white;" ng-click="openClassModal()" type="button" ng-strict-di/></span><span><classgrid></classgrid></span></span></span>';
+       $("#all_classes_page\\:theTemplate\\:theForm").find("input[id$=scheduleBatchApexButton]").after(v);
+    }
+    if($("#ApexClassViewPage\\:theTemplate\\:theForm\\:thePageBlock").length > 0){
+    	var v = '<span ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified2"><span ng-controller="MyViewGridCtrl"><span><input class="btn" value="My Classes" title="By Salesforce Simplified" style="background: #1796bf; color: white;" ng-click="openClassModal()" type="button" ng-strict-di/></span><span><classgrid></classgrid></span></span></span>';
+        $("#ApexClassViewPage\\:theTemplate\\:theForm\\:thePageBlock").find("input[id$=showDependenciesButton]").after(v);
+    }
+    }
 
 function __getUserId(){
 	try{
