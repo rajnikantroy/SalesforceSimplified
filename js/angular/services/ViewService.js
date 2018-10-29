@@ -180,7 +180,7 @@ this.usersrecords = '<span class="hrtitle ARITitleTitle" ng-show="!showErrorMess
 '	<td ng-if="selectedMetadata.eligibleForPackageXml" class="action"><input class="packagexml_chk" id="userData_{{r.Id}}" ng-click="SelectMetadataForManagedPackage(r.Id, r.selected)" type="checkbox" ng-model="r.selected" /></td>'+
 '   <td ng-if="r.LogLength" class="tooltip-me" data-title="View - {{r.Operation}}({{r.LogLength}} bytes)"><a class="trim-info" target="_blank" href="{{baseUrl}}/p/setup/layout/ApexDebugLogDetailEdit/d?setupid=ApexDebugLogs&apex_log_id={{r.Id}}">{{r.LogLength}}</a></td>'+
 '   <td ng-if="r.LogLength" class="tooltip-me" data-title="View - {{r.Operation}}({{r.LogLength}} bytes)"><a class="trim-info" target="_blank" href="{{baseUrl}}/p/setup/layout/ApexDebugLogDetailEdit/d?setupid=ApexDebugLogs&apex_log_id={{r.Id}}">{{r.Operation}}</a></td>'+
-'   <td class="RecentTime" ng-if="r.LogLength">{{r.StartTime | date: "d MMM yyyy hh:mm:ss"}}</td>'+
+'   <td class="RecentTime" ng-if="r.LogLength">{{r.StartTime | date:"MM/dd hh:mm:ss Z"}}</td>'+
 //'   <td ng-if="r.Name && !selectedMetadata.midurl" Class="tooltip-me" data-title="{{r.Name}}"><a Class="trim-info-content" href="{{baseUrl}}/{{r.Id}}" target="_blank">{{r.Name}}</a></td>'+
 '   <td ng-if="r.Name" Class="tooltip-me" data-title="{{r.Name}}"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.Name}}</a></td>'+
 
@@ -214,7 +214,7 @@ this.allrecords = '<span ng-show="selectedMetadata.isSearchable" class="hrtitle 
 '	<td ng-if="selectedMetadata.eligibleForPackageXml" class="action"><input class="packagexml_chk" id="allData_{{r.Id}}" ng-click="SelectMetadataForManagedPackage(r.Id, r.selected)" type="checkbox" ng-model="r.selected" /></td>'+
 '   <td ng-if="r.LogLength" class="tooltip-me" data-title="View - {{r.Operation}}({{r.LogLength}} bytes)" ><a class="trim-info" target="_blank" href="{{baseUrl}}/p/setup/layout/ApexDebugLogDetailEdit/d?setupid=ApexDebugLogs&apex_log_id={{r.Id}}">{{r.LogLength}}</a></td>'+
 '   <td ng-if="r.LogLength" class="tooltip-me" data-title="View - {{r.Operation}}({{r.LogLength}} bytes)"><a class="trim-info" target="_blank" href="{{baseUrl}}/p/setup/layout/ApexDebugLogDetailEdit/d?setupid=ApexDebugLogs&apex_log_id={{r.Id}}">{{r.Operation}}</a></td>'+
-'   <td class="RecentTime" ng-if="r.LogLength">{{r.StartTime | date: "d MMM yyyy hh:mm:ss"}}</td>'+
+'   <td class="RecentTime" ng-if="r.LogLength">{{r.StartTime | date:"MM/dd hh:mm:ss Z"}}</td>'+
 //'   <td ng-if="r.Name" data-title="{{r.Name}}" class="tooltip-me"><a class="trim-info-content" href="{{baseUrl}}/{{r.Id}}"  target="_blank">{{r.Name}}</a></td>'+
 //'   <td ng-if="r.Name && !selectedMetadata.midurl" Class="tooltip-me" data-title="{{r.Name}}"><a Class="trim-info-content" href="{{baseUrl}}/{{r.Id}}" target="_blank">{{r.Name}}</a></td>'+
 '   <td ng-if="r.Name" Class="tooltip-me" data-title="{{r.Name}}"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.Name}}</a></td>'+
@@ -225,7 +225,7 @@ this.allrecords = '<span ng-show="selectedMetadata.isSearchable" class="hrtitle 
 //'   <td ng-if="r.DeveloperName" data-title="{{r.DeveloperName}}" class="tooltip-me"><a class="{trim-info-content: AllMetaDataRecords.value != AuraDefinitionBundle }" href="{{baseUrl}}/{{r.Id}}"  target="_blank">{{r.DeveloperName}}</a></td>'+
 '   </tr></table> ';
 
-this.objectlevelaction = '<span class="hrtitle ARITitleTitle" ng-click="openObjectList()"><p style="margin-top: 24px;" class="tooltip-me" data-title="{{selectedMetadata.tooltipMessage}}">{{selectedMetadata.label}}</p><hr class="sshr"/></span>'+
+this.objectlevelaction = '<span class="hrtitle ARITitleTitle" ng-click="openObjectList()"><p style="margin-top: 0px;" class="tooltip-me" data-title="{{selectedMetadata.tooltipMessage}}">{{selectedMetadata.label}}</p><hr class="sshr"/></span>'+
 '  <table class="ARITitleTable">'+
 //'   <tr ng-if="!selectedMetadata.listUrl"><td class="ARITitleTitleWithoutCursor">{{selectedMetadata.label}}</td></tr>'+
 '<tr ng-if="!selectedMetadata.listUrl"><td class="ARITitleData" ng-repeat="action in selectedMetadata.objectlevelaction">'+
@@ -237,12 +237,12 @@ this.objectlevelaction = '<span class="hrtitle ARITitleTitle" ng-click="openObje
 '<td/></tr></table>';
 
 this.metadatamainmenu = '<table class="mainmenuSidebar">'+
-'<tr><th><center><b>Metadata</b></center></th></tr>'+
+'<tr><th><center><b>Metadata</b><center></th></tr>'+
 '<tr ng-click="detailsPopupOpen(menu)" ng-repeat="menu in allMenu">'+
 '<td Class="menusidebarText" data-title="{{menu.label}}">{{menu.label}}</td></tr></table>';
 
 this.developeranalysis = ' <table Class="userlist" ng-show="userFrequencyList.length && userFrequencyList.length>0 && selectedMetadata.isSearchable && showUserFrequency"><tr><td colspan="2"><b>Navigate by developers</b><br/><p class="toptendevelopersDescription">Top modifiers of recent {{totalSize_AllMetaDataRecords}} {{selectedMetadata.label}}</p></td></tr><tr ng-repeat="userFrequency in userFrequencyList track by $index | limitTo:quantity">'+
-' <td ng-click="searchForUser(userFrequency.username)" Class="tooltip-me td1" data-title="View {{userFrequency.frequency}} {{selectedMetadata.label}} modified by {{userFrequency.username}}" >{{userFrequency.username}}</td><td ng-click="searchForUser(userFrequency.username)" class="td2">{{userFrequency.frequency}}</td>'+
+' <td ng-click="searchForUser(userFrequency.username)" >{{userFrequency.username}}</td><td ng-click="searchForUser(userFrequency.username)" class="td2">{{userFrequency.frequency}}</td>'+
 '</tr></table>'+
 '<div ng-if="showallloading && selectedMetadata.type" class="loadingARILoading"><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/>'+
 '<span ng-if="showallloading && selectedMetadata.type" class="loadingARI">Analyzing top 10 developers for {{selectedMetadata.label}}...</span>'+
@@ -268,13 +268,71 @@ this.packagexmlfrequency = '<table ng-show="selectedMetadata.value == packagexml
 
 this.content = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav">'+
 '<functionalitiesmenu></functionalitiesmenu>'+
+'<div class="w3-container pageBlock">'+
+'<div id="SimplifiedMainModal" class="w3-modal  w3-animate-opacity">'+
+'<div class="w3-modal-content">'+
+'<header class="w3-container modalheader"> '+
+'<h2>Salesforce Simplified</h2>'+
+  '<span id="SimplifiedMainModalCloseBtn" style="height: 14px;" ng-click="SimplifiedMainModalClose()" class="w3-button w3-display-topright">X</span>'+
+'</header>'+
+  '<div class="w3-container" style="height:475px; overflow-y: scroll;">'+
+  '<table width="100%" syle="top:0; position: fixed;">'+
+  '<tr>'+
+  '<td style="position: fixed;overflow: auto;">'+
+  '<metadatamainmenu></metadatamainmenu>'+
+  '</td>'+
+  '<td colspan=2""><table width="100%" style="margin-left: -40px;"><tr><td><objectlevelaction></objectlevelaction></td></tr><tr><td><searchdata ng-show="selectedMetadata.isSearchable"></searchdata></td></tr></table></td></tr>'+
+  '<tr>'+	
+  '<td>'+
+  
+  '</td>'+
+    '<td width="60%">'+
+	'<table style="margin-left: -40px;">'+
+	'<tr><td><usersrecords></usersrecords></td></tr>'+
+	'<tr><td><allrecords></allrecords></td></tr>'+
+	'<tr><td><articles></articles></td></tr>'+
+	'<tr><td><packagexmleditor></packagexmleditor></td></tr>'+
+	'</table>'+
+    
+  '</td>'+
+    '<td width="20%" style="vertical-align: text-top;">'+
+    '<table>'+
+	'<tr><td><userdetails></userdetails></td></tr>'+
+	'<tr><td><packagexml></packagexml></td></tr>'+
+	'<tr><td><developeranalysis></developeranalysis></td></tr>'+
+	'<tr><td><packagexmlfrequency></packagexmlfrequency></td></tr>'+
+	'</table>'+
+	
+  '</td>'+
+  '</tr>'+
+
+  '</table>'+
+  
+  '</div>'+
+  '<footer class="w3-container modalfooter">'+
+  '<table width="100%"><tr>'+
+  '<td class="bold"><a target="_blank" href="https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob?hl=en">Rate Us on chrome</a></td>'+
+  '<td class="bold"><a target="_blank" href="https://fb.com/salesforcesimplified">Facebook Page</a></td>'+
+  '<td class="bold"><a target="_blank" href="https://github.com/rajnikantroy/SalesforceSimplified/issues">Report Issue</a></td>'+
+  '<td class="bold"><a target="_blank" href="https://salesforcesimplify.blogspot.com">Salesforce Simplified</a></td>'+
+'</tr></table>'+
+'</footer>'+
+'</div>'+
+'</div>'+
+'</div>'+
+
+'</div>';
+
+
+this.content1 = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav">'+
+'<functionalitiesmenu></functionalitiesmenu>'+
 
 //Simplified Recent Items
 '<div id="fullDataSidenav" ng-keypress="changed($event)" class="detailsidenav">'+
-'<div class="ARISearch salesforcesimplifiedHeader">'+
-'<span class="salesforcesimplifiedTitle">Salesforce Simpified (We are open source now)</span>'+
-'</div>'+
-'  <a href="javascript:void(0)" id="aboutusSidenav_closebtn" ng-click="loadDataClosebtn()" class="closebtn">&times;</a>'+
+//'<div class="ARISearch salesforcesimplifiedHeader">'+
+//'<span class="salesforcesimplifiedTitle">Salesforce Simpified (We are open source now)</span>'+
+//'</div>'+
+//'  <a href="javascript:void(0)" id="aboutusSidenav_closebtn" ng-click="loadDataClosebtn()" class="closebtn">&times;</a>'+
 '<table class="sfdcSimplifiedContent">'+
 '<tr>'+
 '<td style="width:250px">'+

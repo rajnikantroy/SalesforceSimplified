@@ -1,8 +1,8 @@
 app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContainer, $scope, UserId) {
-
+	var loadingcar = chrome.extension.getURL("/img/loadingcar.gif");
 	this.debugloggrid ='<div class="w3-container pageBlock">'+
-	  '<div id="debuglogGridModal" class="w3-modal apexp debugmodal">'+
-	    '<div class="w3-modal-content modal-back w3-animate-zoom modalcustomstyle">'+
+	  '<div id="debuglogGridModal" class="w3-modal  w3-animate-opacity">'+
+	    '<div class="w3-modal-content modal-back modalcustomstyle">'+
 	    '<header class="w3-container modalheader"> '+
 	    '<h2>{{uname}} Debug Logs</h2>'+
 	      '<span id="debuglogGridCloseBtn" ng-click="DebugLogClose()" class="w3-button w3-display-topright">X</span>'+
@@ -15,7 +15,10 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 		'</tr>'+
 		'</table>'+
 	    '</div>'+
-	    '<center><b ng-hide="userLogs.length">Sorry {{userFullName}}, No debug logs for you.</b></center>'+
+	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, No debug logs for you.</b></center>'+
+	    
+	    '<div ng-show="loading"><center><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/> Loading please wait...</center></div>'+
+	    
 	      '<div class="w3-container" style="background:white; min-height:200px; max-height:400px; overflow-y: scroll;">'+
 	        '<table class="list" ng-show="userLogs.length">'+
 	        '<tr class="headerRow">'+

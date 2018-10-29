@@ -24,9 +24,9 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     $scope.cloneWF = 'cloneWF';
     $scope.securityPreUrl = '/_ui/perms/ui/profile/ApexPageProfilePermissionEdit/e?apex_id=';
     $("#mySidenav").css({"width": "0"});
-    $("#fullDataSidenav").css({"width": "0"});
+    //$("#fullDataSidenav").css({"width": "0"});
     
-    $("#recentItemOf").css({"width": "0"});
+    //$("#recentItemOf").css({"width": "0"});
     $scope.fieldlevelactionlength = 0;
     //$scope.showloading = true;
     $scope.showErrorMessage = false;
@@ -150,13 +150,13 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
 
         $scope.AllMetaDataRecords= [];
         //$("#packageXmlSidenav").css({"width": "0"});
-        $("#fullDataSidenav").css({"width": "70%"});
+       // $("#fullDataSidenav").css({"width": "70%"});
         
-        $(".ARISearch").css({"display":"block"});
+        //$(".ARISearch").css({"display":"block"});
         //$(".packageARISearch").css({"display":"none"});
         
         $(".mainmenuSidebar").css({"display":"block"});
-        $("#recentItemOf").css({"width": "350"});
+        //$("#recentItemOf").css({"width": "350"});
          
          $scope.selectedMetadata = data;
         if(data.type == 'table' && data.query){
@@ -180,7 +180,7 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
 
     var KEYCODE_ESC = 27;
 
-    $(document).keyup(function(e) {
+   /* $(document).keyup(function(e) {
       if (e.keyCode === KEYCODE_ESC) {
         if($("#fullDataSidenav").css("width").startsWith("70%")){
             $scope.loadDataClosebtn();
@@ -190,7 +190,7 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         }else if(e.ctrlKey && e.keyCode === 32){
             //$scope.callModel();
         }
-    });
+    });*/
     
     
     //str = str.replaceLast('one', 'finish');
@@ -380,9 +380,9 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     }
 
     $scope.closeModel = function(){
-		if($("#fullDataSidenav").css("width").startsWith("0")){
+		//if($("#fullDataSidenav").css("width").startsWith("0")){
 			$("#mySidenav").css({"width": "0"});
-		}
+		//}
         $scope.showloading = false;
         $scope.showErrorMessage = false;
         $scope.isDataAvailable = true;
@@ -390,8 +390,12 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         $scope.showAllData = false;
     }
     $scope.loadData = function(){
-        $("#fullDataSidenav").css({"width": "70%"});
-        $("#recentItemOf").css({"width": "350"});
+       // $("#fullDataSidenav").css({"width": "70%"});
+        //$("#recentItemOf").css({"width": "350"});
+    }
+    
+    $scope.SimplifiedMainModalClose = function(){
+    	$("#SimplifiedMainModal").css({"display": "none"});
     }
     
     $scope.detailsPopupOpen = function(data){
@@ -406,11 +410,12 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         $scope.unamewithoutastr = $("#userfullname").text().split(" ")[0];
 
         $scope.AllMetaDataRecords= [];
-        $("#fullDataSidenav").css({"width": "70%"});
-        $(".ARISearch").css({"display":"block"});
+        $("#SimplifiedMainModal").css({"display": "block"});
+        //$("#fullDataSidenav").css({"width": "70%"});
+        //$(".ARISearch").css({"display":"block"});
         
         $(".mainmenuSidebar").css({"display":"block"});
-        $("#recentItemOf").css({"width": "350"});
+        //$("#recentItemOf").css({"width": "350"});
 
          var selectedDT = JSON.stringify( data, function( key, value ) {
                 if( key === "$$hashKey" ) {
@@ -452,7 +457,7 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         //$("#packageXmlSidenav").css({"width": "0"});
         $("#fullDataSidenav").css({"width": "70%"});
         
-        $(".ARISearch").css({"display":"block"});
+        //$(".ARISearch").css({"display":"block"});
         //$(".packageARISearch").css({"display":"none"});
         
         $(".mainmenuSidebar").css({"display":"block"});
@@ -494,7 +499,7 @@ $scope.detailsPopupOpenByOption = function(data, len){
 
         $scope.AllMetaDataRecords= [];
         $("#fullDataSidenav").css({"width": "70%"});
-        $("#recentItemOf").css({"width": "350"});
+        //$("#recentItemOf").css({"width": "350"});
         
          var selectedDT = JSON.stringify( data, function( key, value ) {
                 if( key === "$$hashKey" ) {
@@ -522,13 +527,13 @@ $scope.detailsPopupOpenByOption = function(data, len){
 }
 
     $scope.loadDataClosebtn = function(){
-        $(".ARISearch").css({"display":"none"});
+        //$(".ARISearch").css({"display":"none"});
         //$(".packageARISearch").css({"display":"none"});
         $(".mainmenuSidebar").css({"display":"none"});
         $("#mySidenav").css({"width": "150"});
-        $("#fullDataSidenav").css({"width": "0"});
+        //$("#fullDataSidenav").css({"width": "0"});
         //$("#packageXmlSidenav").css({"width": "0"});
-        $("#recentItemOf").css({"width": "0"});
+        //$("#recentItemOf").css({"width": "0"});
         $scope.showAllData = false;
         $scope.records = [];
         $scope.searchText = '';
@@ -598,7 +603,7 @@ $scope.detailsPopupOpenByOption = function(data, len){
         $scope.showErrorMessage = true;
         $scope.records = response.statusText;
 		var cookieTester = readCookie("disco");
-		$("#recentItemOf").css("background-color", "#ff000082");
+		//$("#recentItemOf").css("background-color", "#ff000082");
 		if(cookieTester && cookieTester.split(":").length){			
 			$("#userdetails").addClass('userdetailsError');
             $scope.ErrorMsg = 'Please change user.';			
@@ -731,7 +736,7 @@ $scope.searchMetadata = function(selectMenu){
         $scope.records = response.statusText;
         $scope.showAllData = false;
 		var cookieTester = readCookie("disco");
-		$("#recentItemOf").css("background-color", "#ff000082");
+		//$("#recentItemOf").css("background-color", "#ff000082");
 		if(cookieTester && cookieTester.split(":").length){			
 			$scope.ErrorMsg = 'Please refresh your page.';			
 		}else{
@@ -801,7 +806,7 @@ $scope.searchMetadata = function(selectMenu){
         $scope.records = response.statusText;
         $scope.showAllData = false;
         var cookieTester = readCookie("disco");
-		$("#recentItemOf").css("background-color", "#ff000082");
+		//$("#recentItemOf").css("background-color", "#ff000082");
 		if(cookieTester && cookieTester.split(":").length){			
 			$scope.ErrorMsg = 'Please refresh your page.';			
 		}else{

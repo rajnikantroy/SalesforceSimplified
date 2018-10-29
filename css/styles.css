@@ -17,8 +17,9 @@
 	    text-align: center;
 	    color:black;
     }
-    .bold{
-    font-weight:bold;
+    
+    .bold a{
+    	font-weight:bold;
     }
     
     .modalcustomstyle{
@@ -78,7 +79,7 @@
 
 .ARITitleTable{
 	width: 100%;
-  box-shadow: 5px 5px 5px grey;
+      border-bottom: 2px solid #d4d4d4;
   margin-top: -35px;
 }
 .ARITitleTable td{
@@ -153,7 +154,7 @@
 	width: 25% !important;
     font-family: Arial,Helvetica,sans-serif !important;
     color: #222 !important;
-    margin-left: 5px;
+    margin-left: 10px;
     padding-top: 13px;
 }
 .ARITitleTitle p{
@@ -334,7 +335,7 @@ p.recorddescription{
 }
 */
 .SearchData{
-    width: 70%;
+    width: 80%;
     padding: 12px 20px;
     margin: -7px 0;
     box-sizing: border-box;
@@ -740,6 +741,17 @@ width:20px;
 }
 .mainmenuSidebar{
 	overflow-y: scroll;
+	overflow-x:none;
+  margin-bottom: 10px;
+  background-color: #e2e2e2 !important;
+    position: fixed !important;
+    height: 475px !important;
+    display: none;
+    margin-top: -3px;
+    margin-left: -18px;
+}
+.mainmenuSidebar1{
+	overflow-y: scroll;
   margin-bottom: 10px;
  box-shadow: 5px 5px 5px grey;
   width: 250px !important;
@@ -755,7 +767,6 @@ width:20px;
 list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 200px;
     background-color: #f1f1f1;
 }
 
@@ -803,9 +814,8 @@ list-style-type: none;
 }
 
 .userlist{
-  margin-top: 10px;
-  background-color: #f6f6f6;
-  width: 95% !important;
+  background-color: #ffffff;
+  width: 100% !important;
 }
 .userlist.td1{
 	width:70%;
@@ -813,18 +823,12 @@ list-style-type: none;
 .userlist.td2{
 	width:30%;
 }
-.userlist:hover{
-  margin-top: 10px;
-  background-color: #f6f6f6;
-  box-shadow: 5px 5px 5px grey;
-  width: 95% !important;
-}
 .userlist td{
   cursor: pointer;
 }
 
 .userlist b{
-  font-size: 15px;
+  font-size: 13px;
   text-align: center;
 }
 .packagexml_chk{
@@ -833,14 +837,9 @@ list-style-type: none;
     height: 20px;
 }
 .userdetails{
-  margin-top: 10px;
-  width: 95% !important;
-  background-color: #f6f6f6;
-}
-.userdetails:hover{
-  box-shadow: 5px 5px 5px grey;
-  width: 95% !important;
-  background-color: #f6f6f6;
+  margin-top: 0px;
+    background-color: rgb(255, 255, 255);
+    width: 100% !important;
 }
 
 .userdetails td{
@@ -848,7 +847,7 @@ list-style-type: none;
 }
 
 .userdetails b{
-  font-size: 15px;
+  font-size: 13px;
 }
 
 

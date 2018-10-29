@@ -85,13 +85,13 @@ function verifyUser(){
       	}else if(result.statuscode > 400){
 		    $("#username").text('Please change user.');
 		    $(".userdetails").addClass('userdetailsError');
-			$("#recentItemOf").css("background-color", "#ff000082");
+			//$("#recentItemOf").css("background-color", "#ff000082");
       		return false;
 		}else{
       		$("#username").text('Please change user.');
       		$("#userdetails").addClass('userdetailsError');
       		$(".userdetails").addClass('userdetailsError');
-			$("#recentItemOf").css("background-color", "#ff000082");
+			//$("#recentItemOf").css("background-color", "#ff000082");
       		return false;
       	 }
       	}
@@ -101,7 +101,7 @@ catch(e){
 	$("#username").text('Please change user.');
 	$("#userdetails").addClass('userdetailsError');
 	$(".userdetails").addClass('userdetailsError');
-	$("#recentItemOf").css("background-color", "#ff000082");
+	//$("#recentItemOf").css("background-color", "#ff000082");
   	return false;
 }
 }
