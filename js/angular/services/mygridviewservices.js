@@ -71,7 +71,7 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 		'</tr>'+
 		'</table>'+
 	    '</div>'+
-	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, No debug logs for you.</b></center>'+
+	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, You have not created/modified any apex classes.</b></center>'+
 	    
 	    '<div ng-show="loading"><center><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/> Loading please wait...</center></div>'+
 	    
