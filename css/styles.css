@@ -288,7 +288,46 @@ p.recorddescription{
       position: relative;
       text-align: left;
    }
-   
+   .trim-60 {
+      max-width: 60px;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;  
+      line-height: 15px;
+      position: relative;
+      text-align: left;
+   }
+   .trim-70 {
+      max-width: 70px;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;  
+      line-height: 15px;
+      position: relative;
+      text-align: left;
+   }
+   .trim-80 {
+      max-width: 80px;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;  
+      line-height: 15px;
+      position: relative;
+      text-align: left;
+   }
+   .trim-status{
+       max-width: 50px;
+	   display: inline-block;
+	   overflow: hidden;
+	   text-overflow: ellipsis;
+	   white-space: nowrap;
+	   line-height: 15px;
+	   position: relative;
+	   text-align: left;
+    }
 .trim-info {
       max-width: 180px;
       display: inline-block;

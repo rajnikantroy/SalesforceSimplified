@@ -1,6 +1,13 @@
 app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, UserId) {
 	/************************************************DEBUG LOGS START***************************************************/
 	$scope.dataList = [];
+	
+	$scope.clsSecurity = 'clsSecurity';
+	$scope.edit = 'Edit';
+	$scope.download = 'Download';
+	$scope.baseUrl = 'https://'+window.location.host;
+	$scope.classactions = MetaDataContainer.data[3].fieldlevelactions;
+	
 	$scope.loadingDebug = true;
 	$scope.uname = "My";
 	$scope.userFullName = "";

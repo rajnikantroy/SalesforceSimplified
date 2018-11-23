@@ -1,5 +1,10 @@
 app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContainer, $scope, UserId) {
 	var loadingcar = chrome.extension.getURL("/img/loadingcar.gif");
+	
+	var editicon = chrome.extension.getURL("/img/edit.png");
+	var downloadicon = chrome.extension.getURL("/img/download.png");
+	var securityicon = chrome.extension.getURL("/img/security.png");
+	
 	this.debugloggrid ='<div class="w3-container pageBlock">'+
 	  '<div id="debuglogGridModal" class="w3-modal  w3-animate-opacity">'+
 	    '<div class="w3-modal-content modal-back modalcustomstyle">'+
@@ -34,13 +39,13 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 		'</tr>'+
 			'<tr ng-repeat="log in dataList | filter:search">'+
 			'<td><a style="font-weight:bold" href="/p/setup/layout/ApexDebugLogDetailEdit/d?apex_log_id={{log.Id}}" target="_blank">View</a></td>'+
-				'<td><a href="/{{log.LogUserId}}" target="_blank">{{log.LogUser.Name}}</a></td>'+
-				'<td>{{log.Request}}</td>'+
-				'<td>{{log.Application}}</td>'+
-				'<td class="trim-info">{{log.Operation}}</td>'+
-				'<td>{{log.Status}}</td>'+
-				'<td>{{log.DurationMilliseconds}}</td>'+
-				'<td>{{log.LogLength | number}}</td>'+
+				'<td title="{{log.LogUser.Name}}"><a class="trim-60" href="/{{log.LogUserId}}" target="_blank">{{log.LogUser.Name}}</a></td>'+
+				'<td title="{{log.Request}}"><span class="trim-60">{{log.Request}}</span></td>'+
+				'<td title="{{log.Application}}"><span class="trim-60">{{log.Application}}</span></td>'+
+				'<td title="{{log.Operation}}"><span class="trim-info">{{log.Operation}}</span></td>'+
+				'<td title="{{log.Status}}"><span class="trim-status">{{log.Status}}</span></td>'+
+				'<td title="{{log.DurationMilliseconds}}">{{log.DurationMilliseconds}}</td>'+
+				'<td title="{{log.LogLength | number}}">{{log.LogLength | number}}</td>'+
 				'<td>{{log.StartTime | date:"MM/dd hh:mm:ss Z"}}</td>'+
 			'</tr>'+ 
 		'</table>'+
@@ -78,7 +83,9 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	      '<div class="w3-container" style="background:white; min-height:200px; max-height:400px; overflow-y: scroll;">'+
 	        '<table class="list" ng-show="dataList.length">'+
 	        '<tr class="headerRow">'+
-			'<th class="headerRow"></th>'+
+			'<th class="headerRow">Action</th>'+
+			//'<th class="headerRow"></th>'+
+			//'<th class="headerRow"></th>'+
 			'<th class="headerRow">Name</th>'+
 			'<th class="headerRow">Namespace</th>'+
 			'<th class="headerRow">Api Version</th>'+
@@ -86,12 +93,16 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 			'<th class="headerRow">Has Trace Flags</th>'+
 		'</tr>'+
 			'<tr ng-repeat="class in dataList | filter:search">'+
-			'<td><a style="font-weight:bold" href="/{{class.Id}}" target="_blank">View</a></td>'+
-				'<td><a class="trim-info" href="/{{class.Id}}" target="_blank">{{class.Name}}</a></td>'+
-				'<td>{{class.NamespacePrefix}}</td>'+
-				'<td>{{class.ApiVersion}}</td>'+
-				'<td><a class="username-trim" target="_blank" href="/{{class.LastModifiedBy.Id}}">{{class.LastModifiedBy.Name}}</a> {{class.LastModifiedDate | date:"MM/dd/yyyy hh:mm a"}}</td>'+
-				'<td><input type="checkbox" ng-model="class.IsValid" ng-Disabled="true"></td>'+
+			'<td>'+
+			    '<a target="_blank" href="{{baseUrl}}/{{class.Id}}/e" data-title="Edit" Class="tooltip-me"><img src="'+editicon+'" width="20px" height="20px"/>'+
+			    '<a style="margin-left: 10px;" target="_blank" href="{{baseUrl}}/setup/apexcodedownload?class_id={{class.Id}}" Class="tooltip-me" data-title="Download"><img src="'+downloadicon+'" width="20px" height="20px"/>'+
+			    '<a style="margin-left: 10px;" target="_blank" href="{{baseUrl}}/_ui/perms/ui/profile/ApexClassProfilePermissionEdit/e?apex_id={{class.Id}}&apex_name={{class.Name}}" Class="tooltip-me" data-title="Security"><img src="'+securityicon+'" width="20px" height="20px"/>'
+			+'</td>'+
+				'<td title="{{class.Name}}"><a class="trim-info" href="/{{class.Id}}" target="_blank">{{class.Name}}</a></td>'+
+				'<td title="{{class.NamespacePrefix}}">{{class.NamespacePrefix}}</td>'+
+				'<td title="{{class.ApiVersion}}">{{class.ApiVersion}}</td>'+
+				'<td title="{{class.LastModifiedBy.Name}}"><a class="username-trim" target="_blank" href="/{{class.LastModifiedBy.Id}}">{{class.LastModifiedBy.Name}}</a> {{class.LastModifiedDate | date:"MM/dd/yyyy hh:mm a"}}</td>'+
+				'<td title="{{class.IsValid}}"><input type="checkbox" ng-model="class.IsValid" ng-Disabled="true"></td>'+
 			'</tr>'+ 
 		'</table>'+
 	      '</div>'+

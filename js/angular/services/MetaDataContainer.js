@@ -36,8 +36,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                 ],
         objectlevelaction:[
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            
             ]
     },{
         label:"Recently viewed",
@@ -57,8 +57,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         headers:["Log Size(byte)", "Operation", "Start Time"],
         objectlevelaction:[
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            
             ],
         url:"https://"+window.location.host+"/services/data/v43.0/tooling/query/?q=",
         fieldlevelactions:[{}],
@@ -84,8 +84,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         objectlevelaction:[
             {name:"New", actionUrl:"https://"+window.location.host+"/udd/TraceFlag/editTraceFlag.apexp?logType=USER_DEBUG&retURL=%2Fsetup%2Fui%2FlistApexTraces.apexp"},
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            
             ],
         fieldlevelactions:[{}],
         url:"https://"+window.location.host+"/services/data/v32.0/query/?q=",
@@ -150,8 +150,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                 ],
         objectlevelaction:[
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v32.0/query/?q=",
         listUrl:"/setup/build/allTriggers.apexp",
         midurl:"",
@@ -177,8 +177,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         fieldlevelactions:[],
         objectlevelaction:[
                 {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
-                {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-                {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}
+                {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+                
             ],
         url:"https://"+window.location.host+"/services/data/v32.0/query/?q=",
         listUrl:"/_ui/common/apex/debug/ApexCSIPage",
@@ -208,8 +208,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                         ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/066/e"}, 
 	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-	        {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+	        ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/apexpages/setup/listApexPage.apexp",
         midurl:"",
@@ -233,8 +233,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         imagesrc : chrome.extension.getURL("/img/icons/components.png"),
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/099/e"},
          {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-         {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-         {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+         {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+         ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/apexpages/setup/listApexComponent.apexp",
         midurl:"",
@@ -261,8 +261,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                 {name:"Edit", actionUrl:"/e"}],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/01I/e"}, 
 	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-	        {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+	        ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/p/setup/custent/CustomObjectsPage",
         midurl:"",
@@ -287,8 +287,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         fieldlevelactions:[
                 {name:"Edit", actionUrl:"/e"}],
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            
         ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/p/setup/custent/CustomObjectsPage",
@@ -313,8 +313,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         fieldlevelactions:[{name:"Edit", actionUrl:"/e"}],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/101/e"}, 
 	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-	        {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+	        ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         imagesrc : chrome.extension.getURL("/img/icons/labels.png"),
         listUrl:"/101",
@@ -338,8 +338,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         fieldlevelactions:[{name:"Edit", actionUrl:"/e"}, {name:"cloneWF", actionUrl:"/e"}],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/_ui/core/workflow/WorkflowSplashUi?EntityId=WorkflowRule&setupid=WorkflowRules"}, 
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/_ui/core/workflow/WorkflowSplashUi?EntityId=WorkflowRule",
         imagesrc : chrome.extension.getURL("/img/icons/workflows.png"),
@@ -365,8 +365,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/designer/designer.apexp"}, 
             {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         imagesrc : chrome.extension.getURL("/img/icons/flows.png"),
         listUrl:"/300",
@@ -393,8 +393,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/p/email/template/NewEmailTemplateStageManager?setupid=CommunicationTemplatesEmail"},
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/00X",
         midurl:"",
@@ -421,8 +421,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/005/e"}, 
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/005",
         midurl:"",
@@ -448,8 +448,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/081/e"},
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         listUrl:"/081",
         midurl:"",
@@ -475,8 +475,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/_ui/perms/ui/profile/ProfileClone/e"},
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/00e",
         midurl:"",
@@ -500,8 +500,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         midurl:"setup/own/groupdetail.jsp?id=",
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/setup/own/groupedit.jsp"},
         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/p/own/OrgPublicGroupsPage/d",
         midurl:"setup/own/groupdetail.jsp?id=",
@@ -541,7 +541,6 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         listUrl:"/",
         fieldlevelactions:[{}],
         objectlevelaction:[
-                               {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"},
                                {name:"Contribute", actionUrl:"https://github.com/rajnikantroy/Salesforce-Simplified"}
                            ]
     },{
@@ -562,8 +561,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         headers:["Edit", "Name"],
         fieldlevelactions:[{name:"Edit", actionUrl:"/setup/ui/recordtypeedit.jsp?id="}],
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         midurl:"setup/ui/recordtypefields.jsp?id=",
         listUrl:"/",
@@ -586,8 +585,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         headers:["Edit", "Name"],
         fieldlevelactions:[],
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/tooling/query/?q=",
         midurl:"",
         listUrl:"/",
@@ -610,8 +609,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         headers:["Edit", "Name"],
         fieldlevelactions:[{name:"Edit", actionUrl:"/setup/own/entityruleedit.jsp?id="}],
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         midurl:"setup/own/entityruledetail.jsp?id=",
         listUrl:"/",
@@ -635,8 +634,8 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         headers:["Edit", "Name"],
         fieldlevelactions:[{name:"Edit", actionUrl:"/e"}],
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}],
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
+            ],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/",
         placeholderText:"Quick find/search Group..."
@@ -659,8 +658,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         midurl:"",
         fieldlevelactions:[{}],
         objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
-            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
-            {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"}
+            {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v42.0/query/?q=",
         listUrl:"/",
@@ -678,7 +676,7 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         fieldlevelactions:[{}],
         objectlevelaction:[
                                {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"}, 
-                               {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"},
+                               ,
                                {name:"GitHub", actionUrl:"https://github.com/rajnikantroy/Salesforce-Simplified"},
                                {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}
                            ]
@@ -694,7 +692,6 @@ app.service('MetaDataContainer', ['UserId', function(UserId) {
         fieldlevelactions:[{}],
         objectlevelaction:[
                                {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"}, 
-                               {name:"Facebook Page", actionUrl:"https://www.fb.com/salesforcesimplified"},
                                {name:"GitHub", actionUrl:"https://github.com/rajnikantroy/Salesforce-Simplified"}
                            ]
     }];

@@ -2,9 +2,10 @@ app.service('viewservice', ['MetaDataContainer', function(MetaDataContainer, $sc
 
 var editicon = chrome.extension.getURL("/img/edit.png");
 var downloadicon = chrome.extension.getURL("/img/download.png");
+var securityicon = chrome.extension.getURL("/img/security.png");
+
 var viewicon = chrome.extension.getURL("/img/view.png");
 var changeicon = chrome.extension.getURL("/img/change.png");
-var securityicon = chrome.extension.getURL("/img/security.png");
 var cloneicon = chrome.extension.getURL("/img/clone.png");
 var loadingcar = chrome.extension.getURL("/img/loadingcar.gif");
 var paypalicon = chrome.extension.getURL("/img/paypal.png");
@@ -242,7 +243,7 @@ this.metadatamainmenu = '<table class="mainmenuSidebar">'+
 '<td Class="menusidebarText" data-title="{{menu.label}}">{{menu.label}}</td></tr></table>';
 
 this.developeranalysis = ' <table Class="userlist" ng-show="userFrequencyList.length && userFrequencyList.length>0 && selectedMetadata.isSearchable && showUserFrequency"><tr><td colspan="2"><b>Navigate by developers</b><br/><p class="toptendevelopersDescription">Top modifiers of recent {{totalSize_AllMetaDataRecords}} {{selectedMetadata.label}}</p></td></tr><tr ng-repeat="userFrequency in userFrequencyList track by $index | limitTo:quantity">'+
-' <td ng-click="searchForUser(userFrequency.username)" >{{userFrequency.username}}</td><td ng-click="searchForUser(userFrequency.username)" class="td2">{{userFrequency.frequency}}</td>'+
+' <td class="username-trim" title="{{userFrequency.username}}" ng-click="searchForUser(userFrequency.username)" >{{userFrequency.username}}</td><td ng-click="searchForUser(userFrequency.username)" class="td2">{{userFrequency.frequency}}</td>'+
 '</tr></table>'+
 '<div ng-if="showallloading && selectedMetadata.type" class="loadingARILoading"><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/>'+
 '<span ng-if="showallloading && selectedMetadata.type" class="loadingARI">Analyzing top 10 developers for {{selectedMetadata.label}}...</span>'+
@@ -281,13 +282,13 @@ this.content = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav"
   '<td style="position: fixed;overflow: auto;">'+
   '<metadatamainmenu></metadatamainmenu>'+
   '</td>'+
-  '<td colspan=2""><table width="100%" style="margin-left: -40px;"><tr><td><objectlevelaction></objectlevelaction></td></tr><tr><td><searchdata ng-show="selectedMetadata.isSearchable"></searchdata></td></tr></table></td></tr>'+
+  '<td colspan=2""><table width="100%" style="margin-left: -20px;"><tr><td><objectlevelaction></objectlevelaction></td></tr><tr><td><searchdata ng-show="selectedMetadata.isSearchable"></searchdata></td></tr></table></td></tr>'+
   '<tr>'+	
   '<td>'+
   
   '</td>'+
     '<td width="60%">'+
-	'<table style="margin-left: -40px;">'+
+	'<table style="margin-left: -20px;">'+
 	'<tr><td><usersrecords></usersrecords></td></tr>'+
 	'<tr><td><allrecords></allrecords></td></tr>'+
 	'<tr><td><articles></articles></td></tr>'+
