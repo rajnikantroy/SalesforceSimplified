@@ -2,8 +2,33 @@ try{
 var app = angular.module("SalesforceSimplifiedApp", []);
 }catch(e){}
 
+var red = chrome.extension.getURL("/img/ss_icon_enable.png");
+var blue = chrome.extension.getURL("/img/ss_icon_enable_blue.png");
+var pink = chrome.extension.getURL("/img/ss_icon_enable_pink.png");
+var purple = chrome.extension.getURL("/img/ss_icon_enable_purple.png");
+var selectedLauncherColor = chrome.extension.getURL("/img/ss_icon_enable.png");
+load();
+function load(){
+	var colorMap = new Map();
+	colorMap.set('Red', chrome.extension.getURL("/img/ss_icon_enable.png"));
+	colorMap.set('Blue', chrome.extension.getURL("/img/ss_icon_enable_blue.png"));
+	colorMap.set('Pink', chrome.extension.getURL("/img/ss_icon_enable_pink.png"));
+	colorMap.set('Purple', chrome.extension.getURL("/img/ss_icon_enable_purple.png"));
+	colorMap.set('Amazon', chrome.extension.getURL("/img/ss_icon_enable_amazon.png"));
+	colorMap.set('Dark Blue', chrome.extension.getURL("/img/ss_icon_enable_darkblue.png"));
+	colorMap.set('Bronze', chrome.extension.getURL("/img/ss_icon_enable_bronze.png"));
+	colorMap.set('Yellow', chrome.extension.getURL("/img/ss_icon_enable_yellow.png"));
+	
+	if(readCookie('simplifiediconcolor')){
+		selectedLauncherColor = colorMap.get(readCookie('simplifiediconcolor'));
+	}else{
+		selectedLauncherColor = chrome.extension.getURL("/img/ss_icon_enable.png");
+	}
+}
+
+
 function recentItems() {
-    var v = '<div ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified"><div ng-controller="MenuAndDetailsCtrl"><img src="'+chrome.extension.getURL("/img/ss_icon_enable.png")+'" id="ss_icon" ng-mouseover="callModel()" ng-strict-di/><menu></menu></div></div>';
+    var v = '<div ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified"><div ng-controller="MenuAndDetailsCtrl"><img src="'+selectedLauncherColor+'" id="ss_icon" ng-mouseover="callModel()" ng-strict-di/><menu></menu></div></div>';
        $(".bPageFooter").append(v).fadeIn(3000);
 	   $("#ss_icon").animate({left: '0px'});
 	   $("#ss_icon").animate({left: '-30px'});
@@ -50,7 +75,7 @@ function __getUserId(){
 	var uid = readCookie('uid');///, uidBool = verifyUser();
 	if (typeof uid === 'undefined' || uid){
 		setCookie('uid', uid, 2);
-		$('#ss_icon').attr('src',chrome.extension.getURL("/img/ss_icon_enable.png"));
+		$('#ss_icon').attr('src',selectedLauncherColor);
 		return verifyUser();
 	}
 	else{
@@ -58,7 +83,7 @@ function __getUserId(){
 		for(var i=0; cookieData && cookieData.length && i<cookieData.length; i++){
 			if(cookieData[i].startsWith('005')){
 				 setCookie('uid', cookieData[i], 2);
-				 $('#ss_icon').attr('src',chrome.extension.getURL("/img/ss_icon_enable.png"));
+				 $('#ss_icon').attr('src',selectedLauncherColor);
 				 return verifyUser();
 			}
 		}

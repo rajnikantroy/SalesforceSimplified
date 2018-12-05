@@ -10,6 +10,7 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     $scope.allitems = 'allitems';
     $scope.packagexml = 'PackageXml';
     $scope.AssignmentRule = 'AssignmentRule';
+    $scope.launchercolor ='LauncherColor';
     
     $scope.AuraDefinitionBundle = 'AuraDefinitionBundle';
     
@@ -41,6 +42,13 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     
     $scope.packageMetaDataFrequency = [];
     $scope.objectEntityIdNameMap = new Map();
+   
+    $scope.setColorInCookie = function(color){
+    	 var d = new Date();
+    	 d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+    	 var expires = "expires="+d.toUTCString();
+    	 document.cookie = "simplifiediconcolor=" + color+ ";" + expires + ";path=/";
+    }
     
     $scope.getObjectNameForPackageXml = function(){
     	var str = '';
@@ -132,7 +140,21 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     	$scope.str +='</Package>\n';
     	
     }
-    
+    $scope.downloadPackageXml = function(){
+    	$scope.downloadDoc('Package.xml', $scope.str);
+    }
+    $scope.downloadDoc = function(filename, text) {
+    	  var element = document.createElement('a');
+    	  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    	  element.setAttribute('download', filename);
+
+    	  element.style.display = 'none';
+    	  document.body.appendChild(element);
+
+    	  element.click();
+
+    	  document.body.removeChild(element);
+    	}
     $scope.VerifyPackage = function(){
     	if($scope.entityIdMap && $scope.entityIdMap.size > 0){
     		$scope.getObjectNameForPackageXml();
@@ -278,6 +300,8 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
 	            	var name = $scope.AllMetaDataRecords[i].Name ? $scope.AllMetaDataRecords[i].Name : $scope.AllMetaDataRecords[i].DeveloperName;
 	            	var NamespacePrefix = $scope.AllMetaDataRecords[i].NamespacePrefix;
 	            	var SobjectType = $scope.AllMetaDataRecords[i].SobjectType;
+	            	//$scope.AllMetaDataRecords[i].attributes.type;
+	            	
 	            	var TableEnumOrId = $scope.AllMetaDataRecords[i].TableEnumOrId;
 	            	name = name.split(".").length>1 ? name.split(".")[1] : name;
 	            	
@@ -295,10 +319,10 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
 	            		name = TableEnumOrId+'.'+name;
 	            		$scope.entityIdMap.set(TableEnumOrId, TableEnumOrId);
 	            	}
-	            	if($scope.AllMetaDataRecords[i].attributes.type === 'CustomObject'){
+	            	if($scope.AllMetaDataRecords[i] && $scope.AllMetaDataRecords[i].attributes && $scope.AllMetaDataRecords[i].attributes.type && $scope.AllMetaDataRecords[i].attributes.type === 'CustomObject'){
 	            		name = name+'__c';
 	            	}
-	            	if($scope.records[i].attributes.type === 'CustomField'){
+	            	if($scope.AllMetaDataRecords[i] && $scope.AllMetaDataRecords[i].attributes && $scope.AllMetaDataRecords[i].attributes.type && $scope.AllMetaDataRecords[i].attributes.type === 'CustomField'){
 	            		name = name+'__c';
 	            	}
 	            	

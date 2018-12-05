@@ -38,6 +38,15 @@ var recentitems = chrome.extension.getURL("/img/icons/recentitems.png");
 var allitems = chrome.extension.getURL("/img/icons/moreitems.png");
 var AuraDefinitionBundles = chrome.extension.getURL("/img/icons/AuraDefinitionBundles.png");
 
+var red = chrome.extension.getURL("/img/ss_icon_enable.png");
+var blue = chrome.extension.getURL("/img/ss_icon_enable_blue.png");
+var pink = chrome.extension.getURL("/img/ss_icon_enable_pink.png");
+var purple = chrome.extension.getURL("/img/ss_icon_enable_purple.png");
+var darkblue = chrome.extension.getURL("/img/ss_icon_enable_darkblue.png");
+var amazon = chrome.extension.getURL("/img/ss_icon_enable_amazon.png");
+var yellow = chrome.extension.getURL("/img/ss_icon_enable_yellow.png");
+var bronze = chrome.extension.getURL("/img/ss_icon_enable_bronze.png");
+
 var faq = '<b>1. What is Salesforce Simplified?</b><br/>'+
 'Salesforce Simplified is chrome extension by installing it, it enables you to see your recently created/modified components.<br/><br/>'+
 '<b>2. Why should i use Salesforce Simplified?</b><br/>'+
@@ -178,7 +187,7 @@ this.usersrecords = '<span class="hrtitle ARITitleTitle" ng-show="!showErrorMess
 '       <a ng-if="faction.name == clone" target="_blank" href="{{baseUrl}}{{faction.actionUrl}}{{r.Id}}" Class="tooltip-me" data-title="Clone"><img  src="'+cloneicon+'" width="20px" height="20px"/></a>'+
 '       <a ng-if="faction.name == cloneWF" target="_blank" href="{{baseUrl}}/{{r.Id}}{{faction.actionUrl}}" Class="tooltip-me" data-title="Clone"><img  src="'+cloneicon+'" width="20px" height="20px"/></a>'+
 '   </td>'+
-'	<td ng-if="selectedMetadata.eligibleForPackageXml" class="action"><input class="packagexml_chk" id="userData_{{r.Id}}" ng-click="SelectMetadataForManagedPackage(r.Id, r.selected)" type="checkbox" ng-model="r.selected" /></td>'+
+'	<td ng-if="selectedMetadata.eligibleForPackageXml" class="action"><input class="regular-checkbox" id="userData_{{r.Id}}" ng-click="SelectMetadataForManagedPackage(r.Id, r.selected)" type="checkbox" ng-model="r.selected" /></td>'+
 '   <td ng-if="r.LogLength" class="tooltip-me" data-title="View - {{r.Operation}}({{r.LogLength}} bytes)"><a class="trim-info" target="_blank" href="{{baseUrl}}/p/setup/layout/ApexDebugLogDetailEdit/d?setupid=ApexDebugLogs&apex_log_id={{r.Id}}">{{r.LogLength}}</a></td>'+
 '   <td ng-if="r.LogLength" class="tooltip-me" data-title="View - {{r.Operation}}({{r.LogLength}} bytes)"><a class="trim-info" target="_blank" href="{{baseUrl}}/p/setup/layout/ApexDebugLogDetailEdit/d?setupid=ApexDebugLogs&apex_log_id={{r.Id}}">{{r.Operation}}</a></td>'+
 '   <td class="RecentTime" ng-if="r.LogLength">{{r.StartTime | date:"MM/dd hh:mm:ss Z"}}</td>'+
@@ -212,7 +221,7 @@ this.allrecords = '<span ng-show="selectedMetadata.isSearchable" class="hrtitle 
 '       <a ng-if="faction.name == clone" target="_blank" href="{{baseUrl}}{{faction.actionUrl}}{{r.Id}}" Class="tooltip-me" data-title="Clone"><img  src="'+cloneicon+'" width="20px" height="20px"/></a>'+
 '       <a ng-if="faction.name == cloneWF" target="_blank" href="{{baseUrl}}/{{r.Id}}{{faction.actionUrl}}" Class="tooltip-me" data-title="Clone"><img  src="'+cloneicon+'" width="20px" height="20px"/></a>'+
 '   </td>'+
-'	<td ng-if="selectedMetadata.eligibleForPackageXml" class="action"><input class="packagexml_chk" id="allData_{{r.Id}}" ng-click="SelectMetadataForManagedPackage(r.Id, r.selected)" type="checkbox" ng-model="r.selected" /></td>'+
+'	<td ng-if="selectedMetadata.eligibleForPackageXml" class="action"><input class="regular-checkbox" id="allData_{{r.Id}}" ng-click="SelectMetadataForManagedPackage(r.Id, r.selected)" type="checkbox" ng-model="r.selected" /></td>'+
 '   <td ng-if="r.LogLength" class="tooltip-me" data-title="View - {{r.Operation}}({{r.LogLength}} bytes)" ><a class="trim-info" target="_blank" href="{{baseUrl}}/p/setup/layout/ApexDebugLogDetailEdit/d?setupid=ApexDebugLogs&apex_log_id={{r.Id}}">{{r.LogLength}}</a></td>'+
 '   <td ng-if="r.LogLength" class="tooltip-me" data-title="View - {{r.Operation}}({{r.LogLength}} bytes)"><a class="trim-info" target="_blank" href="{{baseUrl}}/p/setup/layout/ApexDebugLogDetailEdit/d?setupid=ApexDebugLogs&apex_log_id={{r.Id}}">{{r.Operation}}</a></td>'+
 '   <td class="RecentTime" ng-if="r.LogLength">{{r.StartTime | date:"MM/dd hh:mm:ss Z"}}</td>'+
@@ -257,11 +266,13 @@ this.searchdata = '<select Class="limit tooltip-me" data-title="Select record li
 //this.userdetails = '<span id="recentItemOf"><p id="username" ng-click="detailsPopupOpen(allMenu[0])" Class="trim-info viewasdifferentuser tooltip-me" data-title="View as different user"></p></span>';
 this.userdetails = '<div class="userdetails"><b>Viewing as</b></br><span id="userfullname"></span></br> <span id="username" class="trim-info"></span></br><p ng-show="ErrorMsg">{{ErrorMsg}}</p><button class="viewasdifferentuser" ng-click="detailsPopupOpen(allMenu[0])" href=""> View as different user</button></div>';
 
-this.packagexml = '<div ng-show="selectedMetaForPackageXml.size" class="userdetails"><b>Create package.xml</b><span id="userfullname"></span><p id="numberOfMetaDataInPackageXml">{{selectedMetaForPackageXml.size}}</p><button ng-click="VerifyPackage()" class="viewasdifferentuser" href=""> Verify package.xml</button></div>';
+this.packagexml = '<div ng-show="selectedMetaForPackageXml.size" class="userdetails"><b>Create package.xml</b><span id="userfullname"></span><p id="numberOfMetaDataInPackageXml">{{selectedMetaForPackageXml.size}}</p><button ng-click="VerifyPackage()" class="viewasdifferentuser" href=""> Verify package.xml</button></br><tr><td colspan="2"><button ng-show="selectedMetadata.value == packagexml" ng-click="downloadPackageXml()" class="viewasdifferentuser" style="background: rgb(48, 100, 133);"> Download package.xml</button></td></tr></div>';
 
-this.packagexmleditor = '<div Class="searchCodeFieldset" ng-show="selectedMetadata.value == packagexml"><textarea ng-model="str" rows="37" style="margin-top: -23px; width: 95%;" cols="50"></textarea></div>';
+this.packagexmleditor = '<div Class="searchCodeFieldset" ng-show="selectedMetadata.value == packagexml"><textarea ng-model="str" rows="37" style="margin-top: -23px; width: 150%;" cols="50"></textarea></div>';
 
 this.packagexmlaction = '';
+
+this.launchercolor = '<div class="launcherColor" ng-show="selectedMetadata.value==launchercolor"> <table> <tr> <td><img src="'+blue+'"/></br><input type="radio" name="color" ng-click="setColorInCookie(\'Blue\')" value="Blue"> Blue</td><td><img src="'+pink+'"/></br><input type="radio" name="color" ng-click="setColorInCookie(\'Pink\')" value="Pink"> Pink</td><td><img src="'+red+'"/></br><input type="radio" name="color" ng-click="setColorInCookie(\'Red\')" value="Red"> Red<td><img src="'+purple+'"/></br><input type="radio" name="color" ng-click="setColorInCookie(\'Purple\')" value="Purple"> Purple</td></tr><tr></td><td><img src="'+yellow+'"/></br><input type="radio" name="color" ng-click="setColorInCookie(\'Yellow\')" value="Yellow"> Yellow</td><td><img src="'+amazon+'"/></br><input type="radio" name="color" ng-click="setColorInCookie(\'Amazon\')" value="Amazon"> Amazon</td><td><img src="'+bronze+'"/></br><input type="radio" name="color" ng-click="setColorInCookie(\'Bronze\')" value="Bronze"> Bronze</td><td><img src="'+darkblue+'"/></br><input type="radio" name="color" ng-click="setColorInCookie(\'Dark Blue\')" value="Dark Blue"> Dark Blue</td></tr>';
 
 this.packagexmlfrequency = '<table ng-show="selectedMetadata.value == packagexml" Class="userlist"><tr><td colspan="2"><b>Selection Summary</b></td></tr><tr ng-repeat="metaFrequency in packageMetaDataFrequency track by $index">'+
 ' <td Class="tooltip-me td1" data-title="You have selected {{metaFrequency.Frequency}} {{metaFrequency.Type}} for package.xml">{{metaFrequency.Type}}</td><td class="td2">{{metaFrequency.Frequency}}</td>'+
@@ -274,7 +285,7 @@ this.content = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav"
 '<div class="w3-modal-content">'+
 '<header class="w3-container modalheader"> '+
 '<h2>Salesforce Simplified</h2>'+
-  '<span id="SimplifiedMainModalCloseBtn" style="height: 14px;" ng-click="SimplifiedMainModalClose()" class="w3-button w3-display-topright">X</span>'+
+  '<span id="SimplifiedMainModalCloseBtn" style="height: 14px;     box-sizing: content-box;" ng-click="SimplifiedMainModalClose()" class="w3-button w3-display-topright">X</span>'+
 '</header>'+
   '<div class="w3-container" style="height:475px; overflow-y: scroll;">'+
   '<table width="100%" syle="top:0; position: fixed;">'+
@@ -293,6 +304,7 @@ this.content = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav"
 	'<tr><td><allrecords></allrecords></td></tr>'+
 	'<tr><td><articles></articles></td></tr>'+
 	'<tr><td><packagexmleditor></packagexmleditor></td></tr>'+
+	'<tr><td><launchercolor></launchercolor></td></tr>'+
 	'</table>'+
     
   '</td>'+
