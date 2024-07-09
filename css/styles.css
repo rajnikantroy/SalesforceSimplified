@@ -1,3 +1,77 @@
+/*START*/
+.showhidemydata{
+	border: 1px solid black !important;
+    border-radius:10px;
+}
+
+.switchMyRecord {
+  position: relative;
+  display: inline-block;
+  width: 43px;
+  height: 18px;
+  margin-left: 50px;
+}
+
+.switchMyRecord input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.sliderMyRecord {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.sliderMyRecord:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 9px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .sliderMyRecord {
+  background-color: #2196F3;
+}
+
+input:focus + .sliderMyRecord {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .sliderMyRecord:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.sliderMyRecord.round {
+  border-radius: 34px;
+}
+
+.sliderMyRecord.round:before {
+  border-radius: 50%;
+}
+/*END*/
+
+
+
+.MetadataSearchClass {
+    width: 114px !important;
+}
+
 .regular-checkbox {
 	-webkit-appearance: none;
 	margin-left:5px;
@@ -10,10 +84,19 @@
 	position: relative;
 }
 .launcherColor img{
-	width: 75px;
-	height: 75px;
+	width: 50px;
+	height: 50px;
 }
-
+.SS_colorbox{
+	width: 24px;
+	height: 24px;
+}
+.launcherColor fieldset{
+    border-width: 1px;
+    border-style: dotted;
+    border-color: threedface;
+    border-image: initial;
+}
 .launcherColor td:hover{
 	background-color: #e2e2e2;
 }
@@ -24,8 +107,9 @@
 }
 
 .launcherColor input{
-	height: 20px;
-	width: 20px;
+	height: 15px;
+    width: 15px;
+    margin-left: 0px;
 }
 
 .regular-checkbox:active, .regular-checkbox:checked:active {
@@ -580,7 +664,7 @@ td.td2{
 .changeaction{
 	width:100px;
 }
-.action{
+.SimplifiedAction{
 	width:20px;
 }
 
@@ -790,7 +874,7 @@ td.td2{
     border: 0;
     border-radius: 0; 
     vertical-align: top;
-    margin-top: 23px;
+    margin-top: 43px;
     height: 40px;
     width: 40px;
 }

@@ -1,5 +1,6 @@
 app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, UserId) {
     $scope.edit = 'Edit';
+	$scope.vieweye = 'ViewEye';
     $scope.recently_viewed = 'RecentlyViewed';
     $scope.change = 'ChangeUser';
     $scope.update = 'Updates';
@@ -25,16 +26,12 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     $scope.cloneWF = 'cloneWF';
     $scope.securityPreUrl = '/_ui/perms/ui/profile/ApexPageProfilePermissionEdit/e?apex_id=';
     $("#mySidenav").css({"width": "0"});
-    //$("#fullDataSidenav").css({"width": "0"});
-    
-    //$("#recentItemOf").css({"width": "0"});
     $scope.fieldlevelactionlength = 0;
-    //$scope.showloading = true;
     $scope.showErrorMessage = false;
     $scope.showAllData = false;
     $scope.isDataAvailable = true;
-    $scope.editLogo = chrome.extension.getURL("img/edit.png");
-    $scope.downloadLogo = chrome.extension.getURL("img/download.png");
+    $scope.editLogo = chrome.runtime.getURL("img/edit.png");
+    $scope.downloadLogo = chrome.runtime.getURL("img/download.png");
     $scope.showpaymentflag = false;
     $scope.selectedMetaForPackageXml = new Map();
     $scope.packageMetaTypeAndName = new Map();
@@ -48,6 +45,23 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     	 d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
     	 var expires = "expires="+d.toUTCString();
     	 document.cookie = "simplifiediconcolor=" + color+ ";" + expires + ";path=/";
+    }
+    
+    $scope.changeBackgroundColor = function(){
+    	$("body").css("background-color", $scope.backgroundcolor);
+    	$scope.setSimplifiedCookie('simplified_background_color', $scope.backgroundcolor);
+    }
+    $scope.setSimplifiedBackColor = function(color){
+    	$scope.backgroundcolor = color;
+    	$scope.changeBackgroundColor();
+    	$scope.setSimplifiedCookie('simplified_background_color', color);
+    }
+    
+    $scope.setSimplifiedCookie = function(key, value){
+    	var d = new Date();
+	   	 d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+	   	 var expires = "expires="+d.toUTCString();
+	   	 document.cookie = key+"=" +value+ ";" + expires + ";path=/";
     }
     
     $scope.getObjectNameForPackageXml = function(){
@@ -69,6 +83,7 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     	var query = 'select id, DeveloperName from CustomObject where id in ('+str+')';
     	query = query.replace(',)', ')');
         var completeurl = $scope.selectedMetadata.url+''+query;
+        $("div.userdetails > p").removeClass('userdetailsError');
         $scope.ErrorMsg = '';
         var configObj = {
             url : completeurl,
@@ -85,10 +100,10 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
                 }
             }
 	    }, function myError(response) {
-	
+            $scope.ErrorMsg = response.statusText;
 	    }); 
-    	//queryForObjectNameFromFieldId(str);
     }
+    
     $scope.createpkgXmlString = function(){
     	$scope.packageMetaDataFrequency = [];
     	$scope.xmlStr = '<?xml version="1.0" encoding="UTF-8"?>'+
@@ -143,6 +158,7 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     $scope.downloadPackageXml = function(){
     	$scope.downloadDoc('Package.xml', $scope.str);
     }
+	
     $scope.downloadDoc = function(filename, text) {
     	  var element = document.createElement('a');
     	  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -159,7 +175,13 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     	if($scope.entityIdMap && $scope.entityIdMap.size > 0){
     		$scope.getObjectNameForPackageXml();
     	}
-    	var data = MetaDataContainer.data[18];
+    	var data;//MetaDataContainer.data[28];
+		
+		for (var i = 0; i < MetaDataContainer.data.length; i++) {
+            if(MetaDataContainer.data[i].value == 'PackageXml'){
+                data = MetaDataContainer.data[i];
+            }
+		}
         $scope.records = [];
         $scope.selectedMenu = data;
         $scope.searchAllMetaData = '';
@@ -184,7 +206,11 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         if(data.type == 'table' && data.query){
             $scope.showloading = true;
             $scope.showallloading = true;
-            $scope.rcd = $scope.querySFDC(data.query, data.url);
+            try{
+                $scope.rcd = $scope.querySFDC(data.query, data.url);
+            }catch(error){
+
+            }
             $scope.RecordHeaders = data.headers;
 
             //SFDC Simplified v2
@@ -282,7 +308,7 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
                 		$scope.packageMetaTypeAndName.get($scope.records[i].attributes.type).set($scope.records[i].Id, name);
                 	}else{
                 		packageMetaDataNameMap.set($scope.records[i].Id, name);
-                		var type = $scope.records[i].attributes.type ? $scope.records[i].attributes.type === "ExternalString" ? "CustomLabels":$scope.records[i].attributes.type : "";
+                		var type = $scope.records[i].attributes.type ? $scope.records[i].attributes.type === "ExternalString" ? "CustomLabel":$scope.records[i].attributes.type : "";
                 		
                 		$scope.packageMetaTypeAndName.set(type, packageMetaDataNameMap);
                 	}
@@ -330,7 +356,7 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
                 		$scope.packageMetaTypeAndName.get($scope.AllMetaDataRecords[i].attributes.type).set($scope.AllMetaDataRecords[i].Id, name);
                 	}else{
                 		packageMetaDataNameMap.set($scope.AllMetaDataRecords[i].Id, name);
-                		var type = $scope.AllMetaDataRecords[i].attributes.type ? $scope.AllMetaDataRecords[i].attributes.type === "ExternalString" ? "CustomLabels":$scope.AllMetaDataRecords[i].attributes.type : "";
+                		var type = $scope.AllMetaDataRecords[i].attributes.type ? $scope.AllMetaDataRecords[i].attributes.type === "ExternalString" ? "CustomLabel":$scope.AllMetaDataRecords[i].attributes.type : "";
                 		$scope.packageMetaTypeAndName.set(type, packageMetaDataNameMap);
                 	}
 	            }
@@ -363,7 +389,11 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
     $scope.searchUser = function(){
         $scope.showloading = true;
         var que = MetaDataContainer.data[0].query+" and name like '%25"+$scope.searchUserModel+"%25'";
-        $scope.querySFDC(que, MetaDataContainer.data[1].url);
+        try{
+            $scope.querySFDC(que, MetaDataContainer.data[1].url);
+        }catch(error){
+
+            }
     }
     $scope.showpayment = function(){
         if($scope.showpaymentflag)
@@ -371,6 +401,57 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         else
             $scope.showpaymentflag = true;
     }
+	$scope.Developer = false;
+	$scope.Vlocity = false;
+	$scope.Admin = false;
+	$scope.showmyview = true;
+	$scope.showmyviewFunc = function(){
+		debugger;
+		if($scope.showmyview){
+			$scope.showmyview = true;
+		}else{
+			$scope.showmyview = false;
+		}
+	}
+	$scope.extendMenu = function(){
+		//alert('SFDC : '+$scope.Developer+', vlocity : '+$scope.Vlocity+', Admin : '+$scope.Admin);
+    	$scope.allMenu = [];
+		
+		if($scope.Developer){
+			$scope.setSimplifiedCookie('Simplified_Developer', true);
+		}else{
+			$scope.setSimplifiedCookie('Simplified_Developer', false);
+		}
+		if($scope.Vlocity){
+			$scope.setSimplifiedCookie('Simplified_Vlocity', true);
+		}else{
+			$scope.setSimplifiedCookie('Simplified_Vlocity', false);
+		}
+		if($scope.Admin){
+			$scope.setSimplifiedCookie('Simplified_Admin', true);
+		}else{
+			$scope.setSimplifiedCookie('Simplified_Admin', false);
+		}
+		
+        for (var i = 0; i < MetaDataContainer.data.length; i++) {
+            if(MetaDataContainer.data[i].visibleForMetadataMenu && MetaDataContainer.data[i].visibleForMetadataMenu == true &&  MetaDataContainer.data[i].technologyFeature == 'Salesforce' && $scope.Developer){
+                $scope.allMenu.push(MetaDataContainer.data[i]);
+				
+            }
+            if(MetaDataContainer.data[i].visibleForMetadataMenu && MetaDataContainer.data[i].visibleForMetadataMenu == true &&  MetaDataContainer.data[i].technologyFeature == 'Vlocity' && $scope.Vlocity){
+                $scope.allMenu.push(MetaDataContainer.data[i]);
+				$scope.setSimplifiedCookie('Simplified_Vlocity', true);
+            }
+            if(MetaDataContainer.data[i].visibleForMetadataMenu && MetaDataContainer.data[i].visibleForMetadataMenu == true &&  MetaDataContainer.data[i].technologyFeature == 'Admin' && $scope.Admin){
+                $scope.allMenu.push(MetaDataContainer.data[i]);
+				$scope.setSimplifiedCookie('Simplified_Admin', true);
+            }
+			if(MetaDataContainer.data[i].visibleForMetadataMenu && MetaDataContainer.data[i].visibleForMetadataMenu == true &&  MetaDataContainer.data[i].technologyFeature == 'Settings'){
+                $scope.allMenu.push(MetaDataContainer.data[i]);
+            }
+        }
+	}
+	
 
     $scope.callModel = function(){
         $("#mySidenav").css({"width": "150"});
@@ -380,12 +461,55 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         $scope.isDataAvailable = true;
         $scope.favouriteMenu = [];
         
-        $scope.allMenu = [];
+        $scope.MenuWithIcon = [];
         for (var i = 0; i < MetaDataContainer.data.length; i++) {
-            if(MetaDataContainer.data[i].visibleForMetadataMenu){
+            if(MetaDataContainer.data[i].visibleForMetadataIconMenu && MetaDataContainer.data[i].visibleForMetadataIconMenu == true){
+                $scope.MenuWithIcon.push(MetaDataContainer.data[i]);
+            }
+        }
+        
+		
+		/*
+        for (var i = 0; i < MetaDataContainer.data.length; i++) {
+            if(MetaDataContainer.data[i].visibleForMetadataMenu && MetaDataContainer.data[i].visibleForMetadataMenu == true){
                 $scope.allMenu.push(MetaDataContainer.data[i]);
             }
         }
+		*/
+		//debugger;
+		var isPreAvailable = readCookie('isNamespacePrefixAvailable');
+		//debugger;
+		$scope.isVlocityAvailable = (isPreAvailable == null || isPreAvailable == undefined) ? false : true;//readCookie('NamespacePrefix') != undefined ? true : false;
+		
+		
+		if(readCookie('Simplified_Developer') != null && readCookie('Simplified_Developer') == "true"){
+			$scope.Developer = true;
+		}
+		if(readCookie('Simplified_Admin') != null && readCookie('Simplified_Admin') == "true"){
+			$scope.Admin = true;
+		}
+		if(readCookie('Simplified_Vlocity') != null && readCookie('Simplified_Vlocity') == "true"){
+			$scope.Vlocity = true;
+		}
+		//debugger;
+		if($scope.Developer == false && $scope.Admin == false && $scope.Vlocity == false){
+			$scope.Developer = true;
+		}
+		$scope.allMenu = [];
+		for (var i = 0; i < MetaDataContainer.data.length; i++) {
+			if(MetaDataContainer.data[i].visibleForMetadataMenu && MetaDataContainer.data[i].visibleForMetadataMenu == true &&  MetaDataContainer.data[i].technologyFeature == 'Salesforce' && $scope.Developer){
+					$scope.allMenu.push(MetaDataContainer.data[i]);
+				}
+            if(MetaDataContainer.data[i].visibleForMetadataMenu && MetaDataContainer.data[i].visibleForMetadataMenu == true &&  MetaDataContainer.data[i].technologyFeature == 'Vlocity' && $scope.Vlocity){
+                $scope.allMenu.push(MetaDataContainer.data[i]);
+            }
+            if(MetaDataContainer.data[i].visibleForMetadataMenu && MetaDataContainer.data[i].visibleForMetadataMenu == true &&  MetaDataContainer.data[i].technologyFeature == 'Admin' && $scope.Admin){
+                $scope.allMenu.push(MetaDataContainer.data[i]);
+            }
+			if(MetaDataContainer.data[i].visibleForMetadataMenu && MetaDataContainer.data[i].visibleForMetadataMenu == true &&  MetaDataContainer.data[i].technologyFeature == 'Settings'){
+                $scope.allMenu.push(MetaDataContainer.data[i]);
+            }
+		}
 
         $scope.AdvanceSearchMenu = [];
 
@@ -433,6 +557,8 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         $scope.uname = $("#userfullname") ? $("#userfullname").text().split(" ")[0]+"'s" : "";
         $scope.unamewithoutastr = $("#userfullname").text().split(" ")[0];
 
+
+
         $scope.AllMetaDataRecords= [];
         $("#SimplifiedMainModal").css({"display": "block"});
         //$("#fullDataSidenav").css({"width": "70%"});
@@ -454,7 +580,11 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         if(data.type == 'table' && data.query){
             $scope.showloading = true;
             $scope.showallloading = true;
-            $scope.rcd = $scope.querySFDC(data.query, data.url);
+            try{
+                $scope.rcd = $scope.querySFDC(data.query, data.url);
+            }catch(error){
+
+            }
             $scope.RecordHeaders = data.headers;
 
             //SFDC Simplified v2
@@ -466,6 +596,7 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         }
 }
     $scope.detailsPopupOpenFromMainMenu = function(){
+        //namespacePrefix();
     	var data = MetaDataContainer.data[3];
         $scope.records = [];
         $scope.selectedMenu = data;
@@ -493,7 +624,11 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         if(data.type == 'table' && data.query){
             $scope.showloading = true;
             $scope.showallloading = true;
-            $scope.rcd = $scope.querySFDC(data.query, data.url);
+            try{
+                $scope.rcd = $scope.querySFDC(data.query, data.url);
+            }catch(error){
+
+            }
             $scope.RecordHeaders = data.headers;
 
             //SFDC Simplified v2
@@ -538,7 +673,11 @@ $scope.detailsPopupOpenByOption = function(data, len){
         if(data.type == 'table' && data.query){
             $scope.showloading = true;
             $scope.showallloading = true;
-            $scope.rcd = $scope.querySFDC(data.query, data.url);
+            try{
+                $scope.rcd = $scope.querySFDC(data.query, data.url);
+            }catch(error){
+
+            }
             $scope.RecordHeaders = data.headers;
 
             //SFDC Simplified v2
@@ -588,13 +727,16 @@ $scope.detailsPopupOpenByOption = function(data, len){
     
     $scope.querySFDC = function(query, url){
         var completeurl = url+''+query+' limit '+$scope.limitLength;
+        
+
         var configObj = {
             url : completeurl,
             headers : {"Authorization": "Bearer "+ readCookie('sid')},
             contentType : "application/json"
             };
             $http(configObj).then(function mySuccess(response) {
-            $(".userdetails").removeClass('userdetailsError');
+            $("div.userdetails > p").removeClass('userdetailsError');
+            $scope.ErrorMsg = '';
             
             $scope.total_records = response.data.totalSize;
             $scope.records = response.data.records;
@@ -627,20 +769,26 @@ $scope.detailsPopupOpenByOption = function(data, len){
         $scope.showErrorMessage = true;
         $scope.records = response.statusText;
 		var cookieTester = readCookie("disco");
-		//$("#recentItemOf").css("background-color", "#ff000082");
 		if(cookieTester && cookieTester.split(":").length){			
-			$("#userdetails").addClass('userdetailsError');
-            $scope.ErrorMsg = 'Please change user.';			
+			$("div.userdetails > p").addClass('userdetailsError');
+            if(response.statusText === 'Bad Request'){
+                $scope.ErrorMsg = $scope.selectedMetadata.value+' object is not available.';
+            }else{
+                $scope.ErrorMsg = response.statusText;
+            }
+            			
 		}else{
+            $("div.userdetails > p").addClass('userdetailsError');
 			$scope.ErrorMsg = 'From this page of salesforce we cannot query your data. Salesforce Simplified cannot query if you are inside any manage package or your url is different than your home page.';
 		}        
     });
     }
 $scope.searchMetadata = function(selectMenu){
-    $scope.showAllData = false;
-    //$scope.showloading = true;
-    $scope.showallloading = true;
-         var selectedDT = JSON.stringify( selectMenu, function( key, value ) {
+    try{
+        $scope.showAllData = false;
+        //$scope.showloading = true;
+        $scope.showallloading = true;
+        var selectedDT = JSON.stringify( selectMenu, function( key, value ) {
                 if( key === "$$hashKey" ) {
                     return undefined;
                 }
@@ -648,16 +796,22 @@ $scope.searchMetadata = function(selectMenu){
             });
          $scope.selectedMetadata1 = JSON.parse(selectedDT);
          if($scope.selectedMetadata1.queryForAll){
-            $scope.queryOnAllData($scope.selectedMetadata1.queryForAll, $scope.selectedMetadata1.url);
+            try{
+                $scope.queryOnAllData($scope.selectedMetadata1.queryForAll, $scope.selectedMetadata1.url);
+            }catch(error){}
          }else{
             $scope.showallloading = false;
          }
+        }catch(error){
+			console.log(error);
+		}
     }
     $scope.searchForUser = function(txt){
         $scope.searchAllMetaData = txt;
     }
     //var userList = [];
     $scope.createCloudTagData = function(){
+        try{
         $scope.userFrequencyList = [];
         $scope.showUserFrequency = false;
         var userList = [];
@@ -695,7 +849,9 @@ $scope.searchMetadata = function(selectMenu){
                 $scope.userFrequencyList.push(userFrequencyList[i]);
             }
             $scope.showUserFrequency = true;
-        }
+        }}catch(error){
+			console.log(error);
+		}
     }
 
     function userAnalysis(arr) {
@@ -714,6 +870,7 @@ $scope.searchMetadata = function(selectMenu){
     }
 
     $scope.queryOnAllData = function(query, url){
+        try{
         var completeurl = url+''+query+' limit '+$scope.limitLength;
         var configObj = {
             url : completeurl,
@@ -760,35 +917,47 @@ $scope.searchMetadata = function(selectMenu){
         $scope.records = response.statusText;
         $scope.showAllData = false;
 		var cookieTester = readCookie("disco");
-		//$("#recentItemOf").css("background-color", "#ff000082");
 		if(cookieTester && cookieTester.split(":").length){			
-			$scope.ErrorMsg = 'Please refresh your page.';			
+			$scope.ErrorMsg = $scope.selectedMetadata.value+' object is not available.';			
 		}else{
-			$scope.ErrorMsg = 'From this page of salesforce we cannot query your data. Salesforce Simplified cannot query if you are inside any manage package or your url is different than your home page.';
+            $scope.ErrorMsg = 'From this page of salesforce we cannot query your data. Salesforce Simplified cannot query if you are inside any manage package or your url is different than your home page.';
 		}
     });
+    }catch(error){
+        console.log(error);
+    }
     }
     
     $scope.searchMetadataRecordsOnChange = function(){
+        try{
         if($scope.searchAllMetaData.length){
             var que='';
             if($scope.selectedMetadata1.queryForAllWithWhere){
                 $scope.showloading = true;
                 que = $scope.selectedMetadata1.queryForAllWithWhere+" '%25"+$scope.searchAllMetaData+"%25'";
-                $scope.queryOnAllDataFilterText(que, $scope.selectedMetadata1.url);
+                try{
+                    $scope.queryOnAllDataFilterText(que, $scope.selectedMetadata1.url);
+                }catch(error){}
             }
         }else{
             $scope.searchMetadata($scope.selectedMetadata1);
-        }
+        }}catch(error){
+			console.log(error);
+		}
     }
     $scope.searchMetadataIfNothingTyped = function(){
+        try{
         if(!$scope.searchAllMetaData.length){
             $scope.searchMetadata($scope.selectedMetadata1);
-        }
+        }}catch(error){
+			console.log(error);
+		}
     }
 
     $scope.queryOnAllDataFilterText = function(query, url){
+        try{
         var completeurl = url+''+query+' limit '+$scope.limitLength;
+        $("div.userdetails > p").removeClass('userdetailsError');
         $scope.ErrorMsg = '';
         var configObj = {
             url : completeurl,
@@ -796,7 +965,7 @@ $scope.searchMetadata = function(selectMenu){
             contentType : "application/json"
             };
             $http(configObj).then(function mySuccess(response) {
-            $(".userdetails").removeClass('userdetailsError');
+            //$(".userdetails").removeClass('userdetailsError');
             $scope.AllMetaDataRecords = response.data.records;
             if($scope.AllMetaDataRecords && $scope.AllMetaDataRecords.length){
                 $scope.isAllMetaDataRecords = true;
@@ -830,12 +999,14 @@ $scope.searchMetadata = function(selectMenu){
         $scope.records = response.statusText;
         $scope.showAllData = false;
         var cookieTester = readCookie("disco");
-		//$("#recentItemOf").css("background-color", "#ff000082");
 		if(cookieTester && cookieTester.split(":").length){			
-			$scope.ErrorMsg = 'Please refresh your page.';			
+			$scope.ErrorMsg = 'This object is not available.';			
 		}else{
-			$scope.ErrorMsg = 'From this page of salesforce we cannot query your data. Salesforce Simplified cannot query if you are inside any manage package or your url is different than your home page.';
+            $scope.ErrorMsg = 'From this page of salesforce we cannot query your data. Salesforce Simplified cannot query if you are inside any manage package or your url is different than your home page.';
 		}
     });
+    }catch(error){
+        console.log(error);
+    }
     }
 });

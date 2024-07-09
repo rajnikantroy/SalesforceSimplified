@@ -1,9 +1,9 @@
 app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContainer, $scope, UserId) {
-	var loadingcar = chrome.extension.getURL("/img/loadingcar.gif");
+	var loadingcar = chrome.runtime.getURL("/img/loadingcar.gif");
 	
-	var editicon = chrome.extension.getURL("/img/edit.png");
-	var downloadicon = chrome.extension.getURL("/img/download.png");
-	var securityicon = chrome.extension.getURL("/img/security.png");
+	var editicon = chrome.runtime.getURL("/img/edit.png");
+	var downloadicon = chrome.runtime.getURL("/img/download.png");
+	var securityicon = chrome.runtime.getURL("/img/security.png");
 	
 	this.debugloggrid ='<div class="w3-container pageBlock">'+
 	  '<div id="debuglogGridModal" class="w3-modal  w3-animate-opacity">'+
@@ -15,7 +15,7 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	    '<div class="w3-container">'+
 	    '<table class="list" ng-show="dataList.length">'+
         '<tr class="headerRow">'+
-	        '<td width="25%"><input type="button" ng-click="deleteMyLogs()" value="Delete My Logs" class="btn" style="background: #1796bf; color: white;"/></td>'+
+	        '<td width="25%"><input type="button" ng-click="deleteMyLogs()" value="{{deleteBtn}} ({{ dataLength }})" class="btn" style="background: #1796bf; color: white;"/></td>'+
 			'<td width="50%"><input style="width: -webkit-fill-available;" placeholder="Search in logs" type="text" ng-model="search"/></td>'+
 		'</tr>'+
 		'</table>'+
@@ -57,6 +57,60 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 		      '<td class="bold"><a target="_blank" href="https://github.com/rajnikantroy/SalesforceSimplified/issues/new">Report Issue</a></td>'+
 		      '<td class="bold"><a target="_blank" href="https://salesforcesimplify.blogspot.com">Salesforce Simplified</a></td>'+
 	      '</tr></table>'+
+	    '</footer>'+
+	    '</div>'+
+	  '</div>'+
+	'</div>';
+	
+	this.compare ='<div class="w3-container pageBlock">'+
+	  '<div id="compareModal" class="w3-modal  w3-animate-opacity">'+
+	    '<div class="w3-modal-content modal-back modalcustomstyle">'+
+	    '<header class="w3-container modalheader"> '+
+	    '<h2>Compare records</h2>'+
+	      '<span id="debuglogGridCloseBtn" ng-click="CompareClose()" class="w3-button w3-display-topright">X</span>'+
+	    '</header>'+
+	    '<div class="w3-container">'+
+	    '<table class="list">'+
+        '<tr class="headerRow">'+
+			'<td width="20%"><input style="width: -webkit-fill-available;" type="text" ng-model="recordId1" disabled/></td>'+
+			'<td width="25%"><input style="width: -webkit-fill-available;" placeholder="Enter similar RecordId" type="text" ng-model="recordId2"/></td>'+
+			'<td width="25"><input style="width: -webkit-fill-available;" placeholder="Enter similar RecordId" type="text" ng-model="recordId3"/></td>'+
+			'<td width="25"><input style="width: -webkit-fill-available;" placeholder="Enter similar RecordId" type="text" ng-model="recordId4"/></td>'+
+			'<td width="25%"><input type="button" ng-click="deleteMyLogs()" value="Compare" class="btn" style="background: #1796bf; color: white;"/></td>'+
+		'</tr>'+
+		'</table>'+
+	    '</div>'+
+	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, No debug logs for you.</b></center>'+
+	    
+	    '<div ng-show="loading"><center><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/> Loading please wait...</center></div>'+
+		
+	      '<div class="w3-container" style="background:white; min-height:200px; max-height:400px; overflow-y: scroll;">'+
+	        '<table class="list">'+
+	        '<tr class="headerRow">'+
+				'<th class="headerRow">Field Name</th>'+
+				'<th class="headerRow">Record1</th>'+
+				'<th class="headerRow">Record2</th>'+
+				'<th class="headerRow">Record3</th>'+
+			'</tr>'+
+			
+			'<tr ng-repeat="record in recordCompareList">'+
+				'<td>{{record.fieldName}}</td>'+
+				'<td>{{record.record1Value}}</td>'+
+				'<td><span class="trim-60"></span></td>'+
+				'<td><span class="trim-60"></span></td>'+
+			'</tr>'+ 
+		'</table>'+
+	      '</div>'+
+		  
+	      '<footer class="w3-container modalfooter">'+
+		  /*
+	      '<table><tr>'+
+		      '<td class="bold"><a target="_blank" href="https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob?hl=en">Rate Us on chrome</a></td>'+
+		      '<td class="bold"><a target="_blank" href="https://fb.com/salesforcesimplified">Facebook Page</a></td>'+
+		      '<td class="bold"><a target="_blank" href="https://github.com/rajnikantroy/SalesforceSimplified/issues/new">Report Issue</a></td>'+
+		      '<td class="bold"><a target="_blank" href="https://salesforcesimplify.blogspot.com">Salesforce Simplified</a></td>'+
+	      '</tr></table>'+
+		  */
 	    '</footer>'+
 	    '</div>'+
 	  '</div>'+
