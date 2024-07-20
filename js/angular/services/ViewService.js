@@ -1,7 +1,6 @@
 app.service('viewservice', ['MetaDataContainer', function(MetaDataContainer, $scope) {
 
 var editicon = chrome.runtime.getURL("/img/edit.png");
-//var view = chrome.runtime.getURL("/img/view.png");
 var downloadicon = chrome.runtime.getURL("/img/download.png");
 var securityicon = chrome.runtime.getURL("/img/security.png");
 
@@ -162,7 +161,6 @@ this.articles = '  <div Class="searchCodeFieldset" ng-show="selectedMetadata.lab
 '  <div Class="faqOfSalesforceSimplified" ng-show="selectedMetadata.label == faq">'+faq+'</div>';
 
 this.usersrecords = '<span class="hrtitle ARITitleTitle" ng-show="showmyview && !showErrorMessage && selectedMetadata.isSearchable"><p ng-show="selectedMetadata.value != change">{{uname}} {{selectedMetadata.label}} ({{total_records}})</p><br/><p ng-show="unamewithoutastr && selectedMetadata.value != change" class="recorddescription">These {{selectedMetadata.label}} are recently created/modified by {{unamewithoutastr}}</p><br ng-show="selectedMetadata.value == fields"><p ng-show="selectedMetadata.value == change">Click on view as button</p><hr class="sshr"/></span>'+
-
 '<div ng-if="showmyview && showloading && selectedMetadata.type" class="loadingARILoading"><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/>'+
 '<span ng-if="showmyview && showloading && selectedMetadata.type" class="loadingARI">Fetching {{selectedMetadata.label}}...</span>'+
 '</div>'+
@@ -171,10 +169,7 @@ this.usersrecords = '<span class="hrtitle ARITitleTitle" ng-show="showmyview && 
 '   <td class="SimplifiedAction" ng-show="r.LogLength || r.Name || r.email || r.DeveloperName || r.Type || r.CaseNumber || r.ContractNumber || r.OrderNumber" ng-repeat="faction in selectedMetadata.fieldlevelactions">'+
 '       <a ng-if="faction.name == view" target="_blank" href="{{baseUrl}}/{{faction.actionUrl}}{{r.Id}}">{{faction.name}}</a>'+
 '       <a ng-show="faction.name == change" ng-click="changeUser(r.Id)" title="Click to change user">View as <img src="'+changeicon+'" width="20px" height="20px"/></a>'+
-
 '       <a ng-if="faction.name == vieweye" target="_blank" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" data-title="View" Class="tooltip-me"><img src="'+viewicon+'" width="20px" height="20px"/></a>'+
-
-
 '       <a ng-if="faction.name == edit && selectedMetadata.value != AssignmentRule" target="_blank" href="{{baseUrl}}/{{r.Id}}{{faction.actionUrl}}" data-title="Edit" Class="tooltip-me"><img src="'+editicon+'" width="20px" height="20px"/></a>'+
 '       <a ng-if="faction.name == edit && selectedMetadata.value == AssignmentRule" target="_blank" href="{{baseUrl}}{{faction.actionUrl}}{{r.Id}}" data-title="Edit" Class="tooltip-me"><img src="'+editicon+'" width="20px" height="20px"/></a>'+
 '       <a ng-if="faction.name == download" target="_blank" href="{{baseUrl}}/{{faction.actionUrl}}{{r.Id}}"data-title="Download" Class="tooltip-me"><img src="'+downloadicon+'" width="20px" height="20px"/></a>'+
@@ -191,8 +186,6 @@ this.usersrecords = '<span class="hrtitle ARITitleTitle" ng-show="showmyview && 
 '   <td ng-if="r.CaseNumber" Class="tooltip-me" data-title="{{r.CaseNumber}}"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.CaseNumber}} </a></td>'+
 '   <td ng-if="r.ContractNumber" Class="tooltip-me" data-title="{{r.ContractNumber}}"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.ContractNumber}} </a></td>'+
 '   <td ng-if="r.OrderNumber" Class="tooltip-me" data-title="{{r.OrderNumber}}"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.OrderNumber}} </a></td>'+
-
-
 '   <td ng-if="r.email" Class="tooltip-me" data-title="{{r.username}}"><a Class="trim-info-content" target="_blank">{{r.username}}</a></td>'+
 '   <td ng-if="r.DeveloperName" data-title="{{r.DeveloperName}}" class="tooltip-me"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.DeveloperName}}</a></td>'+
 '   <td ng-if="r.Type" Class="trim-info-type">{{r.Type}}</td>'+
@@ -201,19 +194,15 @@ this.usersrecords = '<span class="hrtitle ARITitleTitle" ng-show="showmyview && 
 ' <span ng-if="&& showmyview && records.length==0 && !showloading">{{selectedMetadata.dataNotAvailableMessage}}</span> </br>';
 
 this.allrecords = '<span ng-show="selectedMetadata.isSearchable" class="hrtitle ARITitleTitle" ng-if="AllMetaDataRecords.length>0" ng-show="!showErrorMessage"><p ng-show="selectedMetadata.value != change">All {{selectedMetadata.label}} ({{totalSize_AllMetaDataRecords}})</p><br/><p ng-show="unamewithoutastr && selectedMetadata.value != change" class="recorddescription">These {{selectedMetadata.label}} are recently created/modified by all developers in org.</p><p ng-show="selectedMetadata.value == change">View as different user</p><hr class="sshr"/></span>'+
-
 '<div ng-if="showallloading && selectedMetadata.type" class="loadingARILoading"><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/>'+
 '<span ng-if="showallloading && selectedMetadata.type" class="loadingARI">Fetching all {{selectedMetadata.label}}...</span>'+
 '</div>'+
-
 '  <table class="Records" id="AllRecords" ng-if="AllMetaDataRecords" ng-show="!showErrorMessage">'+
 '   <tr ng-repeat="r in filterItem = (AllMetaDataRecords | filter:searchAllMetaData) track by $index">'+
 '   <td class="SimplifiedAction" ng-show="r.LogLength || r.Name || r.DeveloperName || r.CaseNumber || r.ContractNumber || r.OrderNumber" ng-repeat="faction in selectedMetadata.fieldlevelactions">'+
 '       <a ng-if="faction.name == view" target="_blank" href="{{baseUrl}}/{{faction.actionUrl}}{{r.Id}}">{{faction.name}}</a>'+
 '       <a ng-show="faction.name == change" Class="changeUser" ng-click="changeUser(r.Id)" ng-click="changeUser(r.Id)">View as</a>'+
-
 '       <a ng-if="faction.name == vieweye" target="_blank" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" data-title="View" Class="tooltip-me"><img src="'+viewicon+'" width="20px" height="20px"/></a>'+
-
 '       <a ng-if="faction.name == edit && selectedMetadata.value != AssignmentRule" target="_blank" href="{{baseUrl}}/{{r.Id}}{{faction.actionUrl}}" data-title="Edit" Class="tooltip-me"><img src="'+editicon+'" width="20px" height="20px"/></a>'+
 '       <a ng-if="faction.name == edit && selectedMetadata.value == AssignmentRule" target="_blank" href="{{baseUrl}}{{faction.actionUrl}}{{r.Id}}" data-title="Edit" Class="tooltip-me"><img src="'+editicon+'" width="20px" height="20px"/></a>'+
 '       <a ng-if="faction.name == download" target="_blank" href="{{baseUrl}}/{{faction.actionUrl}}{{r.Id}}" Class="tooltip-me" data-title="Download"><img src="'+downloadicon+'" width="20px" height="20px"/></a>'+
@@ -230,7 +219,6 @@ this.allrecords = '<span ng-show="selectedMetadata.isSearchable" class="hrtitle 
 '   <td ng-if="r.CaseNumber" Class="tooltip-me" data-title="{{r.CaseNumber}}"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.CaseNumber}} </a></td>'+
 '   <td ng-if="r.ContractNumber" Class="tooltip-me" data-title="{{r.ContractNumber}}"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.ContractNumber}} </a></td>'+
 '   <td ng-if="r.OrderNumber" Class="tooltip-me" data-title="{{r.OrderNumber}}"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.OrderNumber}} </a></td>'+
-
 '   <td ng-if="r.DeveloperName" data-title="{{r.DeveloperName}}" class="tooltip-me"><a Class="trim-info-content" href="{{baseUrl}}/{{selectedMetadata.midurl}}{{r.Id}}" target="_blank">{{r.DeveloperName}}</a></td>'+
 '   </tr></table> ';
 
@@ -295,7 +283,6 @@ this.content = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav"
   '<td colspan=2""><table width="100%" style="margin-left: -20px;"><tr><td><objectlevelaction></objectlevelaction></td></tr><tr><td><searchdata ng-show="selectedMetadata.isSearchable"></searchdata></td></tr></table></td></tr>'+
   '<tr>'+	
   '<td>'+
-  
   '</td>'+
     '<td width="60%">'+
 	'<table style="margin-left: -20px;">'+
@@ -305,7 +292,6 @@ this.content = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav"
 	'<tr><td><packagexmleditor></packagexmleditor></td></tr>'+
 	'<tr><td><launchercolor></launchercolor></td></tr>'+
 	'</table>'+
-    
   '</td>'+
     '<td width="20%" style="vertical-align: text-top;">'+
     '<table>'+
@@ -315,23 +301,19 @@ this.content = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav"
 	'<tr><td><developeranalysis></developeranalysis></td></tr>'+
 	'<tr><td><packagexmlfrequency></packagexmlfrequency></td></tr>'+
 	'</table>'+
-	
   '</td>'+
   '</tr>'+
-
   '</table>'+
-  
   '</div>'+
   '<footer class="w3-container modalfooter">'+
   '<table width="100%"><tr>'+
   '<td class="bold"><a target="_blank" href="https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob?hl=en">Rate Us on chrome</a></td>'+
-  '<td class="bold"><a target="_blank" href="https://github.com/rajnikantroy/SalesforceSimplified/issues">Report Issue</a></td>'+
+  '<td class="bold"><a target="_blank" href="https://github.com/rajnikantroy/SalesforceSimplified/issues/new">Report Issue</a></td>'+
 '</tr></table>'+
 '</footer>'+
 '</div>'+
 '</div>'+
 '</div>'+
-
 '</div>';
 
 
@@ -380,5 +362,4 @@ this.content1 = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav
 '</tr>'+
 '</table>'+
 '</div>';
-
 }]);

@@ -1480,9 +1480,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         objectlevelaction:[
 			   {name:"Feedback", actionUrl:"https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob?hl=en"},
                {name:"Report Issue", actionUrl:"https://github.com/rajnikantroy/SalesforceSimplified/issues/new"},
-               {name:"Suggestions", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-               {name:"Follow", actionUrl:"https://facebook.com/SalesforceSimplified"},
-               {name:"Blog", actionUrl:"http://salesforcesimplify.blogspot.com/"}
+               {name:"Blog", actionUrl:"https://salesforcsimplified.blogspot.com"}
            ]
     }/*,{
         label:"FAQ",
