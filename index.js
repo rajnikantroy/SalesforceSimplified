@@ -1,6 +1,8 @@
 try{
-var app = angular.module("SalesforceSimplifiedApp", []);
-}catch(e){}
+	var app = angular.module("SalesforceSimplifiedApp", []);
+}catch(e){
+	
+}
 
 var red = chrome.runtime.getURL("/img/ss_icon_enable.png");
 var blue = chrome.runtime.getURL("/img/ss_icon_enable_blue.png");
@@ -26,15 +28,11 @@ function load(){
 		selectedLauncherColor = chrome.runtime.getURL("/img/ss_icon_enable.png");
 	}
 	if(readCookie('simplified_background_color')){
-		
 		var BackColor = readCookie('simplified_background_color');
 		$("body").css("background-color", BackColor);
 	}else{
-		
 	}
-
 }
-
 
 function recentItems() {
     var v = '<div ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified"><div ng-controller="MenuAndDetailsCtrl"><img src="'+selectedLauncherColor+'" id="ss_icon" ng-mouseover="callModel()" ng-strict-di/><menu></menu></div></div>';
@@ -63,7 +61,6 @@ angular.element(document).ready(function(){
      angular.bootstrap(document.getElementById("SalesforceSimplified"), ['SalesforceSimplifiedApp']);
      angular.bootstrap(document.getElementById("SalesforceSimplified1"), ['SalesforceSimplifiedApp']);
      namespacePrefix();
-     // angular.bootstrap(document.getElementById("SalesforceSimplified2"), ['SalesforceSimplifiedApp']);
 });
 
 if($(".bPageFooter").length){
@@ -79,19 +76,16 @@ if($(".bPageFooter").length){
     	var v = '<span ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified2"><span ng-controller="MyViewGridCtrl"><span><input class="btn" value="My Classes" title="By Salesforce Simplified" style="background: #1796bf; color: white;" ng-click="openClassModal()" type="button" ng-strict-di/></span><span><classgrid></classgrid></span></span></span>';
         $("#ApexClassViewPage\\:theTemplate\\:theForm\\:thePageBlock").find("input[id$=showDependenciesButton]").after(v);
     }
-	//copy, compare
-	//if($("#ApexClassViewPage\\:theTemplate\\:theForm\\:thePageBlock").length > 0){
 	if($('input[name="edit"]').length){
 		var v = '<span ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified2"><span ng-controller="MyViewGridCtrl"><span><input class="btn" value="{{copyBtn}}" title="By Salesforce Simplified" style="background: #1796bf; color: white;" ng-click="CopyModal()" type="button" ng-strict-di/>   <!--input class="btn" value="Add to compare" title="By Salesforce Simplified" style="background: #1796bf; color: white;" ng-click="CompareModal()" type="button" ng-strict-di/-->   </span><!--span><compare></compare></span--></span></span>';
-		//$(v).insertBefore($('input[name="edit"]'));
 		$(v).insertBefore($('input[name="edit"]'));
 	}
-    }
+}
 	
 
 function __getUserId(){
 	try{
-	var uid = readCookie('uid');///, uidBool = verifyUser();
+	var uid = readCookie('uid');
 	if (typeof uid === 'undefined' || uid){
 		setCookie('uid', uid, 365);
 		$('#ss_icon').attr('src',selectedLauncherColor);
@@ -118,7 +112,6 @@ function __changeUser(cuid){
 }
 
 function namespacePrefix(){
-	//debugger;
 	var id = readCookie('uid');
 	var concatUrl = "/services/data/v32.0/query/?q=SELECT Id, NamespacePrefix FROM PackageLicense where NamespacePrefix in ('vlocity_cmt', 'vlocity_ins')";
   	if(readCookie('isNamespacePrefixAvailable') == null){
@@ -165,25 +158,22 @@ function verifyUser(){
       	}else if(result.statuscode > 400){
 		    $("#username").text('Please change user.');
 		    $(".userdetails").addClass('userdetailsError');
-			//$("#recentItemOf").css("background-color", "#ff000082");
       		return false;
 		}else{
       		$("#username").text('Please change user.');
       		$("#userdetails").addClass('userdetailsError');
       		$(".userdetails").addClass('userdetailsError');
-			//$("#recentItemOf").css("background-color", "#ff000082");
       		return false;
       	 }
       	}
       });
-}
-catch(e){
-	$("#username").text('Please change user.');
-	$("#userdetails").addClass('userdetailsError');
-	$(".userdetails").addClass('userdetailsError');
-	//$("#recentItemOf").css("background-color", "#ff000082");
-  	return false;
-}
+	}
+	catch(e){
+		$("#username").text('Please change user.');
+		$("#userdetails").addClass('userdetailsError');
+		$(".userdetails").addClass('userdetailsError');
+		return false;
+	}
 }
 
 function setCookie(cname, cvalue, exdays) {

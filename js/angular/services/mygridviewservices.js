@@ -21,9 +21,7 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 		'</table>'+
 	    '</div>'+
 	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, No debug logs for you.</b></center>'+
-	    
 	    '<div ng-show="loading"><center><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/> Loading please wait...</center></div>'+
-	    
 	      '<div class="w3-container" style="background:white; min-height:200px; max-height:400px; overflow-y: scroll;">'+
 	        '<table class="list" ng-show="dataList.length">'+
 	        '<tr class="headerRow">'+
@@ -81,9 +79,7 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 		'</table>'+
 	    '</div>'+
 	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, No debug logs for you.</b></center>'+
-	    
 	    '<div ng-show="loading"><center><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/> Loading please wait...</center></div>'+
-		
 	      '<div class="w3-container" style="background:white; min-height:200px; max-height:400px; overflow-y: scroll;">'+
 	        '<table class="list">'+
 	        '<tr class="headerRow">'+
@@ -92,7 +88,6 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 				'<th class="headerRow">Record2</th>'+
 				'<th class="headerRow">Record3</th>'+
 			'</tr>'+
-			
 			'<tr ng-repeat="record in recordCompareList">'+
 				'<td>{{record.fieldName}}</td>'+
 				'<td>{{record.record1Value}}</td>'+
@@ -103,14 +98,6 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	      '</div>'+
 		  
 	      '<footer class="w3-container modalfooter">'+
-		  /*
-	      '<table><tr>'+
-		      '<td class="bold"><a target="_blank" href="https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob?hl=en">Rate Us on chrome</a></td>'+
-		      '<td class="bold"><a target="_blank" href="https://fb.com/salesforcesimplified">Facebook Page</a></td>'+
-		      '<td class="bold"><a target="_blank" href="https://github.com/rajnikantroy/SalesforceSimplified/issues/new">Report Issue</a></td>'+
-		      '<td class="bold"><a target="_blank" href="https://salesforcesimplify.blogspot.com">Salesforce Simplified</a></td>'+
-	      '</tr></table>'+
-		  */
 	    '</footer>'+
 	    '</div>'+
 	  '</div>'+
@@ -138,8 +125,6 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	        '<table class="list" ng-show="dataList.length">'+
 	        '<tr class="headerRow">'+
 			'<th class="headerRow">Action</th>'+
-			//'<th class="headerRow"></th>'+
-			//'<th class="headerRow"></th>'+
 			'<th class="headerRow">Name</th>'+
 			'<th class="headerRow">Namespace</th>'+
 			'<th class="headerRow">Api Version</th>'+
@@ -171,5 +156,4 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	    '</div>'+
 	  '</div>'+
 	'</div>';
-	
 }]);
