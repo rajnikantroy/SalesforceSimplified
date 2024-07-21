@@ -1,6 +1,5 @@
 Download link : https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob <br/>
-Blog : https://salesforcesimplify.blogspot.in/ <br/>
-FB : https://www.facebook.com/salesforcesimplified/ <br/>
+Blog : https://salesforcsimplified.blogspot.com <br/>
 Report Issue : https://github.com/rajnikantroy/Salesforce-Simplified/issues/new
 
 # Salesforce Simplified Chrome Extension: Enhancing Efficiency for Developers
