@@ -24,7 +24,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"ChangeUser"}
                 ],
         objectlevelaction:[
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ]
     },{
@@ -46,7 +46,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         query:"SELECT Id, Name, Type FROM RecentlyViewed WHERE Type IN ('User', 'ApexComponent', 'ApexPage', 'ApexTrigger', 'ApexClass', 'AssignmentRules', 'AuraDefinitionBundle', 'Bot', 'CustomApplication', 'CustomField', 'CustomLabel', 'CustomLabels', 'CustomObject', 'CustomPermission', 'CustomTab', 'Dashboard', 'Document', 'EmailTemplate', 'Flow', 'Group', 'HomePageComponent', 'Package', 'PermissionSet', 'Profile', 'Queue', 'RemoteSiteSetting', 'Report', 'Role', 'SharingRules', 'StaticResource', 'ValidationRule', 'WebLink', 'Workflow') ORDER BY LastViewedDate DESC",
         headers:["Log Size(byte)", "Operation", "Start Time"],
         objectlevelaction:[
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v43.0/tooling/query/?q=",
@@ -74,7 +74,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         headers:["Log Size(byte)", "Operation", "Start Time"],
         objectlevelaction:[
             {name:"New", actionUrl:"https://"+window.location.host+"/udd/TraceFlag/editTraceFlag.apexp?logType=USER_DEBUG&retURL=%2Fsetup%2Fui%2FlistApexTraces.apexp"},
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             
             ],
@@ -468,7 +468,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         fieldlevelactions:[{name:"ViewEye"}],
         objectlevelaction:[
             {name:"New", actionUrl:"/apex/"+readCookie('NamespacePrefix')+"omniscriptdesigner"},
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}],
             url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
         listUrl:"/apex/"+readCookie('NamespacePrefix')+"omniscripthome",
@@ -497,7 +497,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         fieldlevelactions:[{name:"ViewEye"}],
         objectlevelaction:[
             {name:"New", actionUrl:"/apex/"+readCookie('NamespacePrefix')+"integrationproceduredesigner"},
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}],
             url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
         listUrl:"/apex/"+readCookie('NamespacePrefix')+"integrationprocedurehome",
@@ -526,7 +526,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         fieldlevelactions:[{name:"ViewEye"}],
         objectlevelaction:[
             {name:"New", actionUrl:"/apex/"+readCookie('NamespacePrefix')+"uitemplatedesigner"},
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -700,7 +700,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         fieldlevelactions:[{name:"ViewEye"},{name:"Edit", actionUrl:"/e"}],
         imagesrc : chrome.runtime.getURL("/img/icons/components.png"),
         objectlevelaction:[{name:"New", actionUrl:"/a6x/e"},
-         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+         {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
          {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
          ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -728,7 +728,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         fieldlevelactions:[
 				{name:"ViewEye"},
                 {name:"Edit", actionUrl:"/e"}],
-        objectlevelaction:[{name:"New", actionUrl:"/a36/e"},{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
+        objectlevelaction:[{name:"New", actionUrl:"/a36/e"},{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             
         ],
@@ -755,7 +755,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         headers:["Edit", "Name"],
         fieldlevelactions:[{name:"ViewEye"},{name:"Edit", actionUrl:"/e"}],
         objectlevelaction:[{name:"New", actionUrl:"/a3H/e"}, 
-	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -786,12 +786,10 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         fieldlevelactions:[
                 {name:"Edit", actionUrl:"/e"},
                 {name:"Download", actionUrl:"/setup/apexcodedownload?class_id="}
-                /*,
-                {name:"clsSecurity", actionUrl:"/_ui/perms/ui/profile/ApexClassProfilePermissionEdit/e?apex_id="}*/
                 ],
         objectlevelaction:[
             {name:"New", actionUrl:"https://"+window.location.host+"/setup/build/editApexClass.apexp"},
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Generate WSDL", actionUrl:"/_ui/common/api/callout/ui/Wsdl2ApexStageManager"}, 
             {name:"Schedule Apex", actionUrl:"/ui/setup/apex/batch/ScheduleBatchApexPage"}],
@@ -824,7 +822,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Download", actionUrl:"/setup/apexcodedownload?class_id="}
                 ],
         objectlevelaction:[
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -852,7 +850,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         headers:[],
         fieldlevelactions:[],
         objectlevelaction:[
-                {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
+                {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
                 {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
                 
             ],
@@ -881,7 +879,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         headers:[],
         fieldlevelactions:[],
         objectlevelaction:[
-                {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
+                {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
                 {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
                 
             ],
@@ -911,11 +909,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         headers:["Edit", "Security", "Name"],
         fieldlevelactions:[
                         {name:"Edit", actionUrl:"/e"}
-                        /*,
-                        {name:"Security", actionUrl:"&apex_name="}*/
                         ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/066/e"}, 
-	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
         url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
@@ -941,7 +937,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         fieldlevelactions:[{name:"Edit", actionUrl:"/e"}],
         imagesrc : chrome.runtime.getURL("/img/icons/components.png"),
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/099/e"},
-         {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+         {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
          {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
          ],
         url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
@@ -971,7 +967,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         fieldlevelactions:[
                 {name:"Edit", actionUrl:"/e"}],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/01I/e"}, 
-	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
         url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
@@ -998,7 +994,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         headers:["Edit", "Name"],
         fieldlevelactions:[
                 {name:"Edit", actionUrl:"/e"}],
-        objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
+        objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             
         ],
@@ -1026,7 +1022,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         headers:["Edit", "Name"],
         fieldlevelactions:[{name:"Edit", actionUrl:"/e"}],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/101/e"}, 
-	        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
         url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
@@ -1052,7 +1048,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         type:"table",
         fieldlevelactions:[{name:"Edit", actionUrl:"/e"}, {name:"cloneWF", actionUrl:"/e"}],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/_ui/core/workflow/WorkflowSplashUi?EntityId=WorkflowRule&setupid=WorkflowRules"}, 
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
@@ -1080,7 +1076,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Edit", actionUrl:"/e"}
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/designer/designer.apexp"}, 
-            {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+            {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
@@ -1109,7 +1105,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Edit", actionUrl:"/e"}
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/p/email/template/NewEmailTemplateStageManager?setupid=CommunicationTemplatesEmail"},
-        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
@@ -1138,7 +1134,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Edit", actionUrl:"/e"}
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/005/e"}, 
-        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -1166,7 +1162,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Edit", actionUrl:"/e"}
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/081/e"},
-        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
@@ -1194,7 +1190,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Clone", actionUrl:"/_ui/perms/ui/profile/ProfileClone/e?id="}
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/_ui/perms/ui/profile/ProfileClone/e"},
-        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -1222,7 +1218,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Clone", actionUrl:"/udd/PermissionSet/newPermissionSet.apexp?id="}
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/udd/PermissionSet/newPermissionSet.apexp"},
-        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -1249,7 +1245,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Edit", actionUrl:"/e"}
                 ],
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/_ui/perms/ui/setup/PermSetGroupsPage"},
-        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -1275,37 +1271,14 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         fieldlevelactions:[{}],
         midurl:"setup/own/groupdetail.jsp?id=",
         objectlevelaction:[{name:"New", actionUrl:"https://"+window.location.host+"/setup/own/groupedit.jsp"},
-        {name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
         listUrl:"/p/own/OrgPublicGroupsPage/d",
         midurl:"setup/own/groupdetail.jsp?id=",
         placeholderText:"Quick find/search Group..."
-    },/*{
-        label:"Coverage",
-        value:"ApexCodeCoverageAggregate",
-        isSearchable:true,
-        EligibleForAdvanceSearch:true,
-        dataNotAvailableMessage:"Coverage show you real time code coverage of your current your.",
-        queryForAll:"SELECT Id,createdDate, ApexClassorTrigger.Name,ApexClassorTriggerId,NumLinesCovered,NumLinesUncovered,Coverage FROM ApexCodeCoverageAggregate Order By CreatedDate DESC",
-        metadata:"ApexCodeCoverageAggregate",
-        type:"table",
-        imagesrc : chrome.runtime.getURL("/img/icons/coverages.png"),
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
-        forAdvanceSearchOnly:true,
-        placeholderText:"Quick find/search Coverage..."
     },{
-        label:"Settings",
-        value:"Settings",
-        isSearchable:false,
-        url:"",
-        menuname:"favourite",
-        objectlevelaction:[
-                               {name:"User", actionUrl:""}, 
-                               {name:"Favourite", actionUrl:""}
-                           ]
-    },*/{
         label:"Package.xml",
         value:"PackageXml",
         tooltipMessage:"Open home page",
@@ -1342,7 +1315,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataMenu:true,
         headers:["Edit", "Name"],
         fieldlevelactions:[{name:"Edit", actionUrl:"/setup/ui/recordtypeedit.jsp?id="}],
-        objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -1367,7 +1340,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataMenu:true,
         headers:["Edit", "Name"],
         fieldlevelactions:[],
-        objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
@@ -1392,7 +1365,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataMenu:true,
         headers:["Edit", "Name"],
         fieldlevelactions:[{name:"Edit", actionUrl:"/setup/own/entityruleedit.jsp?id="}],
-        objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -1418,7 +1391,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         midurl:"",
         headers:["Edit", "Name"],
         fieldlevelactions:[{name:"Edit", actionUrl:"/e"}],
-        objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
@@ -1443,30 +1416,13 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         headers:["Edit", "Name"],
         midurl:"",
         fieldlevelactions:[{}],
-        objectlevelaction:[{name:"setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
+        objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
         url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
         listUrl:"/",
         placeholderText:"Quick find/search Group..."
-    }/*,{
-        label:"About",
-        value:"About",
-        tooltipMessage:"Open home page",
-        formainmenu:true,
-        isSearchable:false,
-        visibleForMetadataMenu:true,
-        eligibleForPackageXml:false,
-        url:"",
-        listUrl:"/",
-        fieldlevelactions:[{}],
-        objectlevelaction:[
-                               {name:"Linkedin", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"}, 
-                               ,
-                               {name:"GitHub", actionUrl:"https://github.com/rajnikantroy/Salesforce-Simplified"},
-                               {name:"Donate", actionUrl:"https://www.paypal.me/rajnikantroy"}
-                           ]
-    }*/,{
+    },{
         label:"Launcher Color",
         value:"LauncherColor",
         tooltipMessage:"Simplified Launcher Color",
@@ -1482,18 +1438,5 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                {name:"Report Issue", actionUrl:"https://github.com/rajnikantroy/SalesforceSimplified/issues/new"},
                {name:"Blog", actionUrl:"https://salesforcsimplified.blogspot.com"}
            ]
-    }/*,{
-        label:"FAQ",
-        value:"Faq",
-        tooltipMessage:"Open home page",
-        isSearchable:false,
-        eligibleForPackageXml:false,
-		technologyFeature:"Settings",
-        url:"",
-        visibleForMetadataMenu:true,
-        listUrl:"/",
-        fieldlevelactions:[{}],
-        objectlevelaction:[{}]
-    }*/];
-
+    }];
 }]);

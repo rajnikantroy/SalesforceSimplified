@@ -1,14 +1,11 @@
 app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, UserId) {
 	/************************************************DEBUG LOGS START***************************************************/
 	$scope.dataList = [];
-	
 	$scope.clsSecurity = 'clsSecurity';
 	$scope.edit = 'Edit';
-	
 	$scope.download = 'Download';
 	$scope.baseUrl = 'https://'+window.location.host;
 	$scope.classactions = MetaDataContainer.data[3].fieldlevelactions;
-	
 	$scope.loadingDebug = true;
 	$scope.uname = "My";
 	$scope.userFullName = "";
@@ -18,10 +15,12 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 		$scope.uname = readCookie('SFDCSimplified_uname').split(" ")[0]+"'s";
 		$scope.userFullName = readCookie('SFDCSimplified_uname');
 	}
+
 	$scope.DebugLogClose = function(){
 		$("#debuglogGridModal").css({"display": "none"});
 		location.reload();
 	}
+
 	$scope.queryForDebugLogs = function(){
 		try{
 			$scope.loading = true;
@@ -31,6 +30,7 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 			console.log(error);
 		}
 	}
+
 	$scope.deleteBtn = 'Delete My Logs';
 	$scope.deleteMyLogs = function(){
 		try{
@@ -45,6 +45,7 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 			console.log(error);
 		}
 	}
+
 	function deleteLogsFromSalesforce(e) {
 		try {
 			var completeurl = "https://"+window.location.host+"/services/data/v38.0/tooling/sobjects/apexlog/"+e.Id;
@@ -65,6 +66,7 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 			console.log(error);
 		}
 	}
+	
 	$scope.querySFDC = function(query, url){
 		try{
 			var completeurl = url+''+query;
@@ -138,7 +140,6 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	}
 
 	$scope.compareObject = function(url) {
-		//debugger;
 		$scope.recordCompareList = [];
 		var completeurl = "https://"+window.location.host+""+url;
         var configObj = {
@@ -148,9 +149,7 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
             method : "GET"
             };
             $http(configObj).then(function mySuccess(result) {
-				//debugger;
 				if(result && result.data){
-					//debugger;
 					console.log(result.data);
 					for (const [key, value] of Object.entries(result.data)) {
 					  $scope.recordCompareMap.set(key, value);
@@ -166,7 +165,6 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 		    });  
 	}
 	$scope.copyObject = function(url) {
-		//debugger;
 		try{
 		var completeurl = "https://"+window.location.host+""+url;
         var configObj = {
@@ -176,16 +174,13 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
             method : "GET"
             };
             $http(configObj).then(function mySuccess(result) {
-				//debugger;
 				if(result && result.data){
-					//debugger;
 					var jsonPretty = JSON.stringify(result.data,null,2);  
 					copyText(jsonPretty);
 					$scope.copyBtn = 'Copied';					
 					$scope.copyBtn = 'Copy';					
 				}
 		    }, function myError(errorRes) {
-		    	//console.log(errorRes);
 		    	$scope.loading = false;
 		    });   
 		}catch(error){
@@ -194,7 +189,6 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	}
 	
 	$scope.loadAllObjectForCompareRecord = function(prefix) {
-		//debugger;
 		try{
 		var completeurl = "https://"+window.location.host+"/services/data/v32.0/sobjects";
         var configObj = {
@@ -213,7 +207,6 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 					}
 				}
 		    }, function myError(errorRes) {
-		    	//console.log(errorRes);
 		    	$scope.loading = false;
 		    }); 
 		}catch(error){
@@ -246,7 +239,6 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	}
 	
 	$scope.$watch('objectPrefixRowTemplateForRecordComparison', function(value) {
-		//debugger;
 		if(value && $scope.recordId1){
 			var value1 = value.replace('{ID}', $scope.recordId1);
 			$scope.compareObject(value1);
@@ -328,9 +320,6 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 			$scope.recordId = getRecordId(window.location.href);
 			var prefix = $scope.recordId.slice(0, 3);
 			$scope.loadAllObject(prefix);
-			
-			//alert(getRecordId(window.location.href));
-			//$scope.querySFDC(MetaDataContainer.data[25].query, MetaDataContainer.data[25].url);
 	}
 	/************************************************COPY END******************************************************/
 	/************************************************COMPARE START******************************************************/

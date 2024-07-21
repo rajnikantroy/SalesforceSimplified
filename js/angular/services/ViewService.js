@@ -316,7 +316,6 @@ this.content = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav"
 '</div>'+
 '</div>';
 
-
 this.content1 = '<div ng-mouseleave="closeModel()" id="mySidenav" class="sidenav">'+
 '<functionalitiesmenu></functionalitiesmenu>'+
 

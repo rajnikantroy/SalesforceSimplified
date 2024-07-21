@@ -48,6 +48,7 @@ function viewMyLogs() {
 	var v = '<span ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified1"><span ng-controller="MyViewGridCtrl"><span><input class="btn" value="My Logs" style="background: #1796bf; color: white;" ng-click="queryForDebugLogs()" type="button" ng-strict-di/></span><span><debugloggrid></debugloggrid></span></span></span>';
     $("#Apex_Trace_List\\:traceForm\\:traceTable").find("input[id$=deleteAll]").after(v);
 }
+
 function recentItems1() {
       var v = '<div ng-app="SalesforceSimplifiedApp" id="SalesforceSimplified"><div ng-controller="MenuAndDetailsCtrl"><img src="'+chrome.runtime.getURL("/img/ss_icon_disable.png")+'" id="ss_icon" ng-mouseover="callModel()" ng-strict-di/><menu></menu></div></div>'; 
        $("body").append(v);
@@ -81,7 +82,6 @@ if($(".bPageFooter").length){
 		$(v).insertBefore($('input[name="edit"]'));
 	}
 }
-	
 
 function __getUserId(){
 	try{
@@ -113,7 +113,7 @@ function __changeUser(cuid){
 
 function namespacePrefix(){
 	var id = readCookie('uid');
-	var concatUrl = "/services/data/v32.0/query/?q=SELECT Id, NamespacePrefix FROM PackageLicense where NamespacePrefix in ('vlocity_cmt', 'vlocity_ins')";
+	var concatUrl = "/services/data/v32.0/query/?q=SELECT Id, NamespacePrefix FROM PackageLicense where NamespacePrefix in ('vlocity_')";
   	if(readCookie('isNamespacePrefixAvailable') == null){
 	  	try{
 		$.ajax({

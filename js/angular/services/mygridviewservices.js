@@ -1,10 +1,8 @@
 app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContainer, $scope, UserId) {
-	var loadingcar = chrome.runtime.getURL("/img/loadingcar.gif");
-	
+	var loadingcar = chrome.runtime.getURL("/img/loadingcar.gif");	
 	var editicon = chrome.runtime.getURL("/img/edit.png");
 	var downloadicon = chrome.runtime.getURL("/img/download.png");
 	var securityicon = chrome.runtime.getURL("/img/security.png");
-	
 	this.debugloggrid ='<div class="w3-container pageBlock">'+
 	  '<div id="debuglogGridModal" class="w3-modal  w3-animate-opacity">'+
 	    '<div class="w3-modal-content modal-back modalcustomstyle">'+
@@ -96,7 +94,6 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 			'</tr>'+ 
 		'</table>'+
 	      '</div>'+
-		  
 	      '<footer class="w3-container modalfooter">'+
 	    '</footer>'+
 	    '</div>'+
@@ -118,9 +115,7 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 		'</table>'+
 	    '</div>'+
 	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, You have not created/modified any apex classes.</b></center>'+
-	    
 	    '<div ng-show="loading"><center><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/> Loading please wait...</center></div>'+
-	    
 	      '<div class="w3-container" style="background:white; min-height:200px; max-height:400px; overflow-y: scroll;">'+
 	        '<table class="list" ng-show="dataList.length">'+
 	        '<tr class="headerRow">'+
