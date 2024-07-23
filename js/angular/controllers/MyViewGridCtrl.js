@@ -5,7 +5,6 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	$scope.edit = 'Edit';
 	$scope.download = 'Download';
 	$scope.baseUrl = 'https://'+window.location.host;
-	$scope.classactions = MetaDataContainer.data[3].fieldlevelactions;
 	$scope.loadingDebug = true;
 	$scope.uname = "My";
 	$scope.userFullName = "";
@@ -25,7 +24,8 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 		try{
 			$scope.loading = true;
 			$("#debuglogGridModal").css({"display": "block"});
-			$scope.querySFDC(MetaDataContainer.data[2].query, MetaDataContainer.data[2].url);
+			var DebugLogObject = getMetadataByName('DebugLogs');
+			$scope.querySFDC(DebugLogObject.query, DebugLogObject.url);
 		}catch(error){
 			console.log(error);
 		}
@@ -56,7 +56,8 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 				method : "DELETE"
 				};
 				$http(configObj).then(function mySuccess(response) {
-					$scope.querySFDC(MetaDataContainer.data[2].query, MetaDataContainer.data[2].url);
+					var DebugLogObject = getMetadataByName('DebugLogs');
+					$scope.querySFDC(DebugLogObject.query, DebugLogObject.url);
 					$scope.dataLength = $scope.dataLength - 1;
 				}, function myError(errorRes) {
 					//console.log(errorRes);
@@ -64,6 +65,16 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 				});
 		}catch(error){
 			console.log(error);
+		}
+	}
+
+	function getMetadataByName(name) {
+		if(MetaDataContainer.data && name){
+			MetaDataContainer.data.forEach(function(element) { 
+				if(element && element.value && element.value == name){
+					return element;
+				}
+			 });
 		}
 	}
 	
@@ -190,7 +201,7 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	
 	$scope.loadAllObjectForCompareRecord = function(prefix) {
 		try{
-		var completeurl = "https://"+window.location.host+"/services/data/v32.0/sobjects";
+		var completeurl = "https://"+window.location.host+"/services/data/v60.0/sobjects";
         var configObj = {
             url : completeurl,
             headers : {"Authorization": "Bearer "+ readCookie('sid')},
@@ -215,7 +226,7 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	}
 	$scope.loadAllObject = function(prefix) {
 		try{
-		var completeurl = "https://"+window.location.host+"/services/data/v32.0/sobjects";
+		var completeurl = "https://"+window.location.host+"/services/data/v60.0/sobjects";
         var configObj = {
             url : completeurl,
             headers : {"Authorization": "Bearer "+ readCookie('sid')},
@@ -307,7 +318,8 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	$scope.openClassModal = function(){
 			$scope.loading = true;
 			$("#classGridModal").css({"display": "block"});
-			$scope.querySFDC(MetaDataContainer.data[25].query, MetaDataContainer.data[25].url);
+			var ClassObject = getMetadataByName('Classes');
+			$scope.querySFDC(ClassObject.query, ClassObject.url);
 	}
 	/************************************************CLASS END******************************************************/
 	
@@ -329,7 +341,6 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 			$scope.recordId1 = getRecordId(window.location.href);
 			var prefix = $scope.recordId1.slice(0, 3);
 			$scope.loadAllObjectForCompareRecord(prefix);
-			//$scope.querySFDC(MetaDataContainer.data[2].query, MetaDataContainer.data[2].url);
 	}
 	$scope.CompareClose = function(){
 		$("#compareModal").css({"display": "none"});

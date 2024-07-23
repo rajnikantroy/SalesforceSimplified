@@ -49,9 +49,8 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	      '<footer class="w3-container modalfooter">'+
 	      '<table><tr>'+
 		      '<td class="bold"><a target="_blank" href="https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob?hl=en">Rate Us on chrome</a></td>'+
-		      '<td class="bold"><a target="_blank" href="https://fb.com/salesforcesimplified">Facebook Page</a></td>'+
 		      '<td class="bold"><a target="_blank" href="https://github.com/rajnikantroy/SalesforceSimplified/issues/new">Report Issue</a></td>'+
-		      '<td class="bold"><a target="_blank" href="https://salesforcesimplify.blogspot.com">Salesforce Simplified</a></td>'+
+		      '<td class="bold"><a target="_blank" href="https://salesforcsimplified.blogspot.com/">Blog</a></td>'+
 	      '</tr></table>'+
 	    '</footer>'+
 	    '</div>'+
@@ -143,9 +142,8 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	      '<footer class="w3-container modalfooter">'+
 	      '<table><tr>'+
 		      '<td class="bold"><a target="_blank" href="https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob?hl=en">Rate Us on chrome</a></td>'+
-		      '<td class="bold"><a target="_blank" href="https://fb.com/salesforcesimplified">Facebook Page</a></td>'+
 		      '<td class="bold"><a target="_blank" href="https://github.com/rajnikantroy/SalesforceSimplified/issues/new">Report Issue</a></td>'+
-		      '<td class="bold"><a target="_blank" href="https://salesforcesimplify.blogspot.com">Salesforce Simplified</a></td>'+
+		      '<td class="bold"><a target="_blank" href="https://salesforcsimplified.blogspot.com">Blog</a></td>'+
 	      '</tr></table>'+
 	    '</footer>'+
 	    '</div>'+

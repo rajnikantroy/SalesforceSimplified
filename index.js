@@ -113,7 +113,7 @@ function __changeUser(cuid){
 
 function namespacePrefix(){
 	var id = readCookie('uid');
-	var concatUrl = "/services/data/v32.0/query/?q=SELECT Id, NamespacePrefix FROM PackageLicense where NamespacePrefix in ('vlocity_')";
+	var concatUrl = "/services/data/v60.0/query/?q=SELECT Id, NamespacePrefix FROM PackageLicense where NamespacePrefix in ('vlocity_')";
   	if(readCookie('isNamespacePrefixAvailable') == null){
 	  	try{
 		$.ajax({
@@ -141,7 +141,7 @@ function namespacePrefix(){
 
 function verifyUser(){
 	var id = readCookie('uid');
-	var concatUrl = "/services/data/v32.0/query/?q=SELECT Id, Username, Name, Email FROM user where id='"+id+"'";
+	var concatUrl = "/services/data/v60.0/query/?q=SELECT Id, Username, Name, Email FROM user where id='"+id+"'";
   	try{
 	$.ajax({
          url: concatUrl,

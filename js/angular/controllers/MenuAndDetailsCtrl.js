@@ -385,16 +385,28 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
 			alert('Invalid User :'+id);
 		}
     }
-    //Change index if menu order got changed MetaDataContainer.data[0]
+
     $scope.searchUser = function(){
         $scope.showloading = true;
-        var que = MetaDataContainer.data[0].query+" and name like '%25"+$scope.searchUserModel+"%25'";
+        var ChangeUserObject = getMetadataByName('ChangeUser');
+        var que = ChangeUserObject.query+" and name like '%25"+$scope.searchUserModel+"%25'";
         try{
-            $scope.querySFDC(que, MetaDataContainer.data[1].url);
+            $scope.querySFDC(que, ChangeUserObject.url);
         }catch(error){
 
             }
     }
+
+    function getMetadataByName(name) {
+		if(MetaDataContainer.data && name){
+			MetaDataContainer.data.forEach(function(element) { 
+				if(element && element.value && element.value == name){
+					return element;
+				}
+			 });
+		}
+	}
+
     $scope.showpayment = function(){
         if($scope.showpaymentflag)
             $scope.showpaymentflag = false;
@@ -414,7 +426,6 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
 		}
 	}
 	$scope.extendMenu = function(){
-		//alert('SFDC : '+$scope.Developer+', vlocity : '+$scope.Vlocity+', Admin : '+$scope.Admin);
     	$scope.allMenu = [];
 		
 		if($scope.Developer){

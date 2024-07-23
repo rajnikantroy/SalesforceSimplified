@@ -10,11 +10,11 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         isSearchable:true,
         visibleForMetadataMenu:true,
         visibleForMetadataIconMenu:true,
-        queryForAll:"select id, name, email, username from User where user.IsActive = true order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, Name, username, email from User where user.IsActive = true and name like ",
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        queryForAll:"select id, name, email, username from User where IsActive = true order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, Name, username, email from User where IsActive = true and name like ",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         imagesrc : chrome.runtime.getURL("/img/icons/viewas.png"),
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         placeholderText:"Search user...",
         type:"table",
         listUrl:"/005",
@@ -79,7 +79,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             
             ],
         fieldlevelactions:[{}],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/setup/ui/listApexTraces.apexp",
         midurl:"",
         imagesrc : chrome.runtime.getURL("/img/icons/debuglogs.png"),
@@ -109,7 +109,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/701/o",
         midurl:"",
         placeholderText:"Quick find/search Campaigns..."
@@ -138,7 +138,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/00Q/o",
         midurl:"",
         placeholderText:"Quick find/search Lead by status etc..."
@@ -167,7 +167,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/001/o",
         midurl:"",
         placeholderText:"Quick find/search Account Name etc..."
@@ -196,7 +196,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/003/o",
         midurl:"",
         placeholderText:"Quick find/Search Contacts by Name type etc..."
@@ -225,7 +225,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/006/o",
         midurl:"",
         placeholderText:"Quick find/Search opportunity by stagename etc..."
@@ -255,7 +255,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/0Q0/o",
         midurl:"",
         placeholderText:"Quick find/search Qoute by status etc..."
@@ -288,7 +288,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/800/o",
         midurl:"",
         placeholderText:"Quick find/Search Contract by status etc..."
@@ -316,7 +316,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/500/o",
         midurl:"",
         placeholderText:"Quick find/Search Case by status etc..."
@@ -345,7 +345,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/801/o",
         midurl:"",
         placeholderText:"Quick find/Search Order by status etc..."
@@ -377,7 +377,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/00O/o",
         midurl:"",
         placeholderText:"Quick find/search Reports..."
@@ -409,7 +409,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/01Z/o",
         midurl:"",
         placeholderText:"Quick find/search Group..."
@@ -441,7 +441,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"All Tabs", actionUrl:"/home/showAllTabs.jsp"},
             {name:"Chatter", actionUrl:"/_ui/core/chatter/ui/ChatterPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/02i/o",
         midurl:"",
         placeholderText:"Quick find/search Group..."
@@ -470,7 +470,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"New", actionUrl:"/apex/"+readCookie('NamespacePrefix')+"omniscriptdesigner"},
             {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}],
-            url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+            url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/apex/"+readCookie('NamespacePrefix')+"omniscripthome",
         midurl:"/apex/"+readCookie('NamespacePrefix')+"omniscriptdesigner?id=",
         placeholderText:"Quick find/search Omniscript..."
@@ -499,7 +499,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"New", actionUrl:"/apex/"+readCookie('NamespacePrefix')+"integrationproceduredesigner"},
             {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}],
-            url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+            url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/apex/"+readCookie('NamespacePrefix')+"integrationprocedurehome",
         midurl:"/apex/"+readCookie('NamespacePrefix')+"integrationproceduredesigner?id=",
         placeholderText:"Quick find/search Integration Procedures..."
@@ -529,7 +529,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/apex/"+readCookie('NamespacePrefix')+"TemplateHome",
         midurl:"/apex/"+readCookie('NamespacePrefix')+"uitemplatedesigner?id=",
         placeholderText:"Quick find/search Templates..."
@@ -559,7 +559,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
                 {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/apex/"+readCookie('NamespacePrefix')+"cardhome",
         midurl:"/apex/"+readCookie('NamespacePrefix')+"carddesignernew?id=",
         placeholderText:"Quick find/search Cards..."
@@ -589,7 +589,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/apex/"+readCookie('NamespacePrefix')+"DRHome",
         midurl:"/apex/"+readCookie('NamespacePrefix')+"drmapper?id=",
         placeholderText:"Quick find/search Data Raptors..."
@@ -620,7 +620,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/a6j",
         midurl:"",
         placeholderText:"Quick find/search Vlocity Actions..."
@@ -650,7 +650,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/apex/"+readCookie('NamespacePrefix')+"DocTemplateList",
         midurl:"apex/"+readCookie('NamespacePrefix')+"documenttemplate?templateId=",
         placeholderText:"Quick find/search doc templates..."
@@ -676,7 +676,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/01t",
         imagesrc : chrome.runtime.getURL("/img/icons/workflows.png"),
         midurl:"",
@@ -703,7 +703,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
          {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
          {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
          ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/a6x",
         midurl:"",
         placeholderText:"Quick find/search Interaction Launcher..."
@@ -732,7 +732,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             
         ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/a36",
         midurl:"",
         placeholderText:"Quick find/search Attribute..."
@@ -758,7 +758,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         imagesrc : chrome.runtime.getURL("/img/icons/labels.png"),
         listUrl:"/a3H",
         midurl:"",
@@ -776,9 +776,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataIconMenu:true,
         dataNotAvailableMessage:"You have not created/modified any class.",
         menuname:"favourite",
-        queryForAll:"select id, name,  ApiVersion, createdby.Name, IsValid, NamespacePrefix, LastModifiedBy.Name from ApexClass order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, name, ApiVersion, IsValid,createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexClass where name like ",
-        query:"SELECT Id, Name, LastModifiedDate, LastModifiedBy.Id,  IsValid, ApiVersion, NamespacePrefix, CreatedBy.Name, LastModifiedBy.Name FROM ApexClass where  LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc",
+        queryForAll:"select id, name,  ApiVersion, createdby.Name, IsValid, NamespacePrefix, LastModifiedBy.Name from ApexClass WHERE ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, name, ApiVersion, IsValid,createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexClass WHERE  ManageableState != 'installed' AND name like ",
+        query:"SELECT Id, Name, LastModifiedDate, LastModifiedBy.Id,  IsValid, ApiVersion, NamespacePrefix, CreatedBy.Name, LastModifiedBy.Name FROM ApexClass WHERE  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc",
         metadata:"ApexClass",
         imagesrc : chrome.runtime.getURL("/img/icons/classes.png"),
         type:"table",
@@ -793,8 +793,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"},
             {name:"Generate WSDL", actionUrl:"/_ui/common/api/callout/ui/Wsdl2ApexStageManager"}, 
             {name:"Schedule Apex", actionUrl:"/ui/setup/apex/batch/ScheduleBatchApexPage"}],
-            url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+            url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/01p",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         midurl:"",
         placeholderText:"Quick find/search class..."
     },{
@@ -810,9 +811,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataMenu:true,
         visibleForMetadataIconMenu:true,
         dataNotAvailableMessage:"You have not created/modified any triggers.",
-        queryForAll:"select id,name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexTrigger order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexTrigger where name like ",
-        query:"select id, Name, ApiVersion, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from ApexTrigger where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc ",
+        queryForAll:"select id,name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexTrigger WHERE ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexTrigger where  ManageableState != 'installed' AND name like ",
+        query:"select id, Name, ApiVersion, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from ApexTrigger where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc ",
         metadata:"ApexTrigger",
         type:"table",
         headers:["Edit", "Download", "Name"],
@@ -825,7 +826,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"},
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/setup/build/allTriggers.apexp",
         midurl:"",
         placeholderText:"Quick find/search triggers..."
@@ -841,9 +842,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 		technologyFeature:"Salesforce",
         dataNotAvailableMessage:"You have not created/modified any LWC components.",
         menuname:"favourite",
-        queryForAll:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM LightningComponentBundle order by LastModifiedDate desc",
-        queryForAllWithWhere:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM LightningComponentBundle where DeveloperName like ",
-        query:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM LightningComponentBundle where  LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc",
+        queryForAll:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM LightningComponentBundle WHERE ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM LightningComponentBundle where  ManageableState != 'installed' AND DeveloperName like ",
+        query:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM LightningComponentBundle where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc",
         metadata:"LightningComponentBundle",
         imagesrc : chrome.runtime.getURL("/img/icons/AuraDefinitionBundles.png"),
         type:"table",
@@ -854,7 +855,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
                 
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/ui/aura/impl/setup/LightningComponentListPage",
         midurl:"",
         placeholderText:"Quick find/search lwc components..."
@@ -870,9 +871,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 		technologyFeature:"Salesforce",
         dataNotAvailableMessage:"You have not created/modified any lightening components.",
         menuname:"favourite",
-        queryForAll:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM AuraDefinitionBundle order by LastModifiedDate desc",
-        queryForAllWithWhere:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM AuraDefinitionBundle where DeveloperName like ",
-        query:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM AuraDefinitionBundle where  LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc",
+        queryForAll:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM AuraDefinitionBundle WHERE  ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM AuraDefinitionBundle where  ManageableState != 'installed' AND DeveloperName like ",
+        query:"SELECT Id, DeveloperName, LastModifiedBy.Name, NamespacePrefix FROM AuraDefinitionBundle where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc",
         metadata:"AuraDefinitionBundle",
         imagesrc : chrome.runtime.getURL("/img/icons/AuraDefinitionBundles.png"),
         type:"table",
@@ -883,7 +884,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
                 {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
                 
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/ui/aura/impl/setup/LightningComponentListPage",
         midurl:"",
         placeholderText:"Quick find/search aura components..."
@@ -900,9 +901,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataIconMenu:false,
         dataNotAvailableMessage:"You have not created/modified any visualforce pages.",
         menuname:"favourite",
-        queryForAll:"select id, name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexPage order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, name, ApiVersion, NamespacePrefix, createdby.Name, LastModifiedBy.Name from ApexPage where name like ",
-        query:"select id, Name, ApiVersion, createdby.name, NamespacePrefix, LastModifiedDate, LastModifiedBy.Name from ApexPage where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc ",
+        queryForAll:"select id, name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexPage WHERE ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, name, ApiVersion, NamespacePrefix, createdby.Name, LastModifiedBy.Name from ApexPage where  ManageableState != 'installed' AND Name like ",
+        query:"select id, Name, ApiVersion, createdby.name, NamespacePrefix, LastModifiedDate, LastModifiedBy.Name from ApexPage where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc ",
         metadata:"ApexPage",
         type:"table",
         imagesrc : chrome.runtime.getURL("/img/icons/pages.png"),
@@ -914,7 +915,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/apexpages/setup/listApexPage.apexp",
         midurl:"",
         placeholderText:"Quick find/search pages..."
@@ -928,9 +929,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 		technologyFeature:"Salesforce",
         visibleForMetadataMenu:true,
         dataNotAvailableMessage:"You have not created/modified any visualforce components.",
-        queryForAll:"select id, name, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexComponent order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, name, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexComponent where name like ",
-        query:"select id, Name, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from ApexComponent where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc ",
+        queryForAll:"select id, name, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexComponent WHERE  ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, name, createdby.Name, NamespacePrefix, LastModifiedBy.Name from ApexComponent WHERE  ManageableState != 'installed' AND Name like ",
+        query:"select id, Name, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from ApexComponent WHERE  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc ",
         metadata:"ApexComponent",
         type:"table",
         headers:["Edit", "Name"],
@@ -940,7 +941,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
          {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
          {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
          ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/apexpages/setup/listApexComponent.apexp",
         midurl:"",
         placeholderText:"Quick find/search components..."
@@ -957,9 +958,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 		technologyFeature:"Salesforce",
         visibleForMetadataIconMenu:true,
         dataNotAvailableMessage:"You have not created/modified any custom objects.",
-        queryForAll:"select id, DeveloperName, ExternalName, createdby.Name, LastModifiedBy.Name, NamespacePrefix from CustomObject order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, DeveloperName, ExternalName, createdby.Name, NamespacePrefix, LastModifiedBy.Name from CustomObject where DeveloperName like ",
-        query:"select id, DeveloperName, createdby.name, ExternalName, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from CustomObject where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc ",
+        queryForAll:"select id, DeveloperName, ExternalName, createdby.Name, LastModifiedBy.Name, NamespacePrefix from CustomObject WHERE ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, DeveloperName, ExternalName, createdby.Name, NamespacePrefix, LastModifiedBy.Name from CustomObject where  ManageableState != 'installed' AND DeveloperName like ",
+        query:"select id, DeveloperName, createdby.name, ExternalName, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from CustomObject where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc ",
         metadata:"CustomObjects",
         type:"table",
         headers:["Edit", "Name"],
@@ -970,7 +971,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/p/setup/custent/CustomObjectsPage",
         midurl:"",
         placeholderText:"Quick find/search objects..."
@@ -985,9 +986,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataMenu:true,
 		technologyFeature:"Salesforce",
         dataNotAvailableMessage:"You have not created/modified any custom fields.",
-        queryForAll:"select id, DeveloperName, createdby.Name, TableEnumOrId, NamespacePrefix, LastModifiedBy.Name from CustomField order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, DeveloperName, createdby.Name, TableEnumOrId, NamespacePrefix, LastModifiedBy.Name from CustomField where DeveloperName like ",
-        query:"select id, DeveloperName, createdby.name, LastModifiedDate, TableEnumOrId, NamespacePrefix, LastModifiedBy.Name from CustomField where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc ",
+        queryForAll:"select id, DeveloperName, createdby.Name, TableEnumOrId, NamespacePrefix, LastModifiedBy.Name from CustomField WHERE  ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, DeveloperName, createdby.Name, TableEnumOrId, NamespacePrefix, LastModifiedBy.Name from CustomField where  ManageableState != 'installed' AND DeveloperName like ",
+        query:"select id, DeveloperName, createdby.name, LastModifiedDate, TableEnumOrId, NamespacePrefix, LastModifiedBy.Name from CustomField where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc ",
         metadata:"CustomFields",
         type:"table",
         imagesrc : chrome.runtime.getURL("/img/icons/fields.png"),
@@ -998,7 +999,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             
         ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/p/setup/custent/CustomObjectsPage",
         midurl:"",
         placeholderText:"Quick find/search fields..."
@@ -1014,9 +1015,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataIconMenu:true,
 		technologyFeature:"Salesforce",
         dataNotAvailableMessage:"You have not created/modified any custom labels.",
-        queryForAll:"select id, name, createdby.Name, LastModifiedBy.Name, NamespacePrefix from CustomLabel order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, name, createdby.Name, NamespacePrefix, LastModifiedBy.Name from CustomLabel where name like ",
-        query:"select id, Name, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from CustomLabel where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc ",
+        queryForAll:"select id, name, createdby.Name, LastModifiedBy.Name, NamespacePrefix from CustomLabel WHERE  ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, name, createdby.Name, NamespacePrefix, LastModifiedBy.Name from CustomLabel where  ManageableState != 'installed' AND name like ",
+        query:"select id, Name, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from CustomLabel where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc ",
         metadata:"CustomLabel",
         type:"table",
         headers:["Edit", "Name"],
@@ -1025,7 +1026,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 	        {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
 	        {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
 	        ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         imagesrc : chrome.runtime.getURL("/img/icons/labels.png"),
         listUrl:"/101",
         midurl:"",
@@ -1041,8 +1042,8 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataMenu:true,
 		technologyFeature:"Salesforce",
         dataNotAvailableMessage:"You have not created/modified any workflows.",
-        queryForAllWithWhere:"select id, name, createdby.Name, NamespacePrefix, LastModifiedBy.Name from WorkflowRule where name like ",
-        query:"select id, Name, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from WorkflowRule where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc ",
+        queryForAllWithWhere:"select id, name, createdby.Name, NamespacePrefix, LastModifiedBy.Name from WorkflowRule where  ManageableState != 'installed' AND name like ",
+        query:"select id, Name, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from WorkflowRule where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc ",
         metadata:"WorkflowRule",
         headers:["Edit", "Name"],
         type:"table",
@@ -1051,7 +1052,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/_ui/core/workflow/WorkflowSplashUi?EntityId=WorkflowRule",
         imagesrc : chrome.runtime.getURL("/img/icons/workflows.png"),
         midurl:"",
@@ -1066,9 +1067,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 		technologyFeature:"Salesforce",
         visibleForMetadataMenu:true,
         dataNotAvailableMessage:"You have not created/modified any flows.",
-        queryForAll:"select id, DeveloperName, createdby.Name, NamespacePrefix, LastModifiedBy.Name from FlowDefinition order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, DeveloperName, createdby.Name, NamespacePrefix, LastModifiedBy.Name from FlowDefinition where DeveloperName like ",
-        query:"select id, DeveloperName, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from FlowDefinition where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc ",
+        queryForAll:"select id, DeveloperName, createdby.Name, NamespacePrefix, LastModifiedBy.Name from FlowDefinition WHERE  ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, DeveloperName, createdby.Name, NamespacePrefix, LastModifiedBy.Name from FlowDefinition where  ManageableState != 'installed' AND DeveloperName like ",
+        query:"select id, DeveloperName, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from FlowDefinition where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc ",
         metadata:"Flows",
         type:"table",
         headers:["Edit", "Name"],
@@ -1079,7 +1080,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
             {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         imagesrc : chrome.runtime.getURL("/img/icons/flows.png"),
         listUrl:"/300",
         midurl:"",
@@ -1094,9 +1095,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         visibleForMetadataMenu:true,
 		technologyFeature:"Salesforce",
         dataNotAvailableMessage:"You have not created/modified any email templates.",
-        queryForAll:"select id, name, ApiVersion, createdby.Name, NamespacePrefix,  LastModifiedBy.Name from EmailTemplate order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from EmailTemplate where name like ",
-        query:"select id, Name, ApiVersion, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from EmailTemplate where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc ",
+        queryForAll:"select id, name, ApiVersion, createdby.Name, NamespacePrefix,  LastModifiedBy.Name from EmailTemplate WHERE ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, name, ApiVersion, createdby.Name, NamespacePrefix, LastModifiedBy.Name from EmailTemplate where  ManageableState != 'installed' AND name like ",
+        query:"select id, Name, ApiVersion, createdby.name, LastModifiedDate, NamespacePrefix, LastModifiedBy.Name from EmailTemplate where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc ",
         metadata:"EmailTemplates",
         type:"table",
         imagesrc : chrome.runtime.getURL("/img/icons/emailtemplates.png"),
@@ -1108,7 +1109,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/00X",
         midurl:"",
         placeholderText:"Quick find/search email template..."
@@ -1123,8 +1124,8 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 		technologyFeature:"Salesforce",
         visibleForMetadataMenu:true,
         dataNotAvailableMessage:"You have not created/modified any users.",
-        queryForAll:"select id, name, email, username, LastModifiedBy.Name from User where user.IsActive = true order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, name, email, username, LastModifiedBy.Name from User where user.IsActive = true and name like ",
+        queryForAll:"select id, name, email, username, LastModifiedBy.Name from User where IsActive = true order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, name, email, username, LastModifiedBy.Name from User where IsActive = true and name like ",
         query:"select id, name, email, username, LastModifiedBy.Name from User where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc",
         metadata:"Users",
         type:"table",
@@ -1137,7 +1138,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/005",
         midurl:"",
         placeholderText:"Quick find/search Users..."
@@ -1151,9 +1152,9 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 		technologyFeature:"Salesforce",
         visibleForMetadataMenu:true,
         dataNotAvailableMessage:"You have not created/modified any static resource.",
-        queryForAll:"select id, name, LastModifiedBy.Name, NamespacePrefix from StaticResource order by LastModifiedDate desc",
-        queryForAllWithWhere:"select id, name, NamespacePrefix, LastModifiedBy.Name from StaticResource where name like ",
-        query:"select id, name, NamespacePrefix, LastModifiedBy.Name from StaticResource where LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"' order by LastModifiedDate desc",
+        queryForAll:"select id, name, LastModifiedBy.Name, NamespacePrefix from StaticResource WHERE  ManageableState != 'installed' order by LastModifiedDate desc",
+        queryForAllWithWhere:"select id, name, NamespacePrefix, LastModifiedBy.Name from StaticResource where  ManageableState != 'installed' AND name like ",
+        query:"select id, name, NamespacePrefix, LastModifiedBy.Name from StaticResource where  ManageableState != 'installed' AND (LastModifiedById='"+UserId.id+"' or CreatedById='"+UserId.id+"') order by LastModifiedDate desc",
         metadata:"StaticResource",
         type:"table",
         headers:["Edit", "Name"],
@@ -1165,7 +1166,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         listUrl:"/081",
         midurl:"",
         placeholderText:"Quick find/search Resource..."
@@ -1193,7 +1194,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/00e",
         midurl:"",
         placeholderText:"Quick find/search Profile..."
@@ -1221,7 +1222,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/0PS",
         midurl:"",
         placeholderText:"Quick find/search permission set..."
@@ -1248,7 +1249,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/0PG",
         midurl:"",
         placeholderText:"Quick find/search permission set group..."
@@ -1274,7 +1275,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         {name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/p/own/OrgPublicGroupsPage/d",
         midurl:"setup/own/groupdetail.jsp?id=",
         placeholderText:"Quick find/search Group..."
@@ -1286,16 +1287,14 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
 		technologyFeature:"Salesforce",
         eligibleForPackageXml:false,
         visibleForMetadataMenu:false,
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         midurl:"",
         listUrl:"/",
         fieldlevelactions:[{}],
         objectlevelaction:[
         					   {name:"Feedback", actionUrl:"https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob?hl=en"},
                                {name:"Report Issue", actionUrl:"https://github.com/rajnikantroy/SalesforceSimplified/issues/new"},
-                               {name:"Suggestions", actionUrl:"https://www.linkedin.com/in/rajnikantroy/"},
-                               {name:"Facebook", actionUrl:"https://facebook.com/SalesforceSimplified"},
-                               {name:"Blog", actionUrl:"http://salesforcesimplify.blogspot.com/"}
+                               {name:"Blog", actionUrl:"https://salesforcsimplified.blogspot.com"}
                            ]
     },{
         label:"RecordType",
@@ -1318,7 +1317,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         midurl:"setup/ui/recordtypefields.jsp?id=",
         listUrl:"/",
         placeholderText:"Quick find/search Group..."
@@ -1343,7 +1342,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/tooling/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/tooling/query/?q=",
         midurl:"",
         listUrl:"/",
         placeholderText:"Quick find/search Group..."
@@ -1368,7 +1367,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         midurl:"setup/own/entityruledetail.jsp?id=",
         listUrl:"/",
         placeholderText:"Quick find/search Group..."
@@ -1394,7 +1393,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/",
         placeholderText:"Quick find/search Group..."
     },{
@@ -1419,7 +1418,7 @@ app.service('MetaDataContainer', ['UserId',  function(UserId) {
         objectlevelaction:[{name:"Setup", actionUrl:"/setup/forcecomHomepage.apexp?setupid=ForceCom"}, 
             {name:"Developer Console", actionUrl:"/_ui/common/apex/debug/ApexCSIPage"}
             ],
-        url:"https://"+window.location.host+"/services/data/v52.0/query/?q=",
+        url:"https://"+window.location.host+"/services/data/v60.0/query/?q=",
         listUrl:"/",
         placeholderText:"Quick find/search Group..."
     },{
