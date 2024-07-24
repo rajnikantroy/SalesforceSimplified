@@ -85,23 +85,28 @@ app.controller('MenuAndDetailsCtrl', function($scope, MetaDataContainer, $http, 
         var completeurl = $scope.selectedMetadata.url+''+query;
         $("div.userdetails > p").removeClass('userdetailsError');
         $scope.ErrorMsg = '';
-        var configObj = {
-            url : completeurl,
-            headers : {"Authorization": "Bearer "+ readCookie('sid')},
-            contentType : "application/json"
-            };
-            $http(configObj).then(function mySuccess(response) {
-            var AllMetaDataRecords = [];
-            AllMetaDataRecords = response.data.records;
-            if(AllMetaDataRecords && AllMetaDataRecords.length){
-                for (var i = 0; i < AllMetaDataRecords.length; i++) {
-                    $scope.objectEntityIdNameMap.set(AllMetaDataRecords[i].Id, AllMetaDataRecords[i].DeveloperName+'__c');
-                    $scope.createpkgXmlString();
+        var sid = readCookie('sid');
+        if(sid){
+            var configObj = {
+                url : completeurl,
+                headers : {"Authorization": "Bearer "+ sid},
+                contentType : "application/json"
+                };
+                $http(configObj).then(function mySuccess(response) {
+                var AllMetaDataRecords = [];
+                AllMetaDataRecords = response.data.records;
+                if(AllMetaDataRecords && AllMetaDataRecords.length){
+                    for (var i = 0; i < AllMetaDataRecords.length; i++) {
+                        $scope.objectEntityIdNameMap.set(AllMetaDataRecords[i].Id, AllMetaDataRecords[i].DeveloperName+'__c');
+                        $scope.createpkgXmlString();
+                    }
                 }
-            }
-	    }, function myError(response) {
-            $scope.ErrorMsg = response.statusText;
-	    }); 
+            }, function myError(response) {
+                $scope.ErrorMsg = response.statusText;
+            }); 
+        }else{
+            $scope.ErrorMsg = 'Unable to fetch session id.';
+        }
     }
     
     $scope.createpkgXmlString = function(){
@@ -738,11 +743,11 @@ $scope.detailsPopupOpenByOption = function(data, len){
     
     $scope.querySFDC = function(query, url){
         var completeurl = url+''+query+' limit '+$scope.limitLength;
-        
-
-        var configObj = {
+        var sid = readCookie('sid');
+        if(sid){
+            var configObj = {
             url : completeurl,
-            headers : {"Authorization": "Bearer "+ readCookie('sid')},
+            headers : {"Authorization": "Bearer "+ sid},
             contentType : "application/json"
             };
             $http(configObj).then(function mySuccess(response) {
@@ -793,6 +798,9 @@ $scope.detailsPopupOpenByOption = function(data, len){
 			$scope.ErrorMsg = 'From this page of salesforce we cannot query your data. Salesforce Simplified cannot query if you are inside any manage package or your url is different than your home page.';
 		}        
     });
+    }else{
+        $scope.ErrorMsg = 'Unable to fetch session id.';
+    }
     }
 $scope.searchMetadata = function(selectMenu){
     try{
@@ -883,9 +891,11 @@ $scope.searchMetadata = function(selectMenu){
     $scope.queryOnAllData = function(query, url){
         try{
         var completeurl = url+''+query+' limit '+$scope.limitLength;
-        var configObj = {
+        var sid = readCookie('sid');
+        if(sid){
+            var configObj = {
             url : completeurl,
-            headers : {"Authorization": "Bearer "+ readCookie('sid')},
+            headers : {"Authorization": "Bearer "+ sid},
             contentType : "application/json"
             };
             $http(configObj).then(function mySuccess(response) {
@@ -934,6 +944,9 @@ $scope.searchMetadata = function(selectMenu){
             $scope.ErrorMsg = 'From this page of salesforce we cannot query your data. Salesforce Simplified cannot query if you are inside any manage package or your url is different than your home page.';
 		}
     });
+    }else{
+        $scope.ErrorMsg = 'Unable to fetch session id.';
+    }
     }catch(error){
         console.log(error);
     }
@@ -970,9 +983,11 @@ $scope.searchMetadata = function(selectMenu){
         var completeurl = url+''+query+' limit '+$scope.limitLength;
         $("div.userdetails > p").removeClass('userdetailsError');
         $scope.ErrorMsg = '';
-        var configObj = {
+        var sid = readCookie('sid');
+        if(sid){
+            var configObj = {
             url : completeurl,
-            headers : {"Authorization": "Bearer "+ readCookie('sid')},
+            headers : {"Authorization": "Bearer "+ sid},
             contentType : "application/json"
             };
             $http(configObj).then(function mySuccess(response) {
@@ -1016,6 +1031,9 @@ $scope.searchMetadata = function(selectMenu){
             $scope.ErrorMsg = 'From this page of salesforce we cannot query your data. Salesforce Simplified cannot query if you are inside any manage package or your url is different than your home page.';
 		}
     });
+    }else{
+        $scope.ErrorMsg = 'Unable to fetch session id.';	
+    }
     }catch(error){
         console.log(error);
     }

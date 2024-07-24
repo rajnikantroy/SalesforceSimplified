@@ -49,9 +49,11 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	function deleteLogsFromSalesforce(e) {
 		try {
 			var completeurl = "https://"+window.location.host+"/services/data/v38.0/tooling/sobjects/apexlog/"+e.Id;
-			var configObj = {
+			var sid = readCookie('sid');
+			if(sid){
+				var configObj = {
 				url : completeurl,
-				headers : {"Authorization": "Bearer "+ readCookie('sid')},
+				headers : {"Authorization": "Bearer "+ sid},
 				contentType : "application/json",
 				method : "DELETE"
 				};
@@ -60,9 +62,14 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 					$scope.querySFDC(DebugLogObject.query, DebugLogObject.url);
 					$scope.dataLength = $scope.dataLength - 1;
 				}, function myError(errorRes) {
-					//console.log(errorRes);
+					console.log(errorRes);
+					alert('Unable to fetch session id.');
 					$scope.loading = false;
 				});
+			}else{
+				console.log('Cannot read session id to delete logs.');
+				$scope.loading = false;
+			}
 		}catch(error){
 			console.log(error);
 		}
@@ -83,9 +90,11 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	$scope.querySFDC = function(query, url){
 		try{
 			var completeurl = url+''+query;
+			var sid = readCookie('sid');
+			if(sid){
 			var configObj = {
 				url : completeurl,
-				headers : {"Authorization": "Bearer "+ readCookie('sid')},
+				headers : {"Authorization": "Bearer "+ sid},
 				contentType : "application/json"
 				};
 				$http(configObj).then(function mySuccess(response) {
@@ -100,8 +109,11 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 					$scope.loading = false;
 				}
 		}, function myError(response) {
-		
+			console.log(response);
 		});
+		}else{
+			console.log('Unable to fetch session id.');
+		}
 		}catch(error){
 			console.log(error);
 		}
@@ -155,9 +167,11 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	$scope.compareObject = function(url) {
 		$scope.recordCompareList = [];
 		var completeurl = "https://"+window.location.host+""+url;
+		var sid = readCookie('sid');
+		if(sid){
         var configObj = {
             url : completeurl,
-            headers : {"Authorization": "Bearer "+ readCookie('sid')},
+            headers : {"Authorization": "Bearer "+ sid},
             contentType : "application/json",
             method : "GET"
             };
@@ -176,13 +190,18 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 		    }, function myError(errorRes) {
 		    	$scope.loading = false;
 		    });  
+		}else{
+			console.log('Unable to fetch session id.');
+		}
 	}
 	$scope.copyObject = function(url) {
 		try{
 		var completeurl = "https://"+window.location.host+""+url;
+		var sid = readCookie('sid');
+		if(sid){
         var configObj = {
             url : completeurl,
-            headers : {"Authorization": "Bearer "+ readCookie('sid')},
+            headers : {"Authorization": "Bearer "+ sid},
             contentType : "application/json",
             method : "GET"
             };
@@ -196,6 +215,9 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 		    }, function myError(errorRes) {
 		    	$scope.loading = false;
 		    });   
+		}else{
+			console.log('Unable to fetch session id.');
+		}
 		}catch(error){
 			console.log(error);
 		}    
@@ -204,9 +226,11 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	$scope.loadAllObjectForCompareRecord = function(prefix) {
 		try{
 		var completeurl = "https://"+window.location.host+"/services/data/v60.0/sobjects";
+		var sid = readCookie('sid');
+		if(sid){
         var configObj = {
             url : completeurl,
-            headers : {"Authorization": "Bearer "+ readCookie('sid')},
+            headers : {"Authorization": "Bearer "+ sid},
             contentType : "application/json",
             method : "GET"
             };
@@ -222,6 +246,9 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 		    }, function myError(errorRes) {
 		    	$scope.loading = false;
 		    }); 
+		}else{
+			console.log('Unable to fetch session id.');
+		}
 		}catch(error){
 			console.log(error);
 		}
@@ -229,9 +256,11 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	$scope.loadAllObject = function(prefix) {
 		try{
 		var completeurl = "https://"+window.location.host+"/services/data/v60.0/sobjects";
-        var configObj = {
+		var sid = readCookie('sid');
+		if(sid){
+		var configObj = {
             url : completeurl,
-            headers : {"Authorization": "Bearer "+ readCookie('sid')},
+            headers : {"Authorization": "Bearer "+ sid},
             contentType : "application/json",
             method : "GET"
             };
@@ -245,7 +274,10 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 				}
 		    }, function myError(errorRes) {
 		    	$scope.loading = false;
-		    });    
+		    });
+		}else{
+			console.log('Unable to fetch session id.');
+		}    
 		}catch(error){
 			console.log(error);
 		}   
