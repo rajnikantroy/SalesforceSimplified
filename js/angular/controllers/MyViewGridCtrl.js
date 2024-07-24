@@ -70,11 +70,13 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 
 	function getMetadataByName(name) {
 		if(MetaDataContainer.data && name){
+			var metaDataContainerObj = {};
 			MetaDataContainer.data.forEach(function(element) { 
 				if(element && element.value && element.value == name){
-					return element;
+					metaDataContainerObj = element;
 				}
 			 });
+			 return metaDataContainerObj;
 		}
 	}
 	
