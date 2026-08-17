@@ -1,10 +1,12 @@
-app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, UserId) {
+/* Author: Rajni Kant Roy(Salesforce Technical Architect) */
+var app = window.app || angular.module("SalesforceSimplifiedApp");
+app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, sfdc, $q, $timeout, $filter, UserId) {
 	/************************************************DEBUG LOGS START***************************************************/
 	$scope.dataList = [];
 	$scope.clsSecurity = 'clsSecurity';
 	$scope.edit = 'Edit';
 	$scope.download = 'Download';
-	$scope.baseUrl = 'https://'+window.location.host;
+	$scope.baseUrl = SS_ORIGIN;
 	$scope.loadingDebug = true;
 	$scope.uname = "My";
 	$scope.userFullName = "";
@@ -16,109 +18,134 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	}
 
 	$scope.DebugLogClose = function(){
+		// Closing a panel is not a reason to reload Salesforce underneath the
+		// user. It used to, which threw away whatever page they were on.
 		$("#debuglogGridModal").css({"display": "none"});
-		location.reload();
 	}
+
+	/*
+	 * Whose logs these are.
+	 *
+	 * The query filters on the uid cookie, which "View as different user"
+	 * rewrites - so this panel shows the selected user's logs, not
+	 * necessarily the signed-in user's. It used to say "My" and "Delete My
+	 * Logs" either way, which is a poor label to read just before deleting
+	 * somebody else's logs.
+	 */
+	$scope.logOwner = function(){
+		return $scope.userFullName || 'the current user';
+	};
+
+	$scope.gridError = '';
 
 	$scope.queryForDebugLogs = function(){
 		try{
 			$scope.loading = true;
+			$scope.gridError = '';
 			$("#debuglogGridModal").css({"display": "block"});
-			var DebugLogObject = getMetadataByName('DebugLogs');
+			var DebugLogObject = MetaDataContainer.byValue('DebugLogs');
 			$scope.querySFDC(DebugLogObject.query, DebugLogObject.url);
 		}catch(error){
-			console.log(error);
-		}
-	}
-
-	$scope.deleteBtn = 'Delete My Logs';
-	$scope.deleteMyLogs = function(){
-		try{
-		if($scope.dataList.length > 0) {
-			$scope.loading = true;
-			$scope.dataList.forEach(function(e) { deleteLogsFromSalesforce(e) });
 			$scope.loading = false;
-		}else {
-			alert('There are no debug logs to delete');
-		}
-		}catch(error){
-			console.log(error);
+			$scope.gridError = 'Could not load debug logs: ' + (error && error.message ? error.message : error);
 		}
 	}
 
-	function deleteLogsFromSalesforce(e) {
-		try {
-			var completeurl = "https://"+window.location.host+"/services/data/v38.0/tooling/sobjects/apexlog/"+e.Id;
-			var sid = readCookie('sid');
-			if(sid){
-				var configObj = {
-				url : completeurl,
-				headers : {"Authorization": "Bearer "+ sid},
-				contentType : "application/json",
-				method : "DELETE"
-				};
-				$http(configObj).then(function mySuccess(response) {
-					var DebugLogObject = getMetadataByName('DebugLogs');
-					$scope.querySFDC(DebugLogObject.query, DebugLogObject.url);
-					$scope.dataLength = $scope.dataLength - 1;
-				}, function myError(errorRes) {
-					console.log(errorRes);
-					alert('Unable to fetch session id.');
-					$scope.loading = false;
-				});
-			}else{
-				console.log('Cannot read session id to delete logs.');
-				$scope.loading = false;
+	/*
+	 * The rows actually on screen.
+	 *
+	 * The table renders `dataList | filter:search`, and Delete used to work
+	 * from dataList - so narrowing the search to one log and pressing Delete
+	 * removed every log the query had returned. Deleting what is shown is the
+	 * only reading of that button anyone would expect.
+	 */
+	$scope.visibleLogs = function(){
+		return $filter('filter')($scope.dataList || [], $scope.search);
+	};
+
+	$scope.deleteBtn = 'Delete';
+
+	// Deleting logs cannot be undone, so the count and the owner are put in
+	// front of the user before anything is removed.
+	$scope.deleteMyLogs = function(){
+		var logs = $scope.visibleLogs();
+		$scope.gridError = '';
+
+		if(!logs.length){
+			$scope.gridError = 'There are no debug logs here to delete.';
+			return;
+		}
+		if(!ssSessionId()){
+			$scope.gridError = sfdc.noSessionMessage;
+			return;
+		}
+		var shown = logs.length === ($scope.dataList || []).length
+			? logs.length + ' debug log' + (logs.length === 1 ? '' : 's')
+			: logs.length + ' of ' + $scope.dataList.length + ' debug logs (the ones matching your search)';
+		if(!confirm('Delete ' + shown + ' for ' + $scope.logOwner() + '?\n\nThis cannot be undone.')){
+			return;
+		}
+		removeLogs(logs);
+	};
+
+	// One row, for when the point is to clear a single noisy log.
+	$scope.deleteOneLog = function(log){
+		if(!log || !log.Id){ return; }
+		$scope.gridError = '';
+		if(!ssSessionId()){
+			$scope.gridError = sfdc.noSessionMessage;
+			return;
+		}
+		removeLogs([log]);
+	};
+
+	function removeLogs(logs){
+		$scope.loading = true;
+
+		// Each delete used to re-run the full log query in its own success
+		// handler, so deleting N logs fired N deletes *and* N queries. Wait
+		// for all of them, then refresh once.
+		var failures = 0;
+		var deletions = logs.map(function(log) {
+			return sfdc.remove(ssToolingSobjectUrl('ApexLog', log.Id)).then(null, function (rejection) {
+				// Counted rather than swallowed: a partial failure used to
+				// look exactly like a clean sweep, and the logs that would
+				// not delete came back on the refresh with no explanation.
+				failures++;
+				$scope.gridError = sfdc.errorMessage(rejection) ||
+					'Some logs could not be deleted.';
+			});
+		});
+
+		$q.all(deletions).finally(function(){
+			$scope.loading = false;
+			if(failures){
+				$scope.gridError = failures + ' of ' + logs.length +
+					' log' + (logs.length === 1 ? '' : 's') + ' could not be deleted. ' +
+					($scope.gridError || '');
 			}
-		}catch(error){
-			console.log(error);
-		}
+			var DebugLogObject = MetaDataContainer.byValue('DebugLogs');
+			if(DebugLogObject && DebugLogObject.query){
+				$scope.querySFDC(DebugLogObject.query, DebugLogObject.url);
+			}
+		});
 	}
 
-	function getMetadataByName(name) {
-		if(MetaDataContainer.data && name){
-			var metaDataContainerObj = {};
-			MetaDataContainer.data.forEach(function(element) { 
-				if(element && element.value && element.value == name){
-					metaDataContainerObj = element;
-				}
-			 });
-			 return metaDataContainerObj;
-		}
-	}
 	
 	$scope.querySFDC = function(query, url){
-		try{
-			var completeurl = url+''+query;
-			var sid = readCookie('sid');
-			if(sid){
-			var configObj = {
-				url : completeurl,
-				headers : {"Authorization": "Bearer "+ sid},
-				contentType : "application/json"
-				};
-				$http(configObj).then(function mySuccess(response) {
-				if(response.data.records && response.data.records.length){
-					$scope.dataList = response.data.records;
-					$scope.loading = false;
-					$scope.nodataavailable = false;
-					$scope.dataLength = response.data.records.length;
-				}else{
-					$scope.dataList = [];
-					$scope.nodataavailable = true;
-					$scope.loading = false;
-				}
-		}, function myError(response) {
-			console.log(response);
+		return sfdc.query(query, url).then(function(data){
+			var records = data.records || [];
+			$scope.dataList = records;
+			$scope.dataLength = records.length;
+			$scope.nodataavailable = records.length === 0;
+			$scope.loading = false;
+		}, function(rejection){
+			if (rejection && rejection.cancelled) { return; }
+			console.log(sfdc.errorMessage(rejection));
+			$scope.loading = false;
 		});
-		}else{
-			console.log('Unable to fetch session id.');
-		}
-		}catch(error){
-			console.log(error);
-		}
-    }
-	
+	}
+
 	$scope.objectNameRowTemplateMap = new Map();
 	$scope.objectPrefixRowTemplateMap = new Map();
 	$scope.objectPrefixRowTemplate = null;
@@ -126,163 +153,176 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	$scope.recordCompareMap = new Map();
 	$scope.recordCompareList = [];
 
+	/*
+	 * Puts text on the clipboard, and reports whether it actually got there.
+	 *
+	 * This is reached from a click, but only after two chained HTTP calls (the
+	 * global describe, then the record), so by the time it runs the click's
+	 * user activation has expired. document.execCommand('copy') is refused
+	 * without that activation and returns false - which the previous version
+	 * discarded, then announced "Copied..." and reloaded the page regardless.
+	 * Nothing reached the clipboard and the reload threw away the context.
+	 *
+	 * navigator.clipboard.writeText has no activation requirement given the
+	 * clipboardWrite permission in the manifest, so it is the real path here;
+	 * execCommand stays as a fallback for a focus-less document.
+	 */
 	function copyText (textToCopy) {
-	  this.copied = false
-	  
-	  // Create textarea element
-	  const textarea = document.createElement('textarea')
-	  
-	  // Set the value of the text
-	  textarea.value = textToCopy
-	  
-	  // Make sure we cant change the text of the textarea
-	  textarea.setAttribute('readonly', '');
-	  
-	  // Hide the textarea off the screnn
-	  textarea.style.position = 'absolute';
-	  textarea.style.left = '-9999px';
-	  
-	  // Add the textarea to the page
-	  document.body.appendChild(textarea);
-
-	  // Copy the textarea
-	  textarea.select()
-
-	  try {
-		var successful = document.execCommand('copy');
-		this.copied = true
-		//alert('Copied...');
-		if (window.confirm('Copied...'))
-		{
-			document.location.reload(true)
+	  function legacyCopy() {
+		var textarea = document.createElement('textarea');
+		textarea.value = textToCopy;
+		textarea.setAttribute('readonly', '');
+		textarea.style.position = 'absolute';
+		textarea.style.left = '-9999px';
+		document.body.appendChild(textarea);
+		textarea.select();
+		var ok = false;
+		try {
+		  ok = document.execCommand('copy');
+		} catch (err) {
+		  ok = false;
 		}
-		
-	  } catch(err) {
-		this.copied = false
+		textarea.remove();
+		return ok;
 	  }
 
-	  textarea.remove()
+	  if (navigator.clipboard && navigator.clipboard.writeText) {
+		return navigator.clipboard.writeText(textToCopy).then(function(){
+		  return true;
+		}, function(){
+		  return legacyCopy();
+		});
+	  }
+	  return $q.when(legacyCopy());
 	}
 
 	$scope.compareObject = function(url) {
 		$scope.recordCompareList = [];
-		var completeurl = "https://"+window.location.host+""+url;
-		var sid = readCookie('sid');
-		if(sid){
-        var configObj = {
-            url : completeurl,
-            headers : {"Authorization": "Bearer "+ sid},
-            contentType : "application/json",
-            method : "GET"
-            };
-            $http(configObj).then(function mySuccess(result) {
-				if(result && result.data){
-					console.log(result.data);
-					for (const [key, value] of Object.entries(result.data)) {
-					  $scope.recordCompareMap.set(key, value);
-					  var obj = {};
-					  obj.fieldName = key;
-					  obj.record1Value = value;
-					  $scope.recordCompareList.push(obj);
-					}
-					$scope.loading = false;
-				}
-		    }, function myError(errorRes) {
-		    	$scope.loading = false;
-		    });  
-		}else{
-			console.log('Unable to fetch session id.');
-		}
+		return sfdc.get(ssApiUrl(url)).then(function(data){
+			if(!data){ return; }
+			for (const [key, value] of Object.entries(data)) {
+				$scope.recordCompareMap.set(key, value);
+				$scope.recordCompareList.push({ fieldName: key, record1Value: value });
+			}
+			$scope.loading = false;
+		}, function(){
+			$scope.loading = false;
+		});
 	}
+
+	/*
+	 * Compare the record you are on with another of the same type.
+	 *
+	 * The button used to call deleteMyLogs() - a control labelled "Compare"
+	 * that deleted debug logs. The two records are fetched through the same
+	 * rowTemplate the copy path uses, so they are the same shape and the
+	 * fields line up without any guessing.
+	 */
+	$scope.compareRecords = function(){
+		var other = ($scope.recordId2 || '').trim();
+		$scope.gridError = '';
+
+		if(!$scope.recordId1){
+			$scope.gridError = 'Open a record first - there is nothing here to compare.';
+			return;
+		}
+		if(!other){
+			$scope.gridError = 'Enter the id of a record to compare with.';
+			return;
+		}
+		if(other.slice(0, 3) !== $scope.recordId1.slice(0, 3)){
+			$scope.gridError = 'Those are two different kinds of record, so their fields do not line up.';
+			return;
+		}
+
+		$scope.loading = true;
+		return $scope.loadAllObjectForCompareRecord($scope.recordId1.slice(0, 3)).then(function(){
+			var template = $scope.objectPrefixRowTemplateForRecordComparison;
+			if(!template){
+				$scope.loading = false;
+				$scope.gridError = 'Could not work out how to read this kind of record.';
+				return;
+			}
+			return $q.all([
+				sfdc.get(ssApiUrl(template.replace('{ID}', $scope.recordId1))),
+				sfdc.get(ssApiUrl(template.replace('{ID}', other)))
+			]).then(function(results){
+				var first = results[0] || {};
+				var second = results[1] || {};
+				var names = Object.keys(first);
+				Object.keys(second).forEach(function(key){
+					if(names.indexOf(key) === -1){ names.push(key); }
+				});
+				$scope.recordCompareList = names.map(function(key){
+					return {
+						fieldName: key,
+						record1Value: first[key],
+						record2Value: second[key],
+						differs: String(first[key]) !== String(second[key])
+					};
+				});
+				$scope.loading = false;
+			}, function(rejection){
+				$scope.loading = false;
+				$scope.gridError = sfdc.errorMessage(rejection) ||
+					'One of those records could not be read.';
+			});
+		});
+	};
+
+	// Leaves the button showing what actually happened, and puts it back a
+	// couple of seconds later. It used to reset to 'Copy' immediately and
+	// claim success even when the clipboard write had been refused.
+	function reportCopy(label){
+		$scope.copyBtn = label;
+		$scope.loading = false;
+		$timeout(function(){ $scope.copyBtn = 'Copy'; }, 2000);
+	}
+
 	$scope.copyObject = function(url) {
-		try{
-		var completeurl = "https://"+window.location.host+""+url;
-		var sid = readCookie('sid');
-		if(sid){
-        var configObj = {
-            url : completeurl,
-            headers : {"Authorization": "Bearer "+ sid},
-            contentType : "application/json",
-            method : "GET"
-            };
-            $http(configObj).then(function mySuccess(result) {
-				if(result && result.data){
-					var jsonPretty = JSON.stringify(result.data,null,2);  
-					copyText(jsonPretty);
-					$scope.copyBtn = 'Copied';					
-					$scope.copyBtn = 'Copy';					
-				}
-		    }, function myError(errorRes) {
-		    	$scope.loading = false;
-		    });   
-		}else{
-			console.log('Unable to fetch session id.');
-		}
-		}catch(error){
-			console.log(error);
-		}    
+		return sfdc.get(ssApiUrl(url)).then(function(data){
+			if(!data){
+				reportCopy('Nothing to copy');
+				return;
+			}
+			return $q.when(copyText(JSON.stringify(data, null, 2))).then(function(copied){
+				reportCopy(copied ? 'Copied!' : 'Copy failed');
+			});
+		}, function(){
+			reportCopy('Copy failed');
+		});
 	}
-	
+
+	// Both callers wanted the same thing: the rowTemplate URL for the sObject
+	// owning a 3-character key prefix. Two identical request blocks before.
+	function rowTemplateForPrefix(prefix){
+		return sfdc.get(ssSobjectsUrl()).then(function(data){
+			var sobjects = (data && data.sobjects) || [];
+			for (var i = 0; i < sobjects.length; i++) {
+				if(sobjects[i] && sobjects[i].keyPrefix === prefix){
+					return sobjects[i].urls.rowTemplate;
+				}
+			}
+			return null;
+		}, function(){
+			$scope.loading = false;
+			return null;
+		});
+	}
+
 	$scope.loadAllObjectForCompareRecord = function(prefix) {
-		try{
-		var completeurl = "https://"+window.location.host+"/services/data/v60.0/sobjects";
-		var sid = readCookie('sid');
-		if(sid){
-        var configObj = {
-            url : completeurl,
-            headers : {"Authorization": "Bearer "+ sid},
-            contentType : "application/json",
-            method : "GET"
-            };
-            $http(configObj).then(function mySuccess(result) {
-				if(result && result.data.sobjects && result.data.sobjects.length>0){
-					for (var i = 0; i < result.data.sobjects.length; i++) {
-						if(result.data.sobjects[i] && result.data.sobjects[i].keyPrefix && result.data.sobjects[i].keyPrefix === prefix ){
-							$scope.objectPrefixRowTemplateForRecordComparison = result.data.sobjects[i].urls.rowTemplate;
-							//$scope.dataList.push(result.data.sobjects[i]);
-						}
-					}
-				}
-		    }, function myError(errorRes) {
-		    	$scope.loading = false;
-		    }); 
-		}else{
-			console.log('Unable to fetch session id.');
-		}
-		}catch(error){
-			console.log(error);
-		}
+		return rowTemplateForPrefix(prefix).then(function(template){
+			if(template){ $scope.objectPrefixRowTemplateForRecordComparison = template; }
+		});
 	}
+
 	$scope.loadAllObject = function(prefix) {
-		try{
-		var completeurl = "https://"+window.location.host+"/services/data/v60.0/sobjects";
-		var sid = readCookie('sid');
-		if(sid){
-		var configObj = {
-            url : completeurl,
-            headers : {"Authorization": "Bearer "+ sid},
-            contentType : "application/json",
-            method : "GET"
-            };
-            $http(configObj).then(function mySuccess(result) {
-				if(result && result.data.sobjects && result.data.sobjects.length>0){
-					for (var i = 0; i < result.data.sobjects.length; i++) {
-						if(result.data.sobjects[i] && result.data.sobjects[i].keyPrefix && result.data.sobjects[i].keyPrefix === prefix ){
-							$scope.objectPrefixRowTemplate = result.data.sobjects[i].urls.rowTemplate;
-						}
-					}
-				}
-		    }, function myError(errorRes) {
-		    	$scope.loading = false;
-		    });
-		}else{
-			console.log('Unable to fetch session id.');
-		}    
-		}catch(error){
-			console.log(error);
-		}   
+		return rowTemplateForPrefix(prefix).then(function(template){
+			if(template){ $scope.objectPrefixRowTemplate = template; }
+			return template;
+		});
 	}
-	
+
 	$scope.$watch('objectPrefixRowTemplateForRecordComparison', function(value) {
 		if(value && $scope.recordId1){
 			var value1 = value.replace('{ID}', $scope.recordId1);
@@ -290,12 +330,14 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 		}
 	  });
 	
-	$scope.$watch('objectPrefixRowTemplate', function(value) {
-		if(value && $scope.recordId){
-			var value1 = value.replace('{ID}', $scope.recordId);
-			$scope.copyObject(value1);
-		}
-	  });
+	/*
+	 * Copying is driven straight from the click rather than by watching
+	 * objectPrefixRowTemplate. A $watch only fires when the value changes, so
+	 * copying a second record of the same object type re-assigned the same
+	 * template, the watch stayed quiet, and the button sat on "Copying..."
+	 * forever. The template is still published on the scope for anything else
+	 * that reads it, but nothing depends on the assignment to trigger work.
+	 */
 	
 	//getRecordId
 	function getRecordId(href) {
@@ -349,10 +391,24 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	$scope.closeClassModal = function(){
 		$("#classGridModal").css({"display": "none"});
 	}
+	/*
+	 * 'ApexClass', not 'Classes'.
+	 *
+	 * Nothing is registered under 'Classes' - the menu entry is built by
+	 * DynamicMetadataService and keyed on the API name - so the lookup came
+	 * back empty and reading .query off it threw. The button opened a modal
+	 * that then sat empty forever.
+	 */
 	$scope.openClassModal = function(){
+			$scope.gridError = '';
+			var ClassObject = MetaDataContainer.byValue('ApexClass');
+			if(!ClassObject || !ClassObject.query){
+				$scope.gridError = 'Apex classes are not available in this org.';
+				$("#classGridModal").css({"display": "block"});
+				return;
+			}
 			$scope.loading = true;
 			$("#classGridModal").css({"display": "block"});
-			var ClassObject = getMetadataByName('Classes');
 			$scope.querySFDC(ClassObject.query, ClassObject.url);
 	}
 	/************************************************CLASS END******************************************************/
@@ -362,17 +418,40 @@ app.controller('MyViewGridCtrl', function($scope, MetaDataContainer, $http, User
 	$scope.CopyModal = function(){
 			$scope.loading = true;
 			$scope.copyBtn = 'Copying...';
-			$("#classGridModal").css({"display": "block"});
+			// No modal: this copies the record to the clipboard and reports
+			// through the button. It used to open the Apex classes grid,
+			// which has nothing to do with copying a record.
 			$scope.recordId = getRecordId(window.location.href);
+			// getRecordId returns undefined off a record page, and slicing that
+			// used to throw before anything else could report the problem.
+			if(!$scope.recordId){
+				reportCopy('No record here');
+				return;
+			}
 			var prefix = $scope.recordId.slice(0, 3);
-			$scope.loadAllObject(prefix);
+			return $scope.loadAllObject(prefix).then(function(template){
+				if(!template){
+					reportCopy('Copy failed');
+					return;
+				}
+				return $scope.copyObject(template.replace('{ID}', $scope.recordId));
+			});
 	}
 	/************************************************COPY END******************************************************/
 	/************************************************COMPARE START******************************************************/
 	$scope.CompareModal = function(){
 			$scope.loading = true;
+			$scope.gridError = '';
 			$("#compareModal").css({"display": "block"});
 			$scope.recordId1 = getRecordId(window.location.href);
+			// The same guard the copy path already had: off a record page
+			// getRecordId returns undefined, and slicing that threw before
+			// anything could report the problem.
+			if(!$scope.recordId1){
+				$scope.loading = false;
+				$scope.gridError = 'Open a record first - there is nothing here to compare.';
+				return;
+			}
 			var prefix = $scope.recordId1.slice(0, 3);
 			$scope.loadAllObjectForCompareRecord(prefix);
 	}

@@ -1,0 +1,118 @@
+/* Author: Rajni Kant Roy(Salesforce Technical Architect) */
+/* error.html only. It is a standalone extension page and shares nothing with
+   the panel's stylesheet, which is scoped to .theme-lightning throughout. */
+:root {
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --blue: #1d4ed8;
+    --tint: #f8fafc;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0 24px 64px;
+    background: #ffffff;
+    color: var(--ink);
+    font: 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.head, .groups, main, .foot { max-width: 860px; margin: 0 auto; }
+
+.head { padding: 36px 0 20px; border-bottom: 1px solid var(--line); }
+.head h1 { margin: 0 0 8px; font-size: 26px; letter-spacing: -0.01em; }
+.head p { margin: 0 0 18px; color: var(--muted); max-width: 62ch; }
+
+#filter {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font: inherit;
+}
+#filter:focus { outline: 2px solid var(--blue); outline-offset: 1px; border-color: var(--blue); }
+
+.groups { display: flex; flex-wrap: wrap; gap: 8px; padding: 18px 0 4px; }
+.group-link {
+    padding: 4px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+}
+.group-link:hover { background: #eff6ff; border-color: #bfdbfe; }
+
+.group { padding-top: 26px; }
+.group h2 { margin: 0 0 4px; font-size: 18px; }
+.group-note { margin: 0 0 14px; color: var(--muted); font-size: 13px; }
+
+.card {
+    margin: 0 0 12px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--tint);
+    scroll-margin-top: 16px;
+}
+
+/* Arrived at from a message. Marked rather than merely scrolled to, so it is
+   obvious which of several cards the code meant. */
+.card.is-target {
+    border-color: #bfdbfe;
+    border-left: 3px solid var(--blue);
+    background: #ffffff;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+}
+
+.card-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.card-head h3 { margin: 0; font-size: 15.5px; }
+
+.code {
+    font: 600 11.5px/1.6 ui-monospace, Menlo, Consolas, monospace;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: #eef2ff;
+    color: #3730a3;
+    white-space: nowrap;
+}
+
+.card h4 {
+    margin: 14px 0 4px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--muted);
+}
+.card p { margin: 0; max-width: 68ch; }
+
+.steps { margin: 4px 0 0; padding-left: 20px; }
+.steps li { margin: 0 0 5px; max-width: 66ch; }
+
+.foot {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 13px;
+}
+
+body.is-empty main::after {
+    content: "Nothing matches that.";
+    display: block;
+    padding: 28px 0;
+    color: var(--muted);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root { --ink: #e2e8f0; --muted: #94a3b8; --line: #1e293b; --blue: #93c5fd; --tint: #0f172a; }
+    body { background: #020617; }
+    .card.is-target { background: #0b1220; }
+    .code { background: #1e1b4b; color: #c7d2fe; }
+    #filter { background: #0f172a; color: var(--ink); }
+    .group-link:hover { background: #0b1220; border-color: #1e3a8a; }
+}

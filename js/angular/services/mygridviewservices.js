@@ -1,3 +1,5 @@
+/* Author: Rajni Kant Roy(Salesforce Technical Architect) */
+var app = window.app || angular.module("SalesforceSimplifiedApp");
 app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContainer, $scope, UserId) {
 	var loadingcar = chrome.runtime.getURL("/img/loadingcar.gif");	
 	var editicon = chrome.runtime.getURL("/img/edit.png");
@@ -7,18 +9,20 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	  '<div id="debuglogGridModal" class="w3-modal  w3-animate-opacity">'+
 	    '<div class="w3-modal-content modal-back modalcustomstyle">'+
 	    '<header class="w3-container modalheader"> '+
-	    '<h2>{{uname}} Debug Logs</h2>'+
+	    '<h2>Debug Logs &middot; {{logOwner()}}</h2>'+
 	      '<span id="debuglogGridCloseBtn" ng-click="DebugLogClose()" class="w3-button w3-display-topright">X</span>'+
 	    '</header>'+
 	    '<div class="w3-container">'+
 	    '<table class="list" ng-show="dataList.length">'+
         '<tr class="headerRow">'+
-	        '<td width="25%"><input type="button" ng-click="deleteMyLogs()" value="{{deleteBtn}} ({{ dataLength }})" class="btn" style="background: #1796bf; color: white;"/></td>'+
+	        '<td width="30%"><input type="button" ng-click="deleteMyLogs()" ng-disabled="loading || !visibleLogs().length" value="Delete {{visibleLogs().length}} shown" class="btn" style="background: #b91c1c; color: white;"/></td>'+
 			'<td width="50%"><input style="width: -webkit-fill-available;" placeholder="Search in logs" type="text" ng-model="search"/></td>'+
+			'<td width="20%" style="font-size:11px; color:#64748b; white-space:nowrap;">{{visibleLogs().length}} of {{dataLength}}</td>'+
 		'</tr>'+
 		'</table>'+
 	    '</div>'+
-	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, No debug logs for you.</b></center>'+
+	    '<div class="ss-log-error" ng-show="gridError">{{gridError}}</div>'+
+	    '<center><b ng-show="nodataavailable && !gridError">No debug logs for {{logOwner()}}.</b></center>'+
 	    '<div ng-show="loading"><center><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/> Loading please wait...</center></div>'+
 	      '<div class="w3-container" style="background:white; min-height:200px; max-height:400px; overflow-y: scroll;">'+
 	        '<table class="list" ng-show="dataList.length">'+
@@ -34,7 +38,8 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 			'<th class="headerRow">Start Time</th>'+
 		'</tr>'+
 			'<tr ng-repeat="log in dataList | filter:search">'+
-			'<td><a style="font-weight:bold" href="/p/setup/layout/ApexDebugLogDetailEdit/d?apex_log_id={{log.Id}}" target="_blank">View</a></td>'+
+			'<td style="white-space:nowrap;"><a style="font-weight:bold" href="/p/setup/layout/ApexDebugLogDetailEdit/d?apex_log_id={{log.Id}}" target="_blank">View</a>'+
+			' <span class="ss-log-delete" ng-click="deleteOneLog(log)" title="Delete this log">&times;</span></td>'+
 				'<td title="{{log.LogUser.Name}}"><a class="trim-60" href="/{{log.LogUserId}}" target="_blank">{{log.LogUser.Name}}</a></td>'+
 				'<td title="{{log.Request}}"><span class="trim-60">{{log.Request}}</span></td>'+
 				'<td title="{{log.Application}}"><span class="trim-60">{{log.Application}}</span></td>'+
@@ -67,29 +72,30 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	    '<div class="w3-container">'+
 	    '<table class="list">'+
         '<tr class="headerRow">'+
-			'<td width="20%"><input style="width: -webkit-fill-available;" type="text" ng-model="recordId1" disabled/></td>'+
-			'<td width="25%"><input style="width: -webkit-fill-available;" placeholder="Enter similar RecordId" type="text" ng-model="recordId2"/></td>'+
-			'<td width="25"><input style="width: -webkit-fill-available;" placeholder="Enter similar RecordId" type="text" ng-model="recordId3"/></td>'+
-			'<td width="25"><input style="width: -webkit-fill-available;" placeholder="Enter similar RecordId" type="text" ng-model="recordId4"/></td>'+
-			'<td width="25%"><input type="button" ng-click="deleteMyLogs()" value="Compare" class="btn" style="background: #1796bf; color: white;"/></td>'+
+			'<td width="35%"><input style="width: -webkit-fill-available;" type="text" ng-model="recordId1" disabled title="The record you are on"/></td>'+
+			'<td width="35%"><input style="width: -webkit-fill-available;" placeholder="Id of a record to compare with" type="text" ng-model="recordId2"/></td>'+
+			'<td width="30%"><input type="button" ng-click="compareRecords()" ng-disabled="loading || !recordId2" value="Compare" class="btn" style="background: var(--ss-blue); color: white;"/></td>'+
 		'</tr>'+
 		'</table>'+
 	    '</div>'+
-	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, No debug logs for you.</b></center>'+
+	    '<div class="ss-log-error" ng-show="gridError">{{gridError}}</div>'+
 	    '<div ng-show="loading"><center><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/> Loading please wait...</center></div>'+
 	      '<div class="w3-container" style="background:white; min-height:200px; max-height:400px; overflow-y: scroll;">'+
 	        '<table class="list">'+
 	        '<tr class="headerRow">'+
 				'<th class="headerRow">Field Name</th>'+
-				'<th class="headerRow">Record1</th>'+
-				'<th class="headerRow">Record2</th>'+
-				'<th class="headerRow">Record3</th>'+
+				'<th class="headerRow">{{recordId1}}</th>'+
+				'<th class="headerRow">{{recordId2}}</th>'+
 			'</tr>'+
-			'<tr ng-repeat="record in recordCompareList">'+
+			'<tr class="headerRow" ng-show="recordCompareList.length">'+
+				'<td colspan="3" style="font-weight:normal; font-size:11px;">'+
+				'<label style="cursor:pointer;"><input type="checkbox" ng-model="onlyDifferences"/> Show only fields that differ</label>'+
+				'</td>'+
+			'</tr>'+
+			'<tr ng-repeat="record in recordCompareList" ng-hide="onlyDifferences && !record.differs" ng-class="{ssDiffers: record.differs}">'+
 				'<td>{{record.fieldName}}</td>'+
-				'<td>{{record.record1Value}}</td>'+
-				'<td><span class="trim-60"></span></td>'+
-				'<td><span class="trim-60"></span></td>'+
+				'<td title="{{record.record1Value}}"><span class="trim-60">{{record.record1Value}}</span></td>'+
+				'<td title="{{record.record2Value}}"><span class="trim-60">{{record.record2Value}}</span></td>'+
 			'</tr>'+ 
 		'</table>'+
 	      '</div>'+
@@ -109,11 +115,13 @@ app.service('mygridviewservices', ['MetaDataContainer', function(MetaDataContain
 	    '<div class="w3-container">'+
 	    '<table class="list" ng-show="dataList.length">'+
       '<tr class="headerRow">'+
-			'<td width="50%"><input style="width: -webkit-fill-available;" placeholder="Search in logs" type="text" ng-model="search"/></td>'+
+			'<td width="50%"><input style="width: -webkit-fill-available;" placeholder="Search in classes" type="text" ng-model="search"/></td>'+
+			'<td width="50%" style="font-size:11px; color:#64748b;">{{dataLength}} class<span ng-show="dataLength !== 1">es</span></td>'+
 		'</tr>'+
 		'</table>'+
 	    '</div>'+
-	    '<center><b ng-show="nodataavailable">Sorry {{userFullName}}, You have not created/modified any apex classes.</b></center>'+
+	    '<div class="ss-log-error" ng-show="gridError">{{gridError}}</div>'+
+	    '<center><b ng-show="nodataavailable && !gridError">No Apex classes created or modified by {{logOwner()}}.</b></center>'+
 	    '<div ng-show="loading"><center><img title="Patience is not simply the ability to wait - its how we behave while we are waiting." width="30px" height="30px" src="'+loadingcar+'"/> Loading please wait...</center></div>'+
 	      '<div class="w3-container" style="background:white; min-height:200px; max-height:400px; overflow-y: scroll;">'+
 	        '<table class="list" ng-show="dataList.length">'+

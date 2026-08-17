@@ -1,0 +1,350 @@
+/* Author: Rajni Kant Roy(Salesforce Technical Architect) */
+/* ---------------------------------------------------------------------- */
+/* All Fields                                                             */
+/*                                                                        */
+/* Every selector here is prefixed and every rule is scoped under          */
+/* .ssaf-panel or the tab's own class. This stylesheet is injected into    */
+/* somebody else's application; a bare element rule would restyle their    */
+/* page, and an unprefixed class name will eventually collide with an SLDS */
+/* one.                                                                    */
+/* ---------------------------------------------------------------------- */
+
+/* The backdrop. Dark enough to say the page behind is not the subject, light
+   enough that the record is still readable underneath. */
+.ssaf-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: none;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+/* Edge to edge, with no anchor to measure.
+ *
+ * This hung under whatever opened it, which meant measuring that thing,
+ * clamping the result into the window and following it on scroll. None of it
+ * is needed at full screen.
+ *
+ * No border and no radius: both exist to say where a window ends against what
+ * is behind it, and there is nothing behind it now. */
+.ssaf-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 9001;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: "Salesforce Sans", Arial, sans-serif;
+    font-size: 12px;
+    color: #16325c;
+}
+
+.ssaf-panel .ssaf-head {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f7f9fb;
+}
+
+.ssaf-panel .ssaf-count { color: #64748b; font-size: 11px; }
+
+/* Takes the slack, so the buttons stay at the right edge at any width. */
+.ssaf-panel .ssaf-filter {
+    flex: 1 1 auto;
+    min-width: 80px;
+    padding: 3px 8px;
+    border: 1px solid #d8dde6;
+    border-radius: 4px;
+    font-size: 11.5px;
+}
+
+.ssaf-panel .ssaf-save {
+    padding: 4px 12px;
+    border: 1px solid #0176d3;
+    border-radius: 4px;
+    background: #0176d3;
+    color: #ffffff;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Disabled is the normal state here - it means nothing has been changed
+   yet - so it has to read as calm rather than as broken. */
+.ssaf-panel .ssaf-save:disabled {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    color: #94a3b8;
+    cursor: default;
+}
+
+/* An icon, not a button with a word. It sits beside Save and the close, and
+   a third labelled control in that row would compete with the field list for
+   a job most people do occasionally. */
+.ssaf-panel .ssaf-copy {
+    border: 0;
+    background: none;
+    padding: 2px 4px;
+    font-size: 14px;
+    line-height: 1;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.ssaf-panel .ssaf-copy:hover:not(:disabled) { color: var(--ss-blue, #0176d3); }
+
+/* Disabled before the record has loaded - there is nothing to copy yet, and
+   a control that looks ready and does nothing is worse than one that waits. */
+.ssaf-panel .ssaf-copy:disabled { opacity: 0.4; cursor: default; }
+
+.ssaf-panel .ssaf-copy.is-done { color: #047857; }
+
+.ssaf-panel .ssaf-close {
+    border: 0;
+    background: none;
+    font-size: 16px;
+    line-height: 1;
+    color: #64748b;
+    cursor: pointer;
+}
+
+/* Takes whatever is left after the header and any message above it - a fixed
+   calc() guessed at both and was wrong whenever an error was showing.
+ *
+ * Two columns rather than one long list. An Account has a few hundred fields,
+ * and at full width a single column of them is a mile of scrolling beside an
+ * empty half of the screen.
+ *
+ * Two rather than as many as fit: three made each value column narrow enough
+ * that an 18-character id, a datetime or a description was clipped in the very
+ * place they are being read or edited. Half the screen each leaves the inputs
+ * usable.
+ *
+ * minmax(0, 1fr), not 1fr - the latter is minmax(auto, 1fr), and one long
+ * unbreakable value then pushes its column past its share and skews the row
+ * beside it. */
+.ssaf-panel .ssaf-rows {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    column-gap: 28px;
+    padding: 4px 10px 12px;
+}
+
+/* One column when two would leave neither usable. The panel is full screen, so
+   this is the window, not a container. */
+@media (max-width: 900px) {
+    .ssaf-panel .ssaf-rows {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.ssaf-panel .ssaf-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 40%) 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 5px 6px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.ssaf-panel .ssaf-row:hover { background: #f7f9fb; }
+
+.ssaf-panel .ssaf-label {
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/* The API name, under the label. Needed by anyone acting on what they see
+   here, and not always guessable from the label. */
+.ssaf-panel .ssaf-api {
+    display: block;
+    font-weight: 400;
+    font-size: 10px;
+    color: #94a3b8;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+}
+
+.ssaf-panel .ssaf-value { overflow-wrap: anywhere; }
+
+.ssaf-panel .ssaf-row.is-locked .ssaf-value { color: #475569; }
+
+.ssaf-panel .ssaf-hidden-field { color: #b45309; font-style: italic; }
+
+.ssaf-panel .ssaf-input {
+    width: 100%;
+    padding: 3px 6px;
+    border: 1px solid #d8dde6;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-family: inherit;
+    background: #ffffff;
+    color: #16325c;
+}
+
+.ssaf-panel textarea.ssaf-input { min-height: 48px; resize: vertical; }
+
+.ssaf-panel input[type="checkbox"].ssaf-input { width: auto; }
+
+.ssaf-panel .ssaf-note {
+    padding: 10px;
+    color: #64748b;
+}
+
+/* Green, and it leaves on its own after a few seconds - a confirmation that
+   has to be dismissed outlives the thing it is confirming. */
+.ssaf-panel .ssaf-ok {
+    padding: 8px 10px;
+    background: #ecfdf5;
+    color: #047857;
+    font-weight: 600;
+    border-bottom: 1px solid #a7f3d0;
+}
+
+.ssaf-panel .ssaf-ok::before {
+    content: "\2713";
+    margin-right: 6px;
+}
+
+/* Scrolls on its own. The panel clips what overflows it, and this sits
+   outside the scrolling rows - so a long validation message used to run off
+   the bottom with no way to reach the rest of it. */
+.ssaf-panel .ssaf-error {
+    padding: 8px 10px;
+    max-height: 30vh;
+    overflow-y: auto;
+    background: #fef2f2;
+    color: #b91c1c;
+    border-bottom: 1px solid #fecaca;
+}
+
+/* pre-wrap, so a message the org wrote across several lines arrives that
+   way - Apex addError text often is. */
+.ssaf-panel .ssaf-error-line {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.ssaf-panel .ssaf-error-line + .ssaf-error-line { margin-top: 6px; }
+
+.ssaf-panel .ssaf-error-status {
+    margin-top: 6px;
+    font-size: 10px;
+    color: #9f1239;
+    opacity: 0.75;
+}
+
+/* ---------------------------------------------------------------------- */
+/* The tab                                                                */
+/*                                                                        */
+/* A sibling immediately before their action list - in the row, not over   */
+/* it. Their components index the <li> children inside that list, which is */
+/* what an <li> of ours broke; a sibling of the list is invisible to that  */
+/* walk. It also means the browser does the placing, so this cannot sit on */
+/* top of the hierarchy icon the way a measured position did.              */
+/* ---------------------------------------------------------------------- */
+
+.ss-allfields-tab {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 8px;
+    padding: 0 12px;
+    min-height: 32px;
+    border: 0;
+    background: transparent;
+    font-family: "Salesforce Sans", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    color: #0176d3;
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.ss-allfields-tab::before {
+    content: "\2726";
+    margin-right: 5px;
+}
+
+.ss-allfields-tab:hover { text-decoration: underline; }
+
+.ss-allfields-tab.is-open {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Beside real buttons it should read as one - SLDS neutral metrics, restated
+   here rather than borrowed, because their classes belong to a component we
+   put nothing into. */
+.ss-allfields-tab.is-button {
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    background: #ffffff;
+    padding: 0 14px;
+}
+
+.ss-allfields-tab.is-button:hover {
+    background: #f4f6f9;
+    text-decoration: none;
+}
+
+.ss-allfields-tab.is-button.is-open {
+    border-color: #0176d3;
+    background: #eef4ff;
+}
+
+/* The same underline SLDS gives its selected tab, so an open panel is
+   attributable to the thing that opened it. */
+.ss-allfields-tab.is-open {
+    border-bottom-color: #0176d3;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Not signed in                                                          */
+/*                                                                        */
+/* Only ever seen when the panel's sign-in card could not be raised. One   */
+/* line and a way to try again - the card itself is the sign-in, and a     */
+/* second one here would be a second thing to keep correct.                */
+/* ---------------------------------------------------------------------- */
+
+.ssaf-signedout {
+    margin: auto;
+    padding: 40px 24px;
+    text-align: center;
+}
+
+.ssaf-signedout p {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #16325c;
+}
+
+.ssaf-signedout-hint {
+    font-size: 12.5px !important;
+    font-weight: 400 !important;
+    color: #64748b !important;
+    margin-bottom: 16px !important;
+}
+
+.ssaf-signedout-btn {
+    padding: 7px 20px;
+    border: 1px solid #0176d3;
+    border-radius: 4px;
+    background: #0176d3;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- Author: Rajni Kant Roy(Salesforce Technical Architect) -->
+<html lang="en" ng-csp>
+<head>
+<meta charset="utf-8">
+<title>Salesforce Simplified</title>
+<link rel="icon" href="img/simplify.png">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/w3c.css">
+</head>
+<!--
+  The extension's own page, not a panel injected into an org.
+
+  theme-lightning is on the root for the same reason it is on the injected
+  roots: every rule in these two stylesheets is scoped to it, so without it
+  nothing here is styled at all.
+
+  ng-csp on <html> is not decorative. Extension pages run under Manifest V3's
+  content security policy, which forbids unsafe-eval, and AngularJS builds its
+  expression compiler with the Function constructor unless told not to.
+
+  Scripts load in the manifest's order, and for the same reason: ss-core needs
+  jQuery, everything needs ss-core, and simplified.js bootstraps last because
+  Angular can only compile once every directive and service is registered.
+-->
+<body class="theme-lightning ss-standalone">
+
+<div id="SalesforceSimplified" class="theme-lightning">
+  <div ng-controller="MenuAndDetailsCtrl">
+    <simplifiedpage></simplifiedpage>
+  </div>
+</div>
+
+<script src="js/jq.js"></script>
+<script src="js/ss-core.js"></script>
+<script src="js/event-graph/ss-event-model.js"></script>
+<script src="js/event-graph/ss-event-store.js"></script>
+<script src="js/event-graph/ss-correlation.js"></script>
+<script src="js/event-graph/ss-trace.js"></script>
+<script src="js/event-graph/ss-replay.js"></script>
+<script src="js/event-graph/ss-collectors.js"></script>
+<script src="js/event-graph/ss-record-graph.js"></script>
+<script src="js/event-graph/ss-analysis.js"></script>
+<script src="js/event-graph/ss-export.js"></script>
+<script src="js/angular/angular.min.js"></script>
+<script src="index.js"></script>
+<script src="js/angular/directives.js"></script>
+<script src="js/angular/services/SchemaService.js"></script>
+<script src="js/angular/services/SfdcApi.js"></script>
+<script src="js/angular/services/MetadataApiService.js"></script>
+<script src="js/angular/services/ViewService.js"></script>
+<script src="js/angular/services/DynamicMetadataService.js"></script>
+<script src="js/angular/services/MetaDataContainer.js"></script>
+<script src="js/angular/services/PackageDependencyService.js"></script>
+<script src="js/angular/services/UsageService.js"></script>
+<script src="js/angular/services/NewsService.js"></script>
+<script src="js/angular/services/BookmarkService.js"></script>
+<script src="js/angular/services/PipelineService.js"></script>
+<script src="js/angular/services/EventGraphService.js"></script>
+<script src="js/angular/services/IntegrationService.js"></script>
+<script src="js/angular/services/TrustService.js"></script>
+<script src="js/angular/services/mygridviewservices.js"></script>
+<script src="js/angular/services/GetUserIdServices.js"></script>
+<script src="js/angular/controllers/MyViewGridCtrl.js"></script>
+<script src="js/angular/controllers/MenuAndDetailsCtrl.js"></script>
+<script src="js/simplified.js"></script>
+</body>
+</html>

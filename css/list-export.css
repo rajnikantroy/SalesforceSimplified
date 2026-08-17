@@ -1,0 +1,377 @@
+/* Author: Rajni Kant Roy(Salesforce Technical Architect) */
+/* ---------------------------------------------------------------------- */
+/* Export                                                                 */
+/*                                                                        */
+/* Injected into somebody else's application, so every selector is         */
+/* prefixed and every rule starts from one of our own classes. A bare      */
+/* element rule here restyles their list view.                             */
+/* ---------------------------------------------------------------------- */
+
+/* In the row with New / Import / Assign Label, not over it - the browser
+   places it, so it cannot land on top of one of theirs. */
+.ssx-button {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 6px;
+    padding: 0 14px;
+    min-height: 32px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    background: #ffffff;
+    font-family: "Salesforce Sans", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    color: #0176d3;
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.ssx-button::before {
+    content: "\2913";
+    margin-right: 6px;
+}
+
+.ssx-button:hover { background: #f4f6f9; }
+
+/* Kept, though the modal now covers it.
+ *
+ * It is no longer something to click - there is no "outside" left - but it
+ * still stops a stray click or a scroll reaching the list underneath while
+ * this is open. Closing is the ✕ and Escape, both of which are on screen or
+ * on the keyboard rather than behind the thing they close. */
+.ssx-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: none;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+/* Centred, with nothing to measure - the same reasoning as the All Fields
+   modal, which spent three rounds getting anchored positioning wrong. */
+/* Edge to edge.
+ *
+ * The grid is the point of it, and a grid of sixty columns wants every pixel
+ * there is. The margin that used to be here bought nothing but a strip of
+ * greyed-out list view nobody was reading.
+ *
+ * No border and no radius, because both are there to say where a window ends
+ * against what is behind it - and there is nothing behind it now. The header
+ * and the ✕ say what this is instead. */
+.ssx-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9001;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: "Salesforce Sans", Arial, sans-serif;
+    font-size: 13px;
+    color: #16325c;
+}
+
+.ssx-modal .ssx-head {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f7f9fb;
+}
+
+.ssx-modal .ssx-close {
+    border: 0;
+    background: none;
+    font-size: 18px;
+    line-height: 1;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.ssx-modal .ssx-query {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+}
+
+/* Monospace, because this is a query and the alignment of a clause matters
+   more here than the prose does. */
+.ssx-modal .ssx-soql {
+    flex: 1 1 auto;
+    min-height: 76px;
+    resize: vertical;
+    padding: 10px;
+    border: 1px solid #d8dde6;
+    border-radius: 4px;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #16325c;
+}
+
+.ssx-modal .ssx-run {
+    flex: 0 0 auto;
+    margin-top: 2px;
+    padding: 6px 16px;
+    border: 1px solid #0176d3;
+    border-radius: 4px;
+    background: #0176d3;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.ssx-modal .ssx-run:disabled {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    color: #94a3b8;
+    cursor: default;
+}
+
+.ssx-modal .ssx-results {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    border-top: 1px solid #e2e8f0;
+    background: #f7f9fb;
+}
+
+/* Beside the count, because the two belong together: the filter changes what
+   the count says, and the count says what the buttons will write. */
+.ssx-modal .ssx-filter {
+    flex: 0 0 auto;
+    width: 220px;
+    padding: 5px 10px;
+    border: 1px solid #d8dde6;
+    border-radius: 4px;
+    font-size: 12.5px;
+}
+
+.ssx-modal .ssx-filter:disabled { background: #f1f5f9; }
+
+/* Takes the slack, so the format buttons stay together at the right edge. */
+.ssx-modal .ssx-count {
+    flex: 1 1 auto;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.ssx-modal .ssx-export {
+    padding: 6px 14px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #0176d3;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Disabled is the normal state before a query has run, so it has to read as
+   waiting rather than as broken. */
+.ssx-modal .ssx-export:disabled {
+    border-color: #e2e8f0;
+    color: #94a3b8;
+    cursor: default;
+}
+
+.ssx-modal .ssx-notice {
+    padding: 0 14px 12px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.ssx-modal .ssx-error {
+    padding: 10px 14px;
+    max-height: 30vh;
+    overflow-y: auto;
+    background: #fef2f2;
+    color: #b91c1c;
+    border-top: 1px solid #fecaca;
+}
+
+.ssx-modal .ssx-error-line {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.ssx-modal .ssx-error-line + .ssx-error-line { margin-top: 6px; }
+
+/* ---------------------------------------------------------------------- */
+/* The grid                                                               */
+/* ---------------------------------------------------------------------- */
+
+/* Takes everything the header, query and footer leave. min-height:0 because
+   a flex child without it refuses to scroll and overflows the modal instead. */
+.ssx-modal .ssx-grid-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    border-top: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.ssx-modal .ssx-grid {
+    border-collapse: collapse;
+    font-size: 12px;
+    /* Not 100%: with sixty columns the table has to be wider than the box and
+       scroll, rather than squeeze every column into illegibility. */
+    width: max-content;
+    min-width: 100%;
+}
+
+/* Sticky, so the column you are reading is still named forty rows down -
+   which is the whole reason for showing the header at all. */
+.ssx-modal .ssx-grid th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 7px 10px;
+    background: #f2f5f9;
+    border-bottom: 1px solid #cbd5e1;
+    border-right: 1px solid #e2e8f0;
+    text-align: left;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.ssx-modal .ssx-grid td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #f1f5f9;
+    border-right: 1px solid #f1f5f9;
+    /* Capped rather than wrapped: a description field would otherwise make one
+       row as tall as the screen and push every other row out of sight. */
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ssx-modal .ssx-grid tbody tr:nth-child(even) { background: #fbfcfd; }
+.ssx-modal .ssx-grid tbody tr:hover { background: #eef4ff; }
+
+/* The row number stays put while the columns scroll under it. */
+.ssx-modal .ssx-grid .ssx-rownum {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #f2f5f9;
+    color: #64748b;
+    text-align: right;
+    max-width: none;
+}
+
+.ssx-modal .ssx-grid thead .ssx-rownum { z-index: 3; }
+
+.ssx-modal .ssx-empty,
+.ssx-modal .ssx-more {
+    padding: 16px 14px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Field suggestions                                                      */
+/*                                                                        */
+/* One row under the query, scrolling sideways rather than wrapping into   */
+/* several - an object with three hundred fields would otherwise take half */
+/* the modal and push the grid off the bottom.                             */
+/* ---------------------------------------------------------------------- */
+
+.ssx-modal .ssx-suggest {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.ssx-modal .ssx-suggest-label {
+    flex: 0 0 auto;
+    color: #64748b;
+    font-size: 11.5px;
+    margin-right: 2px;
+}
+
+.ssx-modal .ssx-suggest-none {
+    color: #94a3b8;
+    font-size: 11.5px;
+}
+
+.ssx-modal .ssx-chip {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border: 1px solid #d8dde6;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #0176d3;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    cursor: pointer;
+}
+
+.ssx-modal .ssx-chip:hover {
+    background: #eef4ff;
+    border-color: #0176d3;
+}
+
+/* The type mark is a hint, not a label - it must not compete with the name
+   that is actually going into the query. */
+.ssx-modal .ssx-chip-type {
+    color: #94a3b8;
+    font-family: "Salesforce Sans", Arial, sans-serif;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Not signed in                                                          */
+/*                                                                        */
+/* Only ever seen when the panel's sign-in card could not be raised. One   */
+/* line and a way to try again - the card itself is the sign-in, and a     */
+/* second one here would be a second thing to keep correct.                */
+/* ---------------------------------------------------------------------- */
+
+.ssx-signedout {
+    margin: auto;
+    padding: 40px 24px;
+    text-align: center;
+}
+
+.ssx-signedout p {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #16325c;
+}
+
+.ssx-signedout-hint {
+    font-size: 12.5px !important;
+    font-weight: 400 !important;
+    color: #64748b !important;
+    margin-bottom: 16px !important;
+}
+
+.ssx-signedout-btn {
+    padding: 7px 20px;
+    border: 1px solid #0176d3;
+    border-radius: 4px;
+    background: #0176d3;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}

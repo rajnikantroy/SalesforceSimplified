@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<!-- Author: Rajni Kant Roy(Salesforce Technical Architect) -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome to Salesforce Simplified v2.1.8</title>
+<!--
+  Sized icons for tab favicons.
+-->
+<link rel="icon" sizes="16x16" href="img/simplify-16.png">
+<link rel="icon" sizes="48x48" href="img/simplify-48.png">
+<link rel="icon" sizes="128x128" href="img/simplify.png">
+<!--
+  Deliberately self-contained.
+
+  This page loads no external scripts or extension stylesheets to ensure clean,
+  instant rendering under Manifest V3 without external dependencies or side effects.
+-->
+<style>
+    :root {
+        --primary: #0176d3;
+        --primary-dark: #014486;
+        --primary-light: #eef6fd;
+        --primary-border: #bfdbfe;
+        --ink-primary: #0f172a;
+        --ink-secondary: #334155;
+        --ink-muted: #64748b;
+        --surface-page: #f8fafc;
+        --surface-card: #ffffff;
+        --border-line: #e2e8f0;
+        --border-subtle: #f1f5f9;
+        --accent-green: #059669;
+        --accent-green-bg: #ecfdf5;
+        --accent-green-border: #a7f3d0;
+        --warn-bg: #fffbeb;
+        --warn-border: #fde68a;
+        --warn-ink: #92400e;
+        --code-bg: #f1f5f9;
+        --badge-bg: #e2e8f0;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+        --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        margin: 0;
+        background: var(--surface-page);
+        color: var(--ink-primary);
+        font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* Header & Hero */
+    header.hero {
+        background: #ffffff;
+        border-bottom: 1px solid var(--border-line);
+        padding: 40px 0 36px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-sm);
+    }
+    .hero-inner {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    .hero-logo-container { position: relative; }
+    .hero img { width: 64px; height: 64px; flex-shrink: 0; display: block; }
+    .version-badge {
+        display: inline-block;
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        border: 1px solid var(--primary-border);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 12px;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    .tag-badge {
+        display: inline-block;
+        background: var(--accent-green-bg);
+        color: var(--accent-green);
+        border: 1px solid var(--accent-green-border);
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 12px;
+        margin-left: 6px;
+        vertical-align: middle;
+    }
+    h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--ink-primary);
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .tagline {
+        margin: 0;
+        color: var(--ink-secondary);
+        font-size: 16px;
+        line-height: 1.5;
+        max-width: 48rem;
+    }
+
+    /* Quick Jump Navigation */
+    nav.quick-nav {
+        background: #ffffff;
+        border: 1px solid var(--border-line);
+        border-radius: 12px;
+        padding: 14px 18px;
+        margin-bottom: 32px;
+        box-shadow: var(--shadow-sm);
+    }
+    .quick-nav-title {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-muted);
+        margin-bottom: 10px;
+    }
+    .quick-nav-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .pill-link {
+        display: inline-flex;
+        align-items: center;
+        background: var(--surface-page);
+        border: 1px solid var(--border-line);
+        color: var(--ink-secondary);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 5px 12px;
+        border-radius: 20px;
+        text-decoration: none;
+        transition: all 0.15s ease-in-out;
+    }
+    .pill-link:hover {
+        background: var(--primary-light);
+        color: var(--primary);
+        border-color: var(--primary-border);
+        transform: translateY(-1px);
+    }
+
+    /* Headings */
+    h2 {
+        margin: 40px 0 16px;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--ink-primary);
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--border-line);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    h2 .section-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-size: 15px;
+    }
+    h3 {
+        margin: 22px 0 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--ink-primary);
+    }
+    p { margin: 0 0 12px; color: var(--ink-secondary); }
+    .muted { color: var(--ink-muted); }
+    .small { font-size: 13px; }
+
+    /* Cards & Grids */
+    .card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-line);
+        border-radius: 12px;
+        padding: 20px 22px;
+        margin: 14px 0 20px;
+        box-shadow: var(--shadow-sm);
+    }
+    .card-title {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0 0 12px;
+        color: var(--ink-primary);
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 16px;
+        margin: 16px 0;
+    }
+    .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 14px;
+        margin: 16px 0;
+    }
+    .feature-box {
+        background: #ffffff;
+        border: 1px solid var(--border-line);
+        border-radius: 10px;
+        padding: 16px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .feature-box:hover {
+        border-color: var(--primary-border);
+        box-shadow: var(--shadow-md);
+    }
+    .feature-box h4 {
+        margin: 0 0 6px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ink-primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .feature-box p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--ink-muted);
+        line-height: 1.5;
+    }
+
+    /* Step Lists */
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 16px 0; }
+    .steps li {
+        counter-increment: step;
+        position: relative;
+        padding: 0 0 18px 44px;
+        margin: 0;
+    }
+    .steps li::before {
+        content: counter(step);
+        position: absolute; left: 0; top: 2px;
+        width: 28px; height: 28px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 50%;
+        background: var(--primary); color: #fff;
+        font-size: 13px; font-weight: 700;
+        box-shadow: 0 2px 4px rgba(1, 118, 211, 0.3);
+    }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 6px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border-line); vertical-align: top; font-size: 14px; }
+    th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); font-weight: 700; background: var(--surface-page); }
+    td.k { white-space: nowrap; font-weight: 600; width: 13rem; color: var(--ink-primary); }
+    tr:last-child td { border-bottom: none; }
+
+    /* Code & Keyboard */
+    code, kbd {
+        background: var(--code-bg);
+        border: 1px solid var(--border-line);
+        border-radius: 5px;
+        padding: 2px 7px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 13px;
+        color: #0f172a;
+    }
+    kbd {
+        box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+        font-weight: 600;
+        background: #ffffff;
+    }
+
+    /* Alert / Callout Notes & Tips */
+    .note, .tip, .success-box {
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin: 16px 0;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    .note {
+        border: 1px solid var(--warn-border);
+        border-left: 4px solid var(--accent-amber);
+        background: var(--warn-bg);
+        color: var(--warn-ink);
+    }
+    .tip {
+        border: 1px solid var(--primary-border);
+        border-left: 4px solid var(--primary);
+        background: var(--primary-light);
+        color: #034b87;
+    }
+    .success-box {
+        border: 1px solid var(--accent-green-border);
+        border-left: 4px solid var(--accent-green);
+        background: var(--accent-green-bg);
+        color: #065f46;
+    }
+    .note b, .tip b, .success-box b { font-weight: 700; }
+
+    /* Footer */
+    footer {
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border-line);
+        color: var(--ink-muted);
+        font-size: 13.5px;
+        text-align: center;
+    }
+    footer p { margin-bottom: 8px; color: var(--ink-muted); }
+    footer .footer-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+    a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    a:hover { color: var(--primary-dark); text-decoration: underline; }
+
+    @media (max-width: 680px) {
+        .hero-inner { flex-direction: column; }
+        td.k { width: auto; }
+        .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        .quick-nav-pills { flex-direction: column; }
+    }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-logo-container">
+      <img src="img/simplify.png" alt="Salesforce Simplified Logo">
+    </div>
+    <div>
+      <h1>
+        Salesforce Simplified
+        <span class="version-badge">v2.1.8</span>
+        <span class="tag-badge">Manifest V3</span>
+      </h1>
+      <p class="tagline">
+        The ultimate developer workspace extension for Salesforce. Browse org metadata, query schema, build package.xml manifests with their dependencies, retrieve deployment zips, deploy components and migrate records between two orgs, edit every field on a record, export any list view, call the REST and Tooling APIs, inspect debug logs, monitor setup audit trails, track component changes, and manage multi-org environments — directly from your browser without leaving your active tab.
+      </p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- Quick Navigation Pills -->
+  <nav class="quick-nav">
+    <div class="quick-nav-title">Quick Navigation</div>
+    <div class="quick-nav-pills">
+      <a href="#quick-start" class="pill-link">🚀 Quick Start</a>
+      <a href="#core-architecture" class="pill-link">⚡ Dynamic Engine</a>
+      <a href="#metadata-explorer" class="pill-link">🔍 Metadata Explorer</a>
+      <a href="#package-xml" class="pill-link">📦 Package.xml & Retrieve</a>
+      <a href="#data-export" class="pill-link">📊 Data Export</a>
+      <a href="#page-tools" class="pill-link">🧩 All Fields &amp; List Export</a>
+      <a href="#event-graph" class="pill-link">🕸️ Event Graph</a>
+      <a href="#org-sync" class="pill-link">🔀 Org Sync &amp; Jobs</a>
+      <a href="#diagnostics" class="pill-link">🩺 Errors &amp; Diagnostics</a>
+      <a href="error.html" class="pill-link">🧭 Error Reference</a>
+      <a href="#watch-list" class="pill-link">⭐ Change Watcher</a>
+      <a href="#audit-security" class="pill-link">🛡️ Governance & Audit</a>
+      <a href="#utilities" class="pill-link">🛠️ Debug Logs & Tools</a>
+      <a href="#authentication" class="pill-link">🔑 Authentication</a>
+      <a href="#multi-org" class="pill-link">🏢 Multi-Org Management</a>
+      <a href="#privacy" class="pill-link">🔒 Security & Privacy</a>
+      <a href="#shortcuts" class="pill-link">⌨️ Keyboard Shortcuts</a>
+      <a href="#faq" class="pill-link">❓ FAQ</a>
+    </div>
+  </nav>
+
+  <!-- SECTION 1: QUICK START -->
+  <section id="quick-start">
+    <h2><span class="section-icon">🚀</span> Getting Started</h2>
+    <p>Salesforce Simplified operates in two convenient modes tailored to your workflow:</p>
+    
+    <ol class="steps">
+      <li>
+        <h3>Injected Floating Overlay (In-Page Mode)</h3>
+        <p class="muted">
+          When browsing any Salesforce page (Lightning, Setup, Visualforce, or My-Domain), a subtle launcher icon appears in the bottom corner. Hover over or click the launcher icon to open the sliding side panel without losing your context.
+        </p>
+      </li>
+      <li>
+        <h3>Full-Page Standalone Tab (Workspace Mode)</h3>
+        <p class="muted">
+          Click the extension icon in your Chrome toolbar or press <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>. The standalone tab (<code>simplified.html</code>) works independently of any active tab, allowing you to manage multiple org connections, run deep searches, and switch contexts effortlessly.
+        </p>
+      </li>
+      <li>
+        <h3>Seamless Authentication</h3>
+        <p class="muted">
+          The extension automatically uses your active Salesforce browser session cookie. If your org hides browser sessions or enforces high-assurance policies, choose from one of three built-in sign-in options (OAuth 2.0, Custom Connected App, or Session ID).
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- SECTION 2: DYNAMIC ENGINE ARCHITECTURE -->
+  <section id="core-architecture">
+    <h2><span class="section-icon">⚡</span> Dynamic Org Describe & Dual-View Engine</h2>
+    <p>
+      Unlike traditional tools that rely on static hardcoded lists, Salesforce Simplified connects directly to your org's REST & Tooling APIs to inspect its live schema in real-time.
+    </p>
+
+    <div class="grid-3">
+      <div class="feature-box">
+        <h4>🔍 Live Dynamic Describe</h4>
+        <p>Discovers standard SObjects, custom objects (<code>__c</code>), custom metadata types (<code>__mdt</code>), external objects (<code>__x</code>), and installed managed package components instantly.</p>
+      </div>
+      <div class="feature-box">
+        <h4>👥 Dual Perspective</h4>
+        <p>Toggle seamlessly between <b>My Items</b> (components created or modified by you) and <b>All Items</b> across the entire organization.</p>
+      </div>
+      <div class="feature-box">
+        <h4>⚡ Optimized Pagination</h4>
+        <p>Fetches up to 200 records per batch ordered by recency (e.g. <code>LastModifiedDate</code> or <code>StartTime</code>), delivering blazingly fast response times even in massive enterprise orgs.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>Pagination & Search Strategy:</b> When working with component types that exceed 200 items (such as Apex classes or custom fields in mature orgs), <b>Select All</b> acts on the 200 items currently on screen. For building manifests across large component types, use the <b>Quick Find</b> search input first to filter down to the exact items you require.
+    </div>
+  </section>
+
+  <!-- SECTION 3: METADATA EXPLORER & ADVANCED SEARCH -->
+  <section id="metadata-explorer">
+    <h2><span class="section-icon">🔍</span> Metadata Explorer & Advanced Org Search</h2>
+    <p>
+      Browse, inspect, and navigate every component type in your Salesforce environment with single-click access to Setup records and Developer Console tools.
+    </p>
+
+    <div class="card">
+      <div class="card-title">Supported Component Categories</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Supported Component Types</th>
+            <th>Primary Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="k">Code & Logic</td>
+            <td>Apex Classes, Apex Triggers, Visualforce Pages, Visualforce Components, Aura Definition Bundles (LWC & Aura), Flows, Process Builders, Workflow Rules.</td>
+            <td>Direct link to record detail, code editor, view coverage, package.xml selection.</td>
+          </tr>
+          <tr>
+            <td class="k">Data & Schema</td>
+            <td>Standard & Custom SObjects, Custom Fields (<code>Object.Field</code>), Layouts, Validation Rules, Record Types, WebLinks & Custom Buttons, Custom Metadata Types (<code>__mdt</code>).</td>
+            <td>Object Manager navigation, schema inspect, field level actions, data export.</td>
+          </tr>
+          <tr>
+            <td class="k">Security & Access</td>
+            <td>Profiles, Permission Sets, Permission Set Groups, Roles, User Groups, Queues, Sharing Rules.</td>
+            <td>Setup navigation, granted permission audit, dependency inclusion.</td>
+          </tr>
+          <tr>
+            <td class="k">User Interface & Assets</td>
+            <td>Static Resources, Custom Labels, Custom Tabs, Custom Applications, Email Templates, Dashboards, Reports, Documents.</td>
+            <td>Asset preview, download, direct Setup links.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip">
+      <b>Advanced Search Capabilities:</b> Search across metadata names, API names, author usernames, email addresses, and last modified dates simultaneously across the whole org.
+    </div>
+  </section>
+
+  <!-- SECTION 4: PACKAGE.XML BUILDER & RETRIEVAL SUITE -->
+  <section id="package-xml">
+    <h2><span class="section-icon">📦</span> Package.xml Manifest Builder & One-Click Retrieve</h2>
+    <p>
+      Construct precise, deployment-ready <code>package.xml</code> manifests and retrieve complete source ZIP archives directly from your browser.
+    </p>
+
+    <div class="grid-2">
+      <div class="feature-box">
+        <h4>🔗 Related Components Auto-Expansion</h4>
+        <p>Ticking a SObject automatically resolves and includes its child Custom Fields, Layouts, Record Types, Validation Rules, Buttons, Compact Layouts, and List Views. Profiles and Permission Sets bring in all granted permissions.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🧠 Dependency API Reference Scanner</h4>
+        <p>Uses Salesforce's Tooling Dependency API to analyze Apex classes, Visualforce pages, Aura/LWC bundles, and Flows to discover and offer missing referenced fields, classes, and SObjects.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🛡️ Managed Package Purging (04t Guard)</h4>
+        <p>Identifies components installed from managed packages that cannot be retrieved, alerting you and offering a 1-click option to purge them so your retrieve request succeeds.</p>
+      </div>
+      <div class="feature-box">
+        <h4>⚡ Browser-Native Retrieve ZIP</h4>
+        <p>Click <b>Retrieve</b> to request the org to package the metadata. The org builds the zip file with native <code>-meta.xml</code> definitions, ready for deployment via <code>sf project deploy</code> or Ant &mdash; or use <b>Send to another org</b> to deploy the same selection straight into a paired org, no zip involved.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>Reference Scanning Note:</b> The reference scanner relies on Salesforce API dependency graphs. Note that <i>dynamic references</i> (such as string-concatenated SOQL queries or <code>Schema.getGlobalDescribe()</code> string lookups) cannot be detected via static analysis.
+    </div>
+  </section>
+
+  <!-- SECTION 5: DATA EXPORT ENGINE -->
+  <section id="data-export">
+    <h2><span class="section-icon">📊</span> SObject Data Export Engine</h2>
+    <p>
+      Export record data from any standard or custom SObject directly into formatted JSON files for backup, migration, or analysis.
+    </p>
+
+    <div class="card">
+      <table>
+        <tr>
+          <td class="k">Full Schema Querying</td>
+          <td>Unlike basic table dumps that only save visible screen columns, the export engine re-queries Salesforce to retrieve <b>every available field value</b> on the selected SObjects.</td>
+        </tr>
+        <tr>
+          <td class="k">Multi-Object Support</td>
+          <td>Select records across multiple different SObjects in a single session; each object is queried independently and bundled cleanly.</td>
+        </tr>
+        <tr>
+          <td class="k">Fallback Safeguard</td>
+          <td>If an org restricts query access to certain system fields, the engine gracefully falls back to exporting all screen-rendered grid columns rather than failing.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 5b: IN-PAGE RECORD & LIST TOOLS -->
+  <section id="page-tools">
+    <h2><span class="section-icon">🧩</span> On-Page Tools: All Fields & List Export</h2>
+    <p>
+      Two buttons that appear on the Salesforce page itself rather than in the side panel — one on record pages, one on list views. Both sit beside the standard action buttons and open a full-screen workspace.
+    </p>
+
+    <div class="grid-2">
+      <div class="feature-box">
+        <h4>🗂️ All Fields (record pages)</h4>
+        <p>Opens every field on the record — not only the ones the page layout happens to show — with its current value in an editable two-column grid. Save writes back only the fields you actually changed. Fields your profile cannot edit, and fields Salesforce itself never allows writing, are shown read-only rather than failing at save time. A copy icon puts the whole record on your clipboard as JSON.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📤 Export (list views)</h4>
+        <p>Opens the list's underlying SOQL in an editable box so you can widen, filter, or re-order it before running. Results land in a full-screen grid with column headers and a filter box, and download as <b>JSON, CSV, or Excel</b>. Field-name suggestions appear as you type, and a query the data API rejects is retried automatically against the Tooling API.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <table>
+        <tr>
+          <td class="k">Where They Appear</td>
+          <td>Record detail pages and list views, in both Lightning and Classic. The buttons are placed <b>beside</b> the standard action bar, never inside it, so Salesforce's own components are left untouched.</td>
+        </tr>
+        <tr>
+          <td class="k">Every Object</td>
+          <td>Standard and custom alike — the object and record are read from the page URL, so nothing needs configuring per object.</td>
+        </tr>
+        <tr>
+          <td class="k">Permission Aware</td>
+          <td>Edit access is checked against the record before the grid becomes editable, and a save the org refuses is reported with Salesforce's own validation message in full, not a truncated one.</td>
+        </tr>
+        <tr>
+          <td class="k">Turn Them Off</td>
+          <td>Both buttons have their own switch under <b>System Settings → On Salesforce pages</b> if you would rather keep the page exactly as Salesforce ships it.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="note">
+      Both tools need an authenticated session for the org you are viewing. If you are signed out, clicking either one opens the usual sign-in card instead of failing silently.
+    </div>
+  </section>
+
+  <!-- SECTION 5c: EVENT GRAPH -->
+  <section id="event-graph">
+    <h2><span class="section-icon">🕸️</span> Event Graph: What Actually Happened</h2>
+    <p>
+      Something ran, and the record looks wrong. The Event Graph gathers what the org can tell you about a transaction &mdash; audit trail entries, debug logs, related records &mdash; and draws the relationships between them, so the question stops being &ldquo;which log do I open&rdquo; and becomes &ldquo;what touched this, and in what order&rdquo;.
+    </p>
+
+    <div class="grid-2">
+      <div class="feature-box">
+        <h4>🔗 Correlated, with its confidence stated</h4>
+        <p>Every relationship it draws carries how it knows: a link read directly off a record is confirmed, one inferred from timing is not, and the two are never presented as though they were the same. A graph that guesses silently is worse than no graph.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🕳️ Honest about what it could not see</h4>
+        <p>Most orgs have no debug log for the transaction being investigated, Event Monitoring is a paid add-on, and SetupAuditTrail needs &ldquo;View Setup and Configuration&rdquo;. Each of those is a normal outcome, not an error &mdash; it contributes an acknowledged gap in the picture rather than a failed load.</p>
+      </div>
+      <div class="feature-box">
+        <h4>▶️ Replay does not re-run anything</h4>
+        <p>Replay walks back through a recording. It makes no callout, touches no record and starts no flow &mdash; worth saying plainly, because &ldquo;replay&rdquo; in a Salesforce context can reasonably be read as &ldquo;run it again&rdquo;, and running a payment twice to find out why it failed once is not a debugging technique.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📖 Every request is a read</h4>
+        <p>The engine itself is plain JavaScript with no network access at all; only the query layer talks to Salesforce, and only ever to read. Nothing here writes to your org.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5d: ORG SYNC -->
+  <section id="org-sync">
+    <h2><span class="section-icon">🔀</span> Org Sync: Moving Work Between Two Orgs</h2>
+    <p>
+      Pair two orgs you are signed in to, then send components or records from one to the other &mdash; without leaving the browser, and without a zip going anywhere near your downloads folder. Every job is staged for review first; nothing reaches the second org until you apply it.
+    </p>
+
+    <div class="grid-2">
+      <div class="feature-box">
+        <h4>📦 Metadata, retrieve to deploy</h4>
+        <p>Tick components in any list &mdash; the same selection package.xml is built from &mdash; and send them down a pipeline. The source org retrieves, the target deploys, and the deploy always rolls back on error, so a package that fails part-way leaves the target as it was. Validate only runs the same deploy check-only.</p>
+      </div>
+      <div class="feature-box">
+        <h4>⚡ Quick deploy</h4>
+        <p>A successful validation is held by the org for ten days. Deploying it needs no retrieve, no recompile, and no second test run. Offered only on validations the org will actually accept &mdash; one that ran no tests is not eligible, and the row says so rather than leaving you a button that fails.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🗃️ Records, matched on a key you choose</h4>
+        <p>Record Ids differ between orgs, so you nominate the field that means the same row in both. External Id fields are upserted by the org itself; any other filterable field is looked up in the target, with matches updated and the rest created. There is also a mode that matches nothing and creates everything.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📋 Jobs, with history that survives</h4>
+        <p>Staged, succeeded and failed jobs are kept per pipeline, grouped by attempt, and paged. Failures carry the org's own words &mdash; the component and line, or the record and the field &mdash; plus the reason when the cause was this extension rather than the org.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <table>
+        <tr>
+          <td class="k">Never Unattended</td>
+          <td>A job is created by you and runs when you apply it. Nothing is deployed on a schedule, in the background, or as a side effect of an edit. The button says what it will do: Deploy, Validate or Migrate.</td>
+        </tr>
+        <tr>
+          <td class="k">Survives the Browser</td>
+          <td>A deploy takes minutes; Chrome stops the extension's worker after seconds. The job records the org's deploy id, so a job interrupted mid-deploy is picked back up and reported rather than reading as failed while it actually succeeded.</td>
+        </tr>
+        <tr>
+          <td class="k">Open It As a Page</td>
+          <td>The in-page panel acts as the org whose page it is on and cannot be pointed anywhere else &mdash; signing in to a second org from the panel does not move it. Simplified's own page (the &#8599; button) has an org picker, so it can send from either end of any pipeline. The panel says so when none of your pipelines can run from where it is.</td>
+        </tr>
+        <tr>
+          <td class="k">Two Live Sessions</td>
+          <td>Both ends need a session in this browser. Orgs you have used are listed with a Signed in or Expired tag, and an expired one offers to open that org so you can sign in again &mdash; Salesforce takes your credentials, never this extension.</td>
+        </tr>
+        <tr>
+          <td class="k">What Is Not Carried</td>
+          <td>Lookup fields hold Ids belonging to the source org and are left behind. A record whose key matches more than one record in the target stops the job rather than guessing which one you meant.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="note">
+      Records are written all or none, up to 200 per job. That is the largest single all-or-nothing write the org accepts &mdash; larger migrations are more than one job, on purpose.
+    </div>
+    <div class="grid-2">
+      <div class="feature-box">
+        <h4>📤 Send what is in hand, from anywhere</h4>
+        <p>The footer already carried the counts; it now carries the two acts that go with them. <b>Deploy (n)</b> appears when components are ticked and <b>Migrate (n)</b> when records are, each opening this page with the selection. They open the page rather than staging on the spot: staging needs a pipeline, and picking one from a footer button would be choosing which org to write into on your behalf.</p>
+      </div>
+      <div class="feature-box">
+        <h4>👀 Review shows what it is asking about</h4>
+        <p>The review dialog lists what the job actually carries &mdash; every component, or the object, the matching key and the full SOQL &mdash; with the decision pinned in a footer that a long list cannot scroll away from. The button names the act: <b>Deploy</b>, <b>Validate</b> or <b>Migrate</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5e: ERRORS AND DIAGNOSTICS -->
+  <section id="diagnostics">
+    <h2><span class="section-icon">🩺</span> Errors, Sessions and Dependencies</h2>
+    <p>
+      Most of what goes wrong between two orgs goes wrong for a reason you cannot see from the message. This is about making those reasons visible, and about not reporting the ones that were never a problem.
+    </p>
+
+    <div class="grid-2">
+      <div class="feature-box">
+        <h4>🧭 Every error has a code</h4>
+        <p>Messages carry a code such as <code>SS-101</code>, linked to the <a href="error.html">error reference</a> &mdash; what causes it, and the steps to resolve it. Failed jobs carry their code too, so a failure from last week can still be looked up.</p>
+      </div>
+      <div class="feature-box">
+        <h4>😴 Fewer errors that were never errors</h4>
+        <p>Chrome stops an extension's background worker after about thirty seconds idle. A message arriving while it restarts used to surface as a failure on a page where nothing had been attempted. It is now sent once more instead. Only lost messages are retried &mdash; never one the worker already acted on.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🔑 The right org's session</h4>
+        <p>Salesforce sets a session cookie on <code>login.salesforce.com</code> as well as on each org's own host, and a parent-domain cookie matches every org beneath it. Picking the wrong one made an org reject a session that looked perfectly valid &mdash; reported as &ldquo;expired&rdquo; to someone who had just signed in. The org's own cookie is now preferred.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🔗 Named Credentials pull their services</h4>
+        <p>External Services point <em>at</em> a Named Credential, so no forward dependency scan could ever reach them &mdash; the credential deployed and its services were left behind. package.xml now asks the reverse question for credentials, and finds the linking field from the org's own describe rather than a name written into this extension.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      An error code is stable; the sentence beside it may be reworded. Quote the code in a bug report and it will still mean the same thing. The reference is also reachable from <b>About &rarr; Help and feedback</b>.
+    </div>
+  </section>
+
+  <!-- SECTION 6: CHANGE WATCH LIST -->
+  <section id="watch-list">
+    <h2><span class="section-icon">⭐</span> Component Change Monitoring (Watch List)</h2>
+    <p>
+      Never lose track of modifications made by teammates or automated processes prior to deployment.
+    </p>
+
+    <div class="grid-2">
+      <div class="feature-box">
+        <h4>⭐ Star Any Component</h4>
+        <p>Click the star icon (<b>☆</b>) beside any Apex class, trigger, flow, object, or page to pin it to your personal Watching List.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📜 Historical Timeline Tracking</h4>
+        <p>Maintains a complete audit history of edits, updates, and deletions on watched items — showing modified date, author, and revision state.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📊 Quick Glance & Dedicated Page</h4>
+        <p>Inspect recent changes at a glance in the right-hand panel widget, or open the full <b>Watching List</b> page to prune or export history.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🔒 On-Demand & Session Check</h4>
+        <p>Checks for changes whenever you open the panel or click <b>Check for changes</b>. Data stays local to your browser profile per org.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: GOVERNANCE, AUDIT & API SECURITY -->
+  <section id="audit-security">
+    <h2><span class="section-icon">🛡️</span> Org Governance, Audit & API Security</h2>
+    <p>
+      Gain deep visibility into setup modifications, active user logins, external API integration health, and user security permissions.
+    </p>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Key Capabilities & Descriptions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="k">Setup Audit Trail</td>
+            <td>Search, filter, and inspect setup administrative changes. Track who modified Apex, fields, validation rules, or security policies, when it occurred, and exact action details.</td>
+          </tr>
+          <tr>
+            <td class="k">In The Org Today</td>
+            <td>Real-time user login monitoring. Lists active user logins today, login frequency counts, client application types, and flags failed authentication attempts.</td>
+          </tr>
+          <tr>
+            <td class="k">API Integration Monitor</td>
+            <td>
+              <b>Inbound:</b> Tracks third-party applications calling into your org, highlighting authentication failures.<br>
+              <b>Outbound:</b> Performs automated health checks on Named Credentials, External Data Sources, Remote Site Settings, and CSP Trusted Sites.
+            </td>
+          </tr>
+          <tr>
+            <td class="k">View As (User Impersonation)</td>
+            <td>Inspect org metadata and recent items from the perspective of any active user without logging in as them or altering user credentials.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid-2">
+      <div class="feature-box">
+        <h4>👥 Who is in the org today</h4>
+        <p>The sidebar beside the audit trail counts today's logins in its heading &mdash; <b>In the org today (20)</b> &mdash; and clicking a person puts their name in Quick Find, filtering the trail to what they changed. Clicking them again clears it. The name is used, never the row's fallback id: an id matches nothing in the trail and would look like a filter that found no changes rather than one given nothing to find.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🩺 Codes you can look up</h4>
+        <p>Errors carry a code such as <code>SS-101</code>, linked to the <a href="error.html">error reference</a>, which explains the cause and the steps out. The code is stable even if the sentence beside it is reworded &mdash; quote it in a bug report and it still means the same thing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: SYSTEM UTILITIES & MONITORING -->
+  <section id="utilities">
+    <h2><span class="section-icon">🛠️</span> System Utility Suite & Monitoring Tools</h2>
+
+    <div class="grid-3">
+      <div class="feature-box">
+        <h4>🧪 REST Explorer</h4>
+        <p>Send arbitrary REST and Tooling API calls against your org — GET, POST, PATCH, PUT, DELETE — with a request body editor and pretty-printed responses. Sample endpoints are one click away for the common calls.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🧭 Navigate the API by following it</h4>
+        <p>A sidebar lists what <em>this</em> org advertises over REST &mdash; read from the org, so whatever it has switched on appears without this extension knowing the name in advance. Click one to put it in the path box. Answers are indexes too: the paths a response mentions become a <b>Follow:</b> row underneath it, filtered and counted when there are hundreds, so the row never quietly hides what it found. The response pane fills the window rather than a fixed fraction of it.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📥 Bulk API Job Status</h4>
+        <p>Lists your Bulk API 2.0 ingest and query jobs with state, object, and processed/failed record counts. Select any job for its full detail, or paste a job ID directly to look one up.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🌳 Standard &amp; Custom Objects</h4>
+        <p>Pick any object and read its describe as a browsable hierarchy — the object's own attributes first, then every list the describe returns: fields, child relationships, record types, and the rest, each expandable to its full detail.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🪵 Debug Log Center</h4>
+        <p>Filter debug logs by user, operation, or size. Open logs directly in the log viewer, download raw files, or create new Trace Flags with one click.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🌐 Salesforce Trust Status</h4>
+        <p>Live health tracking for your org's instance directly from the public Salesforce Trust API, including active incidents and planned maintenance.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📈 Usage & API Limits</h4>
+        <p>Monitor your daily org-wide Salesforce REST/Tooling API consumption against governor limits alongside extension usage analytics.</p>
+      </div>
+      <div class="feature-box">
+        <h4>📰 News Timeline</h4>
+        <p>Consolidated chronological event stream summarizing recent org activity, schema updates, and broadcast announcements.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🔔 Notification Manager</h4>
+        <p>Configurable opt-in browser alerts for storage thresholds, API limit warnings, and critical org events.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🎨 Custom Launcher Theme</h4>
+        <p>Customize your launcher icon color theme (Yellow, Bronze, Dark Blue, Amazon) and adjust subtle launcher animations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: AUTHENTICATION METHODS -->
+  <section id="authentication">
+    <h2><span class="section-icon">🔑</span> Authentication & Connection Modes</h2>
+    <p>
+      Salesforce Simplified seamlessly piggybacks on your existing browser session. If session cookies are restricted by your org, three robust authentication methods are supported:
+    </p>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Authentication Method</th>
+            <th>How It Works</th>
+            <th>Best Suited For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="k">Sign in with Salesforce</td>
+            <td>Standard OAuth 2.0 Web Server Flow using the extension's default packaged OAuth app. Select <b>This Org</b>, <b>Production</b>, <b>Sandbox</b>, or a <b>Custom Domain URL</b>.</td>
+            <td>Standard Salesforce orgs allowing default extension authentication.</td>
+          </tr>
+          <tr>
+            <td class="k">Custom Connected App</td>
+            <td>Use your organization's own internal Connected App. Enter your Consumer Key — the panel provides the exact OAuth Redirect URI to register in Setup.</td>
+            <td>Enterprise orgs requiring strict app whitelisting and internal OAuth policies.</td>
+          </tr>
+          <tr>
+            <td class="k">Direct Session ID (sid)</td>
+            <td>Paste an active session token. Held strictly in volatile RAM memory for the browser session — never written to disk or local storage.</td>
+            <td>Restricted orgs without Setup administration access.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <b>Session ID Extraction Tip:</b> Obtain your session ID via Developer Console → <i>Debug</i> → <i>Open Execute Anonymous Window</i> by executing:
+      <code>System.debug(UserInfo.getSessionId());</code><br>
+      Alternatively, copy the <code>sid</code> cookie from your <b>my.salesforce.com</b> domain. Note: <code>sid</code> tokens from <code>lightning.force.com</code> origins are scoped to UI rendering and will be rejected by Salesforce APIs.
+    </div>
+    <div class="grid-2">
+      <div class="feature-box">
+        <h4>🔐 One grant per org, not one in total</h4>
+        <p>Signing in to a second org used to replace the first: come back to it and the grant was simply gone, with nothing to say why. Tokens are now kept per org, so several can be authorised at once &mdash; which is what a pipeline needs, since a pipeline is two orgs by definition. Refreshing one leaves the others alone, and signing out of one signs you out of one.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🗂️ Orgs in this browser</h4>
+        <p>Every org you have used is listed on <b>Org Sync &amp; Jobs</b>, tagged <b>Signed in</b> or <b>Expired</b>. The list outlives the sessions, so an org whose session has gone still says so rather than looking like one that works. An expired row offers to open that org &mdash; Salesforce takes your credentials, never this extension, which holds no password and asks for none.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🍪 The right org's cookie</h4>
+        <p>Salesforce sets a session cookie on <code>login.salesforce.com</code> as well as on each org's own host, and a parent-domain cookie matches every org beneath it. Picking the wrong one made an org reject a session that looked perfectly valid. The org's own cookie now wins, and when only a borrowed one exists the message says where it came from.</p>
+      </div>
+      <div class="feature-box">
+        <h4>🔔 It asks rather than sitting silent</h4>
+        <p>On a first visit the panel waited on a startup promise that could never settle &mdash; so it assumed a session it did not have, and offered no sign-in and no error. It now starts either way: with nothing to read, the sign-in card appears.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 10: MULTI-ORG MANAGEMENT -->
+  <section id="multi-org">
+    <h2><span class="section-icon">🏢</span> Multi-Org Management</h2>
+    <p>
+      Manage and switch between multiple Salesforce environments (Production, Sandbox, Scratch Orgs, and Developer Edition orgs) effortlessly from a single window.
+    </p>
+    <div class="card">
+      <p>
+        Open the Standalone Full Page (<code>simplified.html</code>) and select any connected org from the top dropdown menu. Switching orgs automatically reloads the workspace to present that specific org's schema, audit history, and recent items.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 11: PRIVACY & SECURITY -->
+  <section id="privacy">
+    <h2><span class="section-icon">🔒</span> Security, Privacy & Data Protection</h2>
+    <div class="success-box">
+      <b>100% Client-Side Local Execution:</b> Salesforce Simplified operates entirely inside your local browser. There are no intermediate third-party servers, analytics trackers, or external endpoints. All API calls travel directly between your browser and official Salesforce infrastructure (<code>*.salesforce.com</code>, <code>*.force.com</code>).
+    </div>
+
+    <div class="card">
+      <table>
+        <tr>
+          <td class="k">Session Protection</td>
+          <td>Session tokens are strictly memory-resident for the active session. Pasted Session IDs are never written to disk or browser storage.</td>
+        </tr>
+        <tr>
+          <td class="k">Strict Origin Scoping</td>
+          <td>The background service worker enforces strict origin checks in code, refusing to send session headers to non-Salesforce endpoints.</td>
+        </tr>
+        <tr>
+          <td class="k">Read-Only Operations</td>
+          <td>The extension operates in read-only mode for metadata and records, ensuring zero risk of accidental org mutations.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 12: KEYBOARD SHORTCUTS -->
+  <section id="shortcuts">
+    <h2><span class="section-icon">⌨️</span> Keyboard Shortcuts & Power Tips</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Shortcut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="k"><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd></td>
+            <td>Open or focus the Salesforce Simplified full-page standalone workspace. (Customizable via <code>chrome://extensions/shortcuts</code>).</td>
+          </tr>
+          <tr>
+            <td class="k"><kbd>Esc</kbd></td>
+            <td>Instantly close the injected side panel overlay on any Salesforce tab.</td>
+          </tr>
+          <tr>
+            <td class="k"><kbd>/</kbd> or Quick Find</td>
+            <td>Focus the component search box in the sidebar menu.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 13: FAQ & TROUBLESHOOTING -->
+  <section id="faq">
+    <h2><span class="section-icon">❓</span> Frequently Asked Questions (FAQ)</h2>
+
+    <div class="card">
+      <h3>Q: Why are some panels or setup audit trails showing empty results?</h3>
+      <p>
+        Certain administrative endpoints require the <b>View Setup and Configuration</b> administrative permission. If your user profile lacks this permission, those specific sections will display a graceful warning while the rest of the extension remains fully operational.
+      </p>
+
+      <h3>Q: Why does Session ID authentication fail with an API error?</h3>
+      <p>
+        Ensure your session ID was obtained from a <b>my.salesforce.com</b> origin (or via Developer Console). Session IDs originating from <code>lightning.force.com</code> UI pages are restricted by Salesforce security and cannot be used for API access.
+      </p>
+
+      <h3>Q: Why does a metadata list only show 200 items when my org has thousands?</h3>
+      <p>
+        To prevent browser memory bloat and API quota exhaustion, Salesforce Simplified fetches metadata in recency-ordered batches of 200 items. To access specific items beyond the top 200, use the <b>Quick Find</b> search input to filter the org query.
+      </p>
+
+      <h3>Q: Can I use Salesforce Simplified across multiple org tabs simultaneously?</h3>
+      <p>
+        Yes! Each tab automatically resolves its corresponding org context and session token independently.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://salesforcsimplified.blogspot.com" target="_blank" rel="noopener noreferrer">🌐 Official Blog</a>
+      <span>·</span>
+      <a href="https://github.com/rajnikantroy/SalesforceSimplified/issues/new" target="_blank" rel="noopener noreferrer">🐛 Report an Issue</a>
+      <span>·</span>
+      <a href="https://buymeacoffee.com/rkroy" target="_blank" rel="noopener noreferrer">☕ Buy Me a Coffee</a>
+      <span>·</span>
+      <a href="https://chrome.google.com/webstore/detail/salesforce-simplified/hjeigbpcblpkaienmpihneipkempijob" target="_blank" rel="noopener noreferrer">⭐ Chrome Web Store</a>
+    </div>
+    <p><b>Salesforce Simplified v2.1.8</b> — Designed for Salesforce Developers & Administrators.</p>
+    <p class="small">Not affiliated with Salesforce, Inc. Salesforce, Lightning, and Visualforce are registered trademarks of Salesforce, Inc.</p>
+  </footer>
+
+</div>
+</body>
+</html>

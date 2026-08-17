@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Author: Rajni Kant Roy(Salesforce Technical Architect) -->
+<html lang="en" ng-csp>
+<head>
+<meta charset="utf-8">
+<title>Salesforce Simplified - Error Reference</title>
+<link rel="icon" href="img/simplify.png">
+<!--
+  Rendered from js/ss-errors.js rather than written out here.
+
+  The panel shows a code beside a message and this page explains it; written
+  twice they drift, and the copy people find is always the stale one. There
+  is one catalogue, and this is a view of it.
+
+  No inline script: extension pages run under Manifest V3's content security
+  policy, which forbids it.
+-->
+<link rel="stylesheet" href="css/error.css">
+</head>
+<body>
+
+<header class="head">
+  <h1>Error reference</h1>
+  <p>Every error Salesforce Simplified reports, what causes it, and what to do
+     about it. Codes are shown beside the message in the panel &mdash; look one
+     up here, or quote it in a bug report.</p>
+  <input id="filter" type="search" placeholder="Filter by code, symptom or cause&hellip;"
+         autocomplete="off" spellcheck="false">
+</header>
+
+<nav id="groups" class="groups"></nav>
+
+<main id="list"></main>
+
+<footer class="foot">
+  <p>Not here? The org&rsquo;s own message is shown verbatim in a job&rsquo;s
+     detail &mdash; that text is Salesforce&rsquo;s, not this extension&rsquo;s,
+     and searching for it will usually find Salesforce&rsquo;s own
+     documentation.</p>
+</footer>
+
+<script src="js/ss-errors.js"></script>
+<script src="js/error-page.js"></script>
+</body>
+</html>
